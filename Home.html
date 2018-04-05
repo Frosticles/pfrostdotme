@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Peter Frost</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="lmweb/style/latinmodern-roman.css" type="text/css" charset="utf-8"/>
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+	<link href="hamburgers/dist/hamburgers.css" rel="stylesheet">
+	<script type="text/javascript" src="Home.js"></script>
+</head>
+
+<body>
+	
+<header class="style-header"> 
+	<a href="Home.html" class="style-title">
+		Peter Frost
+	</a>
+	 
+	<button class="hamburger hamburger--spin" type="button" id="menu-hamburger">
+  		<span class="hamburger-box">
+    		<span class="hamburger-inner">
+			<script>
+				var hamburger = document.querySelector(".hamburger");
+				
+				hamburger.addEventListener("click", function() {
+				if (hamburger.classList.contains("is-active")) {
+					closeNav();
+				} else {
+					openNav();
+				}
+					  
+				hamburger.classList.toggle("is-active");	  
+				});
+				
+			</script>
+			</span>
+  		</span>
+	</button>
+	
+	<h1 id="element" class="style-jumbotron"></h1>
+
+	<script>
+	var i = 0;
+	var txt = 'hello world ';
+	var typeSpeed = 80;
+	var spinSpeed = 80;
+	setTimeout(spinner0, 500);
+		
+	function typeWriter() {
+	  if (i < txt.length) {
+		document.getElementById("element").innerHTML += txt.charAt(i);
+		i++;
+		setTimeout(typeWriter, typeSpeed);
+	  } else {
+	  }
+	}
+		
+	function cursorAdd() {
+		document.getElementById("element").innerHTML = document.getElementById("element").innerHTML.substring(0, document.getElementById("element").innerHTML.length);
+		document.getElementById("element").innerHTML += "█";
+		setTimeout(cursorDelete, 500);
+	}
+	function cursorDelete() {
+		document.getElementById("element").innerHTML = document.getElementById("element").innerHTML.replace("█", " ");
+		setTimeout(cursorAdd, 500);
+	}
+		
+	function spinner0() {
+		if (i < 7){
+			document.getElementById("element").innerHTML = '|';
+			setTimeout(spinner1, spinSpeed);
+			i++;
+		} else {
+			i = 0;
+			document.getElementById("element").innerHTML = '';
+			typeWriter();
+		}
+	}
+		
+	function spinner1() {
+		document.getElementById("element").innerHTML = '/';
+		setTimeout(spinner2, spinSpeed);
+	}
+	function spinner2() {
+		document.getElementById("element").innerHTML = '—';
+		setTimeout(spinner3, spinSpeed);
+	}
+	function spinner3() {
+		document.getElementById("element").innerHTML = '\\';
+		setTimeout(spinner0, spinSpeed);
+	}
+	
+	</script>
+	
+	<div class="style-social">	
+		<span class="style-socialImg">
+			<a href="https://www.linkedin.com/in/frostp/">
+				<img src="images/LinkedIn_Logo_2013.svg" class="style-socialImg" alt="Facebook Logo"/>
+			</a>
+		</span>
+		<span class="style-socialImg">
+			<a href="https://www.facebook.com/pfrostuk">
+				<img src="images/F_icon.svg" class="style-socialImg" alt="Facebook Logo"/>
+			</a>
+		</span>
+		<span class="style-socialImg">
+			<a href="https://www.instagram.com/frosticless/">
+				<img src="images/Instagram_logo_2016.svg" class="style-socialImg" alt="Instagram Logo">
+			</a>
+		</span>
+	    <span class="style-socialImg">
+			<a href="https://t.me/frostp">
+				<img src="images/Telegram_logo.svg" class="style-socialImg" alt="Telegram Logo">
+			</a>
+		</span>
+	</div>
+</header>
+	
+<div id="mySidenav" class="sidenav">
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+</div>
+	
+<main class="style-main">
+	<aside>
+		<h1>Lancaster University</h1>
+	</aside>
+	<img src="images/Filtery Pic.jpg" alt="Picture of me face" width="200px">
+
+
+  <h2>Mechanical Engineering BEng (Hons)</h2>
+	<ul>
+		<li>
+			<a href="https://github.com/Frosticles/Ardbann">ArdBANN: ARDuino Backpropogating Artificial Neural Network </a>
+		</li>
+	</ul>
+</main>
+	
+<footer> </footer>
+	
+<script>		
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+	document.getElementById("menu-hamburger").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0px";
+	document.getElementById("menu-hamburger").style.marginLeft = "0px";
+}	
+</script>
+	
+</body>
+</html>
