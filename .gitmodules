@@ -4,6 +4,3 @@
 [submodule "lmweb"]
 	path = lmweb
 	url = https://github.com/slashfoo/lmweb.git
-[submodule "typed.js"]
-	path = typed.js
-	url = https://github.com/mattboldt/typed.js.git
