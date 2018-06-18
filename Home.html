@@ -51,9 +51,9 @@
   		</span>
 	</button>
 	
-	<div>
-		<h1 id="element" class="style-jumbotron"></h1>
-	</div>
+	<aside>
+		<div id="element" class="style-jumbotron"></div>
+	</aside>
 
 	<script>
 	var i = 0;
@@ -108,7 +108,7 @@
 	
 	</script>
 	
-	<div class="style-social">	
+	<nav class="style-social">	
 		<span class="style-socialImg">
 			<a href="https://www.linkedin.com/in/frostp/">
 				<img src="images/LinkedIn_Logo_2013.svg" class="style-socialImg" alt="Facebook Logo"/>
@@ -129,31 +129,46 @@
 				<img src="images/Telegram_logo.svg" class="style-socialImg" alt="Telegram Logo">
 			</a>
 		</span>
-	</div>
+	</nav>
 </header>
 	
-<div id="mySidenav" class="sidenav">
+<nav id="mySidenav" class="sidenav">
   <a href="#">About</a>
   <a href="#">Contact</a>
-</div>
+</nav>
 	
 <main class="style-main">
-	<aside>
-		<h1>I will eventually get round to finishing this website once I finish my dissertation</h1>
-		<!--<h1>Lancaster University</h1>-->
-	</aside>
+	<section class="style-fullpage">
+		<aside>
+			<h1>Peter Frost</h1>
+			<h2>Mechanical Engineering student at Lancaster University.</h2>
+			<a>Hobbyist programmer and maker of things with varying degrees of usefullness. 
+			I have experience in the fields of embedded electronics, machine learning, robotics, and app development. 
+			I have been doing amateur photogtaphy for a number of years, and have experimented in other areas of
+			media production including vector-graphics illustration and electronic music production. </a>
+		</aside>
+		<img src="images/Profile Picture.png" alt="Profile Picture" style="min-width: 100px;" class="style-image">
+	</section>
 
+	<h1>Projects</h1>
 
-  <h2>Mechanical Engineering BEng (Hons)</h2>
-  <!--<div class="style-img-right"></div>-->
-	<ul>
-		<li>
-			<a href="https://github.com/Frosticles/Ardbann">ArdBANN: ARDuino Backpropogating Artificial Neural Network </a>
-		</li>
-	</ul>
+  	<!--<div class="style-img-right"></div>-->
+	<section class="style-fullpage-button">
+		<a class="style-bigbutton" 
+		   style="background-image:url('images/Neural Network Thumbnail.png'), linear-gradient(235deg, rgba(0,225,199,0.51), rgba(0,120,255,1.00));" 
+		   href="https://github.com/Frosticles/Ardbann">
+			ArdBANN
+		</a>
+		
+		<a class="style-bigbutton" 
+		   style="background-image:url('images/Project Logo.png'), linear-gradient(235deg, rgba(0,225,199,0.51), rgba(0,120,255,1.00));"
+		   href="https://drive.google.com/open?id=1WegajaFAQK5G7Lpp74SUuUIOTZL5F-4w">
+			BEng Project</a>
+	</section>
+	
+<footer><a>Peter Frost, 2018</a></footer>
 </main>
 	
-<footer> </footer>
 	
 <script>		
 function openNav() {
