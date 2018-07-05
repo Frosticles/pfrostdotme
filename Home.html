@@ -6,10 +6,14 @@
 	
 	<title>Peter Frost</title>
 	<link rel="stylesheet" href="styles.css">
-	<link rel="stylesheet" href="lmweb/style/latinmodern-roman.css" type="text/css" charset="utf-8"/>
-	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+	
 	<link href="hamburgers/dist/hamburgers.css" rel="stylesheet">
 	<script type="text/javascript" src="Home.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/scripts.js"></script>
+	
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
 	
 	<meta property="og:title" content="Peter Frost" />
 	<meta property="og:type" content="website" />
@@ -57,6 +61,29 @@
 		<div id="element" class="style-jumbotron"></div>
 	</aside>
 
+	<nav class="style-social">	
+		<span class="style-socialImg">
+			<a href="https://www.linkedin.com/in/frostp/">
+				<img src="images/LinkedIn_Logo_2013.svg" class="style-socialImg" alt="Facebook Logo"/>
+			</a>
+		</span>
+		<span class="style-socialImg">
+			<a href="https://www.facebook.com/pfrostuk">
+				<img src="images/F_icon.svg" class="style-socialImg" alt="Facebook Logo"/>
+			</a>
+		</span>
+		<span class="style-socialImg">
+			<a href="https://www.instagram.com/frosticless/">
+				<img src="images/Instagram_logo_2016.svg" class="style-socialImg" alt="Instagram Logo">
+			</a>
+		</span>
+	    <span class="style-socialImg">
+			<a href="https://t.me/frostp">
+				<img src="images/Telegram_logo.svg" class="style-socialImg" alt="Telegram Logo">
+			</a>
+		</span>
+	</nav>
+	
 	<script>
 	var i = 0;
 	var txt = 'hello world ';
@@ -109,29 +136,6 @@
 	}
 	
 	</script>
-	
-	<nav class="style-social">	
-		<span class="style-socialImg">
-			<a href="https://www.linkedin.com/in/frostp/">
-				<img src="images/LinkedIn_Logo_2013.svg" class="style-socialImg" alt="Facebook Logo"/>
-			</a>
-		</span>
-		<span class="style-socialImg">
-			<a href="https://www.facebook.com/pfrostuk">
-				<img src="images/F_icon.svg" class="style-socialImg" alt="Facebook Logo"/>
-			</a>
-		</span>
-		<span class="style-socialImg">
-			<a href="https://www.instagram.com/frosticless/">
-				<img src="images/Instagram_logo_2016.svg" class="style-socialImg" alt="Instagram Logo">
-			</a>
-		</span>
-	    <span class="style-socialImg">
-			<a href="https://t.me/frostp">
-				<img src="images/Telegram_logo.svg" class="style-socialImg" alt="Telegram Logo">
-			</a>
-		</span>
-	</nav>
 </header>
 	
 <nav id="mySidenav" class="sidenav">
@@ -140,10 +144,11 @@
 </nav>
 	
 <main class="style-main">
-	<section class="style-fullpage">
+	<div style="max-width: 1200px; margin: auto;">
+	<section class="style-headshot">
 		<aside>
 			<h1>Peter Frost</h1>
-			<h2>Mechanical Engineering student at Lancaster University.</h2>
+			<h2>BEng (Hons) Mechanical Engineering</h2>
 			<a>Hobbyist programmer and maker of things with varying degrees of usefullness. 
 			I have experience in the fields of embedded electronics, machine learning, robotics, and app development. 
 			I have been doing amateur photogtaphy for a number of years, and have experimented in other areas of
@@ -152,25 +157,91 @@
 		<img src="images/Profile Picture.png" alt="Profile Picture" style="min-width: 100px;" class="style-image">
 	</section>
 
-	<h1>Projects</h1>
-
   	<!--<div class="style-img-right"></div>-->
-	<section class="style-fullpage-button">
+	<section class="style-headshot-button">
 		<a class="style-bigbutton" 
-		   style="background-image:url('images/Neural Network Thumbnail.png'), linear-gradient(235deg, rgba(0,225,199,0.51), rgba(0,120,255,1.00));" 
+		   style="background-image:url('images/Neural Network Thumbnail.png'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));" 
 		   href="https://github.com/Frosticles/Ardbann">
 			ArdBANN
 		</a>
 		
 		<a class="style-bigbutton" 
-		   style="background-image:url('images/Project Logo.png'), linear-gradient(235deg, rgba(0,225,199,0.51), rgba(0,120,255,1.00));"
+		   style="background-image:url('images/Project Logo.png'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));"
 		   href="https://drive.google.com/open?id=1WegajaFAQK5G7Lpp74SUuUIOTZL5F-4w">
 			BEng Project</a>
 	</section>
+	</div>
+</main>
+
+<section class="style-herocontent">
+	<a>PHOTOGRAPHY</a>
+		<div id="slideshow" >
+			<div >
+				<img src="images//hero/002.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images//hero/003.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/005.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/007.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/009.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/004.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/001.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/006.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/008.jpg" alt="Hero Picture">
+			</div>
+	</div>
+</section>
+	
+<section class="style-herocontent">
+	<a>SOMETHING ELSE</a>
+		<div id="slideshow2" >
+			<div >
+				<img src="images//hero/002.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images//hero/003.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/005.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/007.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/009.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/004.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/001.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/006.jpg" alt="Hero Picture">
+			</div>
+			<div >
+				<img src="images/hero/008.jpg" alt="Hero Picture">
+			</div>
+	</div>
+</section>
+
 	
 <footer><a>Peter Frost, 2018</a></footer>
-</main>
-	
+
 	
 <script>		
 function openNav() {
