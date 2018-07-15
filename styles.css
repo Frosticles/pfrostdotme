@@ -420,7 +420,6 @@ footer {
 
 .hamburger .hamburger-inner,.hamburger .hamburger-inner:after,.hamburger .hamburger-inner:before {
 	background-color: #DDDDDD;
-	transition-duration: 0.15s, 0.5s;
 }
 
  /* The side navigation menu */
