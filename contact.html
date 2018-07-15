@@ -23,6 +23,8 @@
 <meta name="theme-color" content="#ffffff">
 </head>
 	
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
 <script>
 	WebFont.load({
@@ -34,7 +36,7 @@
 
 <main class="style-email">
 	
-	  <button class="hamburger hamburger--spin" type="button" id="menu-hamburger"> 
+	  <button class="hamburger hamburger--spin" type="button" id="contact-hamburger"> 
 	  <span class="hamburger-box"> 
 		  <span class="hamburger-inner"> 
   			<script>
@@ -58,17 +60,20 @@
 	<a href="mailto:mail@pfrost.me?Subject=Website%20Contact">mail@pfrost.me</a>
 </main>
 	
-<nav id="mySidenav" class="sidenav"> <a href="home.html">Home</a> </nav>
+<nav id="contactSidenav" class="sidenav"> <a href="home.html">Home</a> </nav>
 
-<script>		
+<script>	
+	
 function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-	$("#menu-hamburger").animate({marginLeft: '250px'}, 250, "swing");
+    document.getElementById("contactSidenav").style.width = "250px";
+	$("#contact-hamburger").animate({marginLeft: '250px'}, 250, "swing");
 }
 
 function closeNav() {
-    document.getElementById("mySidenav").style.width = "0px";
-	$("#menu-hamburger").animate({marginLeft: '0px'}, 250, "swing");
+    document.getElementById("contactSidenav").style.width = "0px";
+	$("#contact-hamburger").animate({marginLeft: '0px'}, 250, "swing");
 }	
 </script>
+	
+</body>
 </html>
