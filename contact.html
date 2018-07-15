@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="styles.css">
 <link href="hamburgers/dist/hamburgers.css" rel="stylesheet">
 	
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+	
 <meta property="og:title" content="Peter Frost" />
 <meta property="og:type" content="website" />
 <meta property="og:description" content="Peter Frost is a Mechanical Engineering student studying at Lancaster University, graduating July 2018" />
@@ -61,12 +63,12 @@
 <script>		
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-	document.getElementById("menu-hamburger").style.marginLeft = "250px";
+	$("#menu-hamburger").animate({marginLeft: '250px'}, 250, "swing");
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0px";
-	document.getElementById("menu-hamburger").style.marginLeft = "0px";
+	$("#menu-hamburger").animate({marginLeft: '0px'}, 250, "swing");
 }	
 </script>
 </html>
