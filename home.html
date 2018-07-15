@@ -219,12 +219,12 @@
 <script>		
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-	document.getElementById("menu-hamburger").style.marginLeft = "250px";
+	$("#menu-hamburger").animate({marginLeft: '250px'}, 500, "linear");
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0px";
-	document.getElementById("menu-hamburger").style.marginLeft = "0px";
+	$("#menu-hamburger").animate({marginLeft: '0px'}, 500, "linear");
 }	
 </script>
 </body>
