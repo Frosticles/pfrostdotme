@@ -4,3 +4,6 @@
 [submodule "lmweb"]
 	path = lmweb
 	url = https://github.com/slashfoo/lmweb.git
+[submodule "lazysizes"]
+	path = lazysizes
+	url = https://github.com/aFarkas/lazysizes.git
