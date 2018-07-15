@@ -11,7 +11,22 @@
 <!link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
 <!link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+<script>
+	WebFont.load({
+		google: {
+			families: ['Roboto Mono']
+    	}, timeout: 2000
+	});
+	
+	WebFont.load({
+		custom: {
+			families: ['Fira Sans'],
+			urls: ['https://code.cdn.mozilla.net/fonts/fira.css']
+    	}
+	});
+</script>
+	
 <meta property="og:title" content="Peter Frost" />
 <meta property="og:type" content="website" />
 <meta property="og:description" content="Peter Frost is a Mechanical Engineering student studying at Lancaster University, graduating July 2018" />
@@ -28,22 +43,6 @@
 </head>
 
 <body>
-	
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
-<script>
-	WebFont.load({
-		google: {
-			families: ['Roboto Mono']
-    	}, timeout: 2000
-	});
-	
-	WebFont.load({
-		custom: {
-			families: ['Fira Sans'],
-			urls: ['https://code.cdn.mozilla.net/fonts/fira.css']
-    	}
-	});
-</script>
 	
 <header class="style-header">
 	
