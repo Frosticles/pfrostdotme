@@ -7,3 +7,6 @@
 [submodule "lazysizes"]
 	path = lazysizes
 	url = https://github.com/aFarkas/lazysizes.git
+[submodule "Fira-Lightened"]
+	path = Fira-Lightened
+	url = https://github.com/Frosticles/Fira-Lightened.git
