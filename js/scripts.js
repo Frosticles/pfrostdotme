@@ -54,6 +54,5 @@ $(document).ready(function() {
 			var text = atob('PGEgaHJlZj0iZGlyZWN0b3J5ZG9lc25vdGV4aXN0L0QtTElOS05BUyI+TkFTPC9hPgo8YSBocmVmPSJ0cnVtcGRpZDkxMS5odG1sIj5UcnVtcDwvYT4=');
 			menu.append(text);
 		}
-		console.log($("#jumbotron").html());
 	});
 });
