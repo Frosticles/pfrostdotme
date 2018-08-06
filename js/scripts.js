@@ -49,7 +49,7 @@ $(document).ready(function() {
 	},  (4000 + (Math.random()*2000)));
 	
 	$("#jumbotron").on('DOMSubtreeModified', function() {
-		if (document.getElementById("jumbotron").innerHTML === atob('YXBwbGU=')) {
+		if (($("#jumbotron").html() === atob('YXBwbGU=')) && ($("#mySidenav > a").length === 1)) {
 			var menu = $("#mySidenav");
 			var text = atob('PGEgaHJlZj0iZGlyZWN0b3J5ZG9lc25vdGV4aXN0L0QtTElOS05BUyI+TkFTPC9hPgo8YSBocmVmPSJ0cnVtcGRpZDkxMS5odG1sIj5UcnVtcDwvYT4=');
 			menu.append(text);
