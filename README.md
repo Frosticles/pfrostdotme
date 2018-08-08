@@ -19,7 +19,7 @@ npm install html-minifier -g
 npm install uglify-js -g
 npm install csso-cli -g
 brew install zopfli
-brew install rename (I use a mac and the rename utility doesn\'t seem to be there by default)
+brew install rename (I use a mac and the rename utility doesn't seem to be there by default)
 ```
 Obviously change `brew` to something else if you're not on MacOS, and `npm` is the package manager for `node.js` so you'll need those installed on your local machine too.
 
