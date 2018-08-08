@@ -79,13 +79,12 @@ Add:
     text/x-cross-domain-policy;
 ```
 
+Just to check if you've just done something stupid
 ```bash
 sudo nginx -t
 ```
-Just to check if you've just done something stupid
 
 Finally:
-
 ```bash
 sudo service nginx restart
 ```
