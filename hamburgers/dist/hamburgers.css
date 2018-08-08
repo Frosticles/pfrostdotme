@@ -9,9 +9,9 @@
   padding: 15px 15px;
   display: inline-block;
   cursor: pointer;
-  transition-property: opacity, margin-left, filter;
-  transition-duration: 0.15s, 0.5s;
-  transition-timing-function: linear, ease;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
   font: inherit;
   color: inherit;
   text-transform: none;
