@@ -82,7 +82,7 @@ Add:
 ```bash
 sudo nginx -t
 ```
-Just to check you've just done something stupid
+Just to check if you've just done something stupid
 
 Finally:
 
