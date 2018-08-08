@@ -84,7 +84,7 @@ sudo nginx -t
 ```
 Just to check you've just done something stupid
 
-Finally;
+Finally:
 
 ```bash
 sudo service nginx restart
