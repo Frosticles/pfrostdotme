@@ -1,6 +1,7 @@
 # npm install html-minifier -g
 # npm install uglify-js -g
 # npm install csso-cli -g
+# brew install zopfli
 # brew install rename
 
 # Cleanup from previous (possibly incomplete) runs
