@@ -5,7 +5,7 @@ A repository for the content of the website pfrost.me
 
 The reason there are so many .gz files in this repository is because they are minified and highly compressed versions of each file. This means that the web server (`nginx` in this case) does not need to compress or minify anything on-demand. For obvious reasons this speeds up the serving of files to the client.
 
-I'm using minifiers for html `html-minifier`, JavaScript `uglify-js`, and CSS `csso-cli`, then these filetypes and others (`svg,txt,xml,csv,json,bmp.otf,ttf,webmanifest`) are compressed with `zopfli` which is a slow but powerful `gzip` compressor.
+I'm using minifiers for html `html-minifier`, JavaScript `uglify-js`, and CSS `csso-cli`, then these filetypes and others (`svg,txt,xml,csv,json,bmp,otf,ttf,webmanifest`) are compressed with `zopfli` which is a slow but powerful `gzip` compressor.
 
 This compresses the home page of my website by ***75%*** compared to serving the uncompressed version.
 
