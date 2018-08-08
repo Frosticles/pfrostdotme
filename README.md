@@ -11,8 +11,6 @@ This compresses the home page of my website by ***75%*** compared to serving the
 
 ### Sounds cool I'll do the same!
 
-#### Pre-processing all your files
-
 I've provided the script I wrote to minify and compress everything in `.preprocess.sh`, this is what you should use to pre-process all of your files initially. 
 
 Run this by first installing the dependencies:
@@ -27,7 +25,7 @@ Obviously change `brew` to something else if you're not on MacOS, and `npm` is t
 
 Then just `cd` into the root directory of your web files and run the script. It won't change any existing files, it just creates new minified versions and compresses those.
 
-#### Keeping those pre-processed files updated
+### Keeping those pre-processed files updated
 
 I've written a Git hooks script to apply the same pre-processing to files that you have changed and about to commit called: `.pre-commit`. 
 
@@ -39,7 +37,7 @@ sudo ln -s foo/.pre-commit foo/.git/hooks/pre-commit
 ```
 Or you could just move it to `foo/.git/hooks/` and remove the leading `.`
 
-#### Telling nginx to use these files you kindly made for it
+### Telling nginx to use these files you kindly made for it
 
 ```bash
 sudo nano /etc/nginx/nginx.conf
