@@ -9,7 +9,7 @@ git diff --name-only --cached | grep ".*\.css" | xargs -I % csso % --output %.mi
 
 git diff --name-only --cached | grep ".*\.js" | xargs -I % uglifyjs --compress --mangle --verbose -o %.min -- %
 
-find ./ -name "*.min$" | xargs -I % zopfli -v --i15 %
+find ./ -name "*.min" | xargs -I % zopfli -v --i15 %
 
 git diff --name-only --cached | grep ".*\.svg$" | xargs -I % zopfli -v --i15 %
 git diff --name-only --cached | grep ".*\.txt$" | xargs -I % zopfli -v --i15 %
