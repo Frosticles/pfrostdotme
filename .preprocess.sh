@@ -9,7 +9,7 @@ find ./ \( -name "*.min.gz" -o -name "*.min" -o -name "*.gz" \) | xargs rm
 
 find ./ -name "*.html" | xargs -I % html-minifier --collapse-whitespace --remove-comments --remove-optional-tags \
                              --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace \
-                             --use-short-doctype % -o %.min
+                             --minify-js true --use-short-doctype % -o %.min
 
 find ./ -name "*.css" | xargs -I % csso % --output %.min
 
