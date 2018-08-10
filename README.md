@@ -7,7 +7,7 @@ The reason there are so many .gz files in this repository is because they are mi
 
 I'm using minifiers for html `html-minifier`, JavaScript `uglify-js`, and CSS `csso-cli`, then these filetypes and others (`svg,txt,xml,csv,json,bmp,otf,ttf,webmanifest`) are compressed with `zopfli` which is a slow but powerful `gzip` compressor.
 
-This compresses the home page of my website by ***75%*** compared to serving the uncompressed version.
+This compresses the home page of my website by ***76%*** compared to serving the uncompressed version.
 
 ### Sounds cool I'll do the same!
 
