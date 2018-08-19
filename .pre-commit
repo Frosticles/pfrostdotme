@@ -1,13 +1,25 @@
 #!/bin/bash
 
-git diff --name-only --cached | grep ".*\.html" | xargs -I % html-minifier --collapse-whitespace \
+git diff --name-only --cached | grep ".*\.html$" | xargs -I % html-minifier --collapse-whitespace \
                              --remove-comments --remove-optional-tags --remove-redundant-attributes \
                              --remove-script-type-attributes --remove-tag-whitespace \
                              --minify-js true --use-short-doctype % -o %.min
 
-git diff --name-only --cached | grep ".*\.css" | xargs -I % csso % --output %.min
+git diff --name-only --cached | grep ".*\.css$" | xargs -I % csso % --output %.min
 
-git diff --name-only --cached | grep ".*\.js" | xargs -I % uglifyjs --compress --mangle --verbose -o %.min -- %
+git diff --name-only --cached | grep ".*\.js$" | xargs -I % uglifyjs --compress --mangle --verbose -o %.min -- %
+
+find ./ -name "*.min" | xargs -I % brotli --verbose --best %
+
+git diff --name-only --cached | grep ".*\.svg$" | xargs -I % brotli --verbose --best %
+git diff --name-only --cached | grep ".*\.txt$" | xargs -I % brotli --verbose --best %
+git diff --name-only --cached | grep ".*\.xml$" | xargs -I % brotli --verbose --best %
+git diff --name-only --cached | grep ".*\.csv$" | xargs -I % brotli --verbose --best %
+git diff --name-only --cached | grep ".*\.json$" | xargs -I % brotli --verbose --best %
+git diff --name-only --cached | grep ".*\.bmp$" | xargs -I % brotli --verbose --best %
+git diff --name-only --cached | grep ".*\.otf$" | xargs -I % brotli --verbose --best %
+git diff --name-only --cached | grep ".*\.ttf$" | xargs -I % brotli --verbose --best %
+git diff --name-only --cached | grep ".*\.webmanifest$" | xargs -I % brotli --verbose --best %
 
 find ./ -name "*.min" | xargs -I % zopfli -v --i15 %
 
@@ -22,6 +34,8 @@ git diff --name-only --cached | grep ".*\.ttf$" | xargs -I % zopfli -v --i15 %
 git diff --name-only --cached | grep ".*\.webmanifest$" | xargs -I % zopfli -v --i15 %
 
 find ./ -name "*.min.gz" | xargs -I % rename -f -v 's/\.min.gz$/.gz/' %
+
+find ./ -name "*.min.br" | xargs -I % rename -f -v 's/\.min.br$/.br/' %
 
 find ./ -name "*.min" | xargs rm
 
