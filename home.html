@@ -33,6 +33,18 @@
 	
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="hamburgers/dist/hamburgers.css">	
+
+<script>		
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+	$("#menu-hamburger").animate({marginLeft: '250px'}, 250, "swing");
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0px";
+	$("#menu-hamburger").animate({marginLeft: '0px'}, 250, "swing");
+}	
+</script>
 	
 <header class="style-header">
 	
@@ -154,7 +166,9 @@
 	</script> 
 	
 </header>	
-	
+
+<script src="js/modernizr-custom.js"></script>
+
 <main class="style-main">
   <div style="max-width: 1200px; margin: auto;">
     <section class="style-headshot">
@@ -165,17 +179,21 @@
         I have experience in the fields of embedded electronics, machine learning, robotics, and app development. 
         I have been doing amateur photography for a number of years, and have experimented in other areas of
         media production including vector-graphics illustration and electronic music production. </a> </aside>
-      <picture style="min-width: 100px;" class="style-image">
-      	<source srcset="images/Profile_Picture.webp" type="image/webp" >
-      	<img src="images/Profile_Picture.png" alt="Profile Picture" > 
+      <picture class="style-image">
+      	<source class="style-image" style="margin-left: 0" srcset="images/Profile_Picture.webp" type="image/webp" >
+      	<img class="style-image" style="margin-left: 0" src="images/Profile_Picture.png" alt="Profile Picture" > 
       </picture>
 	 </section>
 
-    <section class="style-headshot-button"> <a class="style-bigbutton" 
-		   style="background-image:url('images/Neural Network Thumbnail.png'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));" 
-		   href="https://github.com/Frosticles/Ardbann"> ArdBANN </a> <a class="style-bigbutton" 
-		   style="background-image:url('images/Project Logo.png'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));"
-		   href="https://drive.google.com/open?id=1WegajaFAQK5G7Lpp74SUuUIOTZL5F-4w"> BEng Project</a> </section>
+    <section class="style-headshot-button"> 
+    	<a class="neural-net-image"
+		   href="https://github.com/Frosticles/Ardbann"> ArdBANN 
+		</a> 
+
+		<a class="beng-image"
+		   href="https://drive.google.com/open?id=1WegajaFAQK5G7Lpp74SUuUIOTZL5F-4w"> BEng Project
+		</a> 
+	</section>
   </div>
 </main>
 	
@@ -206,56 +224,47 @@
 	
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/scripts.js"></script>
-<script src="lazysizes/lazysizes.min.js" async=""></script>
+<script src="lazysizes/lazysizes.min.js"></script>
+<script src="lazysizes/plugins/bgset/ls.bgset.min.js"></script>
+
+
 	
 <section class="style-herocontent"> <a>PHOTOGRAPHY</a>
   <div id="slideshow" >
-    <div> <img class="lazyload" data-src="images/hero/photography/002.jpg" alt="Hero Picture"> </div>
-    <div> <img class="lazyload" data-src="images/hero/photography/003.jpg" alt="Hero Picture"> </div>
-    <div> <img class="lazyload" data-src="images/hero/photography/005.jpg" alt="Hero Picture"> </div>
-    <div> <img class="lazyload" data-src="images/hero/photography/007.jpg" alt="Hero Picture"> </div>
-    <div> <img class="lazyload" data-src="images/hero/photography/004.jpg" alt="Hero Picture"> </div>
-    <div> <img class="lazyload" data-src="images/hero/photography/001.jpg" alt="Hero Picture"> </div>
-    <div> <img class="lazyload" data-src="images/hero/photography/006.jpg" alt="Hero Picture"> </div>
-    <div> <img class="lazyload" data-src="images/hero/photography/008.jpg" alt="Hero Picture"> </div>
+    <div class="lazyload" data-bgset="images/hero/photography/002.webp [type: image/webp] | images/hero/photography/002.jpg"></div>
+    <div class="lazyload" data-bgset="images/hero/photography/003.webp [type: image/webp] | images/hero/photography/003.jpg"></div>
+    <div class="lazyload" data-bgset="images/hero/photography/005.webp [type: image/webp] | images/hero/photography/005.jpg"></div>
+    <div class="lazyload" data-bgset="images/hero/photography/007.webp [type: image/webp] | images/hero/photography/007.jpg"></div>
+    <div class="lazyload" data-bgset="images/hero/photography/004.webp [type: image/webp] | images/hero/photography/004.jpg"></div>
+    <div class="lazyload" data-bgset="images/hero/photography/001.webp [type: image/webp] | images/hero/photography/001.jpg"></div>
+    <div class="lazyload" data-bgset="images/hero/photography/006.webp [type: image/webp] | images/hero/photography/006.jpg"></div>
+    <div class="lazyload" data-bgset="images/hero/photography/008.webp [type: image/webp] | images/hero/photography/008.jpg"></div>
   </div>
 </section>
 <section class="style-herocontent" style="height: 80vh; line-height: 10vh;"> <a>ELECTRONICS</a>
   <div id="slideshow3" >
-    <div> <img class="lazyload" data-src="images/hero/electronics/001.jpg" alt="Hero Picture"> </div>
-    <div style="display: none"> <img class="lazyload" data-src="images/hero/electronics/002.jpg" alt="Hero Picture" > </div>
-    <div style="display: none"> <img class="lazyload" data-src="images/hero/electronics/003.jpg" alt="Hero Picture" > </div>
+  	<div class="lazyload" data-bgset="images/hero/electronics/001.webp [type: image/webp] | images/hero/electronics/001.jpg"></div>
+  	<div style="display: none" class="lazyload" data-bgset="images/hero/electronics/002.webp [type: image/webp] | images/hero/electronics/002.jpg"></div>
+  	<div style="display: none" class="lazyload" data-bgset="images/hero/electronics/003.webp [type: image/webp] | images/hero/electronics/003.jpg"></div>  
   </div>
 </section>
 <section class="style-herocontent" style="height: 80vh; line-height: 10vh;"> <a>PROGRAMMING</a>
   <div id="slideshow4" >
-    <div> <img class="lazyload" data-src="images/hero/programming/001.jpg" alt="Hero Picture"> </div>
-    <div style="display: none"> <img class="lazyload" data-src="images/hero/programming/002.jpg" alt="Hero Picture"> </div>
-	<div style="display: none"> <img class="lazyload" data-src="images/hero/programming/003.jpg" alt="Hero Picture"> </div>
+  	<div class="lazyload" data-bgset="images/hero/programming/001.webp [type: image/webp] | images/hero/programming/001.jpg"></div>
+  	<div style="display: none" class="lazyload" data-bgset="images/hero/programming/002.webp [type: image/webp] | images/hero/programming/002.jpg"></div>
+  	<div style="display: none" class="lazyload" data-bgset="images/hero/programming/003.webp [type: image/webp] | images/hero/programming/003.jpg"></div>  
   </div>
 </section>
 <section class="style-herocontent" style="height: 80vh; line-height: 10vh;"> <a>MECHANICAL DESIGN</a>
   <div id="slideshow2" >
-    <div> <img class="lazyload" data-src="images/hero/design/006.jpg" alt="Hero Picture"> </div>
-    <div style="display: none"> <img class="lazyload" data-src="images/hero/design/001.jpg" alt="Hero Picture"> </div>
-    <div style="display: none"> <img class="lazyload" data-src="images/hero/design/002.jpg" alt="Hero Picture"> </div>
-    <div style="display: none"> <img class="lazyload" data-src="images/hero/design/003.jpg" alt="Hero Picture"> </div>
-    <div style="display: none"> <img class="lazyload" data-src="images/hero/design/005.jpg" alt="Hero Picture"> </div>
-    <div style="display: none"> <img class="lazyload" data-src="images/hero/design/004.jpg" alt="Hero Picture"> </div>
+    <div class="lazyload" data-bgset="images/hero/design/006.webp [type: image/webp] | images/hero/design/006.jpg"></div>
+    <div style="display: none" class="lazyload" data-bgset="images/hero/design/001.webp [type: image/webp] | images/hero/design/001.jpg"></div> 
+    <div style="display: none" class="lazyload" data-bgset="images/hero/design/002.webp [type: image/webp] | images/hero/design/002.jpg"></div> 
+    <div style="display: none" class="lazyload" data-bgset="images/hero/design/003.webp [type: image/webp] | images/hero/design/003.jpg"></div> 
+    <div style="display: none" class="lazyload" data-bgset="images/hero/design/005.webp [type: image/webp] | images/hero/design/005.jpg"></div> 
+    <div style="display: none" class="lazyload" data-bgset="images/hero/design/004.webp [type: image/webp] | images/hero/design/004.jpg"></div> 
   </div>
 </section>
 <footer>Designed and hosted by Peter Frost</footer>
-<script>		
-	
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-	$("#menu-hamburger").animate({marginLeft: '250px'}, 250, "swing");
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0px";
-	$("#menu-hamburger").animate({marginLeft: '0px'}, 250, "swing");
-}	
-</script>
 </body>
 </html>
