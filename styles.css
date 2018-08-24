@@ -322,7 +322,12 @@ footer {
   background-image: url('images/Project Logo.webp'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));
 }
 
-.style-bigbutton:hover {
+.neural-net-image:hover {
+	opacity: 0.9; 
+	transform: scale(0.98);
+}
+
+.beng-image:hover {
 	opacity: 0.9; 
 	transform: scale(0.98);
 }
