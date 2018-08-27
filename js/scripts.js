@@ -156,7 +156,7 @@ $(document).ready(function() {
 	$("#jumbotron").on('DOMSubtreeModified', function() {
 		if (($("#jumbotron").html() === atob('YXBwbGU=')) && ($("#mySidenav > a").length === 1)) {
 			var menu = $("#mySidenav");
-			var text = atob('PGEgaHJlZj0iZGlyZWN0b3J5ZG9lc25vdGV4aXN0L0QtTElOS05BUyI+TkFTPC9hPgo8YSBocmVmPSJ0cnVtcGRpZDkxMS5odG1sIj5UcnVtcDwvYT4=');
+			var text = atob('PGEgaHJlZj0iZGlyZWN0b3J5ZG9lc25vdGV4aXN0L0QtTElOS05BUy8iPk5BUzwvYT4KPGEgaHJlZj0idHJ1bXBkaWQ5MTEuaHRtbCI+VHJ1bXA8L2E+');
 			menu.append(text);
 		}
 	});
