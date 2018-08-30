@@ -9,17 +9,17 @@ git diff --name-only --cached | grep ".*\.css$" | xargs -I % csso % --output %.m
 
 git diff --name-only --cached | grep ".*\.js$" | xargs -I % uglifyjs --compress --mangle --verbose -o %.min -- %
 
-find ./ -name "*.min" | xargs -I % brotli --verbose --best %
+find ./ -name "*.min" | xargs -I % brotli --verbose --best --force %
 
-git diff --name-only --cached | grep ".*\.svg$" | xargs -I % brotli --verbose --best %
-git diff --name-only --cached | grep ".*\.txt$" | xargs -I % brotli --verbose --best %
-git diff --name-only --cached | grep ".*\.xml$" | xargs -I % brotli --verbose --best %
-git diff --name-only --cached | grep ".*\.csv$" | xargs -I % brotli --verbose --best %
-git diff --name-only --cached | grep ".*\.json$" | xargs -I % brotli --verbose --best %
-git diff --name-only --cached | grep ".*\.bmp$" | xargs -I % brotli --verbose --best %
-git diff --name-only --cached | grep ".*\.otf$" | xargs -I % brotli --verbose --best %
-git diff --name-only --cached | grep ".*\.ttf$" | xargs -I % brotli --verbose --best %
-git diff --name-only --cached | grep ".*\.webmanifest$" | xargs -I % brotli --verbose --best %
+git diff --name-only --cached | grep ".*\.svg$" | xargs -I % brotli --verbose --best --force %
+git diff --name-only --cached | grep ".*\.txt$" | xargs -I % brotli --verbose --best --force %
+git diff --name-only --cached | grep ".*\.xml$" | xargs -I % brotli --verbose --best --force %
+git diff --name-only --cached | grep ".*\.csv$" | xargs -I % brotli --verbose --best --force %
+git diff --name-only --cached | grep ".*\.json$" | xargs -I % brotli --verbose --best --force %
+git diff --name-only --cached | grep ".*\.bmp$" | xargs -I % brotli --verbose --best --force %
+git diff --name-only --cached | grep ".*\.otf$" | xargs -I % brotli --verbose --best --force %
+git diff --name-only --cached | grep ".*\.ttf$" | xargs -I % brotli --verbose --best --force %
+git diff --name-only --cached | grep ".*\.webmanifest$" | xargs -I % brotli --verbose --best --force %
 
 find ./ -name "*.min" | xargs -I % zopfli -v --i15 %
 
