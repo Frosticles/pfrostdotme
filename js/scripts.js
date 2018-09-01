@@ -29,34 +29,25 @@ $(document).ready(function() {
 	});
 
 	/*
-		Jumbotron and document title typewriter code 
+		Jumbotron typewriter code 
 	*/
 
-	var i = 0;
+	var jumboCount = 0;
 	var jumboTxt = 'hello world ';
-	var titleTxt = 'Peter Frost';
 	var typeSpeed = 80;
 	var spinSpeed = 80;
-	setTimeout(spinner0, 500);
+
+	if (document.getElementById("jumbotron")) {
+		setTimeout(spinner0, 500);
+	}
 		
 	function typeWriter() {
-		if (i < jumboTxt.length) {
-			document.getElementById("jumbotron").innerHTML += jumboTxt.charAt(i);
+		if (jumboCount < jumboTxt.length) {
+			document.getElementById("jumbotron").innerHTML += jumboTxt.charAt(jumboCount);
 		}
 
-		if (i < titleTxt.length) {
-			var stringToAdd = titleTxt.charAt(i);
-
-			if (stringToAdd == ' ') {
-				stringToAdd += titleTxt.charAt(i + 1);
-				titleTxt = titleTxt.slice(0, i) + titleTxt.slice(i + 1);
-			}
-
-			document.title += stringToAdd;
-		}
-
-		if ((i < jumboTxt.length) || (i < titleTxt.length)) {
-			i++;
+		if (jumboCount < jumboTxt.length) {
+			jumboCount++;
 			setTimeout(typeWriter, typeSpeed);
 		}
 	}
@@ -72,15 +63,13 @@ $(document).ready(function() {
 	}
 		
 	function spinner0() {
-		if (i < 4){
+		if (jumboCount < 4){
 			document.getElementById("jumbotron").innerHTML = '|';
-			document.title += '. ';
 			setTimeout(spinner1, spinSpeed);
-			i++;
+			jumboCount++;
 		} else {
-			i = 0;
+			jumboCount = 0;
 			document.getElementById("jumbotron").innerHTML = '';
-			document.title = '';
 			typeWriter();
 		}
 	}
@@ -96,6 +85,43 @@ $(document).ready(function() {
 	function spinner3() {
 		document.getElementById("jumbotron").innerHTML = '\\';
 		setTimeout(spinner0, spinSpeed);
+	}
+
+	/*
+		Document title typewriter code 
+	*/
+
+	var titleCount = 0;
+	var titleTxt = 'Peter Frost';
+	setTimeout(titleSpinner, 500);
+		
+	function titleTypeWriter() {
+		if (titleCount < titleTxt.length) {
+			var stringToAdd = titleTxt.charAt(titleCount);
+
+			if (stringToAdd == ' ') {
+				stringToAdd += titleTxt.charAt(titleCount + 1);
+				titleTxt = titleTxt.slice(0, titleCount) + titleTxt.slice(titleCount + 1);
+			}
+			document.title += stringToAdd;
+		}
+
+		if (titleCount < titleTxt.length) {
+			titleCount++;
+			setTimeout(titleTypeWriter, typeSpeed);
+		}
+	}
+
+	function titleSpinner() {
+		if (titleCount < 4){
+			document.title += '. ';
+			setTimeout(spinner1, spinSpeed);
+			titleCount++;
+		} else {
+			titleCount = 0;
+			document.title = '';
+			typeWriter();
+		}
 	}
 
 	/*
