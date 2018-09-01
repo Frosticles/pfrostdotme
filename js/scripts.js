@@ -113,14 +113,14 @@ $(document).ready(function() {
 	}
 
 	function titleSpinner() {
-		if (titleCount < 4){
-			document.title += '. ';
-			setTimeout(spinner1, spinSpeed);
+		if (titleCount < 3){
+			document.title += '.';
+			setTimeout(titleSpinner, 500);
 			titleCount++;
 		} else {
 			titleCount = 0;
 			document.title = '';
-			typeWriter();
+			titleTypeWriter();
 		}
 	}
 
