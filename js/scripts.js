@@ -1,7 +1,7 @@
 WebFont.load({
 custom: {
 	families: ['Roboto Mono', 'Fira Sans'],
-	urls: ['Roboto-Mono/roboto.css', 'Fira-Lightened/fira.css']
+	urls: ['/Roboto-Mono/roboto.css', '/Fira-Lightened/fira.css']
 	}
 });
 
@@ -32,73 +32,70 @@ $(document).ready(function() {
 		Jumbotron and document title typewriter code 
 	*/
 
-	if (document.getElementById("jumbotron")) {
+	var i = 0;
+	var jumboTxt = 'hello world ';
+	var titleTxt = 'Peter Frost';
+	var typeSpeed = 80;
+	var spinSpeed = 80;
+	setTimeout(spinner0, 500);
+		
+	function typeWriter() {
+		if (i < jumboTxt.length) {
+			document.getElementById("jumbotron").innerHTML += jumboTxt.charAt(i);
+		}
 
-		var i = 0;
-		var jumboTxt = 'hello world ';
-		var titleTxt = 'Peter Frost';
-		var typeSpeed = 80;
-		var spinSpeed = 80;
-		setTimeout(spinner0, 500);
-			
-		function typeWriter() {
-			if (i < jumboTxt.length) {
-				document.getElementById("jumbotron").innerHTML += jumboTxt.charAt(i);
+		if (i < titleTxt.length) {
+			var stringToAdd = titleTxt.charAt(i);
+
+			if (stringToAdd == ' ') {
+				stringToAdd += titleTxt.charAt(i + 1);
+				titleTxt = titleTxt.slice(0, i) + titleTxt.slice(i + 1);
 			}
 
-			if (i < titleTxt.length) {
-				var stringToAdd = titleTxt.charAt(i);
+			document.title += stringToAdd;
+		}
 
-				if (stringToAdd == ' ') {
-					stringToAdd += titleTxt.charAt(i + 1);
-					titleTxt = titleTxt.slice(0, i) + titleTxt.slice(i + 1);
-				}
-
-				document.title += stringToAdd;
-			}
-
-			if ((i < jumboTxt.length) || (i < titleTxt.length)) {
-				i++;
-				setTimeout(typeWriter, typeSpeed);
-			}
+		if ((i < jumboTxt.length) || (i < titleTxt.length)) {
+			i++;
+			setTimeout(typeWriter, typeSpeed);
 		}
-			
-		function cursorAdd() {
-			document.getElementById("jumbotron").innerHTML = document.getElementById("jumbotron").innerHTML.substring(0, document.getElementById("jumbotron").innerHTML.length);
-			document.getElementById("jumbotron").innerHTML += "█";
-			setTimeout(cursorDelete, 500);
+	}
+		
+	function cursorAdd() {
+		document.getElementById("jumbotron").innerHTML = document.getElementById("jumbotron").innerHTML.substring(0, document.getElementById("jumbotron").innerHTML.length);
+		document.getElementById("jumbotron").innerHTML += "█";
+		setTimeout(cursorDelete, 500);
+	}
+	function cursorDelete() {
+		document.getElementById("jumbotron").innerHTML = document.getElementById("jumbotron").innerHTML.replace("█", " ");
+		setTimeout(cursorAdd, 500);
+	}
+		
+	function spinner0() {
+		if (i < 4){
+			document.getElementById("jumbotron").innerHTML = '|';
+			document.title += '. ';
+			setTimeout(spinner1, spinSpeed);
+			i++;
+		} else {
+			i = 0;
+			document.getElementById("jumbotron").innerHTML = '';
+			document.title = '';
+			typeWriter();
 		}
-		function cursorDelete() {
-			document.getElementById("jumbotron").innerHTML = document.getElementById("jumbotron").innerHTML.replace("█", " ");
-			setTimeout(cursorAdd, 500);
-		}
-			
-		function spinner0() {
-			if (i < 4){
-				document.getElementById("jumbotron").innerHTML = '|';
-				document.title += '. ';
-				setTimeout(spinner1, spinSpeed);
-				i++;
-			} else {
-				i = 0;
-				document.getElementById("jumbotron").innerHTML = '';
-				document.title = '';
-				typeWriter();
-			}
-		}
-			
-		function spinner1() {
-			document.getElementById("jumbotron").innerHTML = '/';
-			setTimeout(spinner2, spinSpeed);
-		}
-		function spinner2() {
-			document.getElementById("jumbotron").innerHTML = '—';
-			setTimeout(spinner3, spinSpeed);
-		}
-		function spinner3() {
-			document.getElementById("jumbotron").innerHTML = '\\';
-			setTimeout(spinner0, spinSpeed);
-		}
+	}
+		
+	function spinner1() {
+		document.getElementById("jumbotron").innerHTML = '/';
+		setTimeout(spinner2, spinSpeed);
+	}
+	function spinner2() {
+		document.getElementById("jumbotron").innerHTML = '—';
+		setTimeout(spinner3, spinSpeed);
+	}
+	function spinner3() {
+		document.getElementById("jumbotron").innerHTML = '\\';
+		setTimeout(spinner0, spinSpeed);
 	}
 
 	/*
