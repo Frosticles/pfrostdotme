@@ -6,6 +6,7 @@ html, body {
 	padding: 0;	
 	font-family: "Fira Sans", sans-serif;
 	text-rendering: optimizeLegibility;
+	background-color: #000E17;
 }
 
 main {
@@ -48,12 +49,12 @@ h3 {
 
 footer {
 	text-align: right;
-	font-weight: 300;
+	font-weight: 200;
 	font-size: 14pt;
 	padding: 20px;
 	padding-bottom: 15px;
-	background-color: #000E17;
-	color: #DDDDDD
+	background: linear-gradient(180deg, rgba(33,47,55,1) 0%, rgba(0,14,23,1) 20%, rgba(0,14,23,1) 100%);
+	color: #BBBBBB
 }
 
 .style-title {
@@ -89,7 +90,24 @@ footer {
 	background: linear-gradient(180deg, #000E17, #212F37);
 }
 
+.style-main-simple {
+	padding-top: 1px;
+	padding-bottom: 1px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #000E17;
+	text-align: justify;
+	padding: 1px 5vw 1px 5vw;
+	background: linear-gradient(180deg, #000E17, #212F37);
+	min-height: 87vh;
+}
+
 .style-main div {
+	max-width: 1200px; 
+	margin: auto;
+}
+
+.style-main-simple div {
 	max-width: 1200px; 
 	margin: auto;
 }
@@ -263,7 +281,7 @@ footer {
 	min-height: 300px;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-evenly;
 }
 
 .style-headshot aside {
@@ -282,7 +300,7 @@ footer {
 }
 
 .style-headshot h1 {
-	line-height: 0px;
+	margin: 10px auto 10px 0px;
 }
 
 .style-headshot-button {
