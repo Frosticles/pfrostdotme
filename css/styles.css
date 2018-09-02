@@ -69,10 +69,6 @@ footer {
 	padding-right: 24px;
 	padding-left: 24px;
 	width: 40%;
-	/*background-image: -webkit-linear-gradient(0deg,rgba(184,184,184,0.00) 0%,rgba(192,192,192,0.94) 53.32%,rgba(250,250,250,0.94) 86.01%), url(url);
-	background-image: -moz-linear-gradient(0deg,rgba(184,184,184,0.00) 0%,rgba(192,192,192,0.94) 53.32%,rgba(250,250,250,0.94) 86.01%), url(url);
-	background-image: -o-linear-gradient(0deg,rgba(184,184,184,0.00) 0%,rgba(192,192,192,0.94) 53.32%,rgba(250,250,250,0.94) 86.01%), url(url);
-	background-image: linear-gradient(90deg,rgba(184,184,184,0.00) 0%,rgba(192,192,192,0.94) 53.32%,rgba(250,250,250,0.94) 86.01%), url(url);*/
 	margin: 0;
 	height: 50px;
 	padding-top: 14px;
@@ -123,7 +119,6 @@ footer {
 	height: 100px;
 	border-radius: 50%;
 	background: linear-gradient(180deg, #1F2D36, #212F37);
-	-webkit-transform: translateX(-50%);
 	transform: translateX(-50%);
 	bottom: -50px;
 }
@@ -149,10 +144,8 @@ footer {
 	min-height: 350px;
 	display: block;
 	vertical-align: middle;
-	background-image: -webkit-linear-gradient(45deg,rgba(0,45,73,1.00) 0%,rgba(0,18,29,1.00) 99.48%);
-	background-image: -moz-linear-gradient(45deg,rgba(0,45,73,1.00) 0%,rgba(0,18,29,1.00) 99.48%);
-	background-image: -o-linear-gradient(45deg,rgba(0,45,73,1.00) 0%,rgba(0,18,29,1.00) 99.48%);
 	background-image: linear-gradient(45deg,rgba(0,45,73,1.00) 0%,rgba(0,18,29,1.00) 99.48%);
+	position: relative;
 }
 
 .style-socialImg {
@@ -160,39 +153,17 @@ footer {
 	display: table-cell;
     text-align: center;
 	margin: auto;
-	
-	-webkit-animation: fadein 1.5s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 1.5s; /* Firefox < 16 */
-    -o-animation: fadein 1.5s; /* Opera < 12.1 */
-    animation: fadein 1.5s;
+    animation: fadein .5s;
 }
 
 @keyframes fadein {
     0%   { opacity: 0; }
-	75%  { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-    0%   { opacity: 0; }
-	75%  { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-    0%   { opacity: 0; }
-	75%  { opacity: 0; }
     100% { opacity: 1; }
 }
 
 .style-socialImg:hover {
 	opacity: 0.7; 
 	transition: opacity .2s ease-out;
-    -moz-transition: opacity .2s ease-out;
-    -webkit-transition: opacity .2s ease-out;
-    -o-transition: opacity .2s ease-out;
 }
 
 .style-social {
@@ -201,7 +172,7 @@ footer {
 	table-layout: fixed;
 	position: absolute;
 	margin: auto;
-	top: 40vh;
+	bottom: 40px;
 }
 
 @media (max-width: 1200px) {
@@ -262,34 +233,29 @@ footer {
 
 .style-image {
 	align-self:center; 
-	margin: auto;
 	margin-left: 3vw;
-	margin-right: 3vw;
-	width: 20vw;
-	min-width: 100px;
-	max-width: 200px;
+	width: 200px;
 }
 
 .style-image img {
-	width: inherit;
 	max-width: inherit;
 	min-width: inherit;
+	display: inline-block;
 }
 
 .style-headshot {
-	padding: 5vh 0px 5vh 0px;
+	padding: 10vh 0px 5vh 0px;
 	max-height: 600px;
 	min-height: 300px;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: center;
 }
 
 .style-headshot aside {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	max-width: 60vw; 
+	justify-content: space-around;
 }
 
 .style-headshot h2 {
@@ -309,6 +275,8 @@ footer {
 	min-height: 300px;
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 100px;
 }
 
 .style-headshot-button a {
@@ -454,8 +422,7 @@ footer {
 		align-self:center; 
 		display: block;
 		margin: auto;
-		margin-top: 20px;
-		width: 40vw;
+		margin-top: 40px;
 	}
 	
 	.style-headshot h2 {
