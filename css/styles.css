@@ -242,7 +242,7 @@ footer {
 }
 
 .style-headshot {
-	padding: 10vh 0px 5vh 0px;
+	padding: 5vh 0px 5vh 0px;
 	max-height: 600px;
 	min-height: 300px;
 	display: flex;
@@ -432,6 +432,15 @@ footer {
 	.style-headshot a {
 		margin-left: 0px;
 	}
+
+	.neural-net-image {
+		margin-left: 20px;
+	}
+
+	.beng-image {
+		margin-right: 20px;
+	}
+
 }
 
 @keyframes blink {
