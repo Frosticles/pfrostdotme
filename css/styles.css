@@ -300,28 +300,24 @@ footer {
 	transition: all 0.2s ease;
 }
 
-.neural-net-image {
+.no-webp .neural-net-image {
+	background-image: url('/images/Neural Network Thumbnail.png'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));
 	margin-left: 0px;
 }
 
-.beng-image {
-	margin-right: 0px;
-}
-
-.no-webp .neural-net-image {
-  background-image: url('/images/Neural Network Thumbnail.png'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));
-}
-
 .webp .neural-net-image {
-  background-image: url('/images/Neural Network Thumbnail.webp'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));
+	background-image: url('/images/Neural Network Thumbnail.webp'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));
+	margin-left: 0px;
 }
 
 .no-webp .beng-image {
-  background-image: url('/images/Project Logo.png'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));
+	background-image: url('/images/Project Logo.png'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));
+	margin-right: 0px;
 }
 
 .webp .beng-image {
-  background-image: url('/images/Project Logo.webp'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));
+	background-image: url('/images/Project Logo.webp'), linear-gradient(235deg, rgba(34,187,124,0.39), rgba(4,94,163,0.91));
+	margin-right: 0px;
 }
 
 .neural-net-image:hover {
