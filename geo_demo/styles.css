@@ -65,8 +65,71 @@ footer {
 
 .style-image img {
 	width: 50vw;
-	animation: shadow-pop-br 1s 0.5s ease both;
+  animation: shadow-pop-br 1s 0.5s ease both;
 }
+
+.style-headshot-button {
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.style-headshot-button picture {
+  width: 20vw;
+  margin: 40px;
+  animation: expand 0.5s 0.2s ease both;
+  position: relative;
+}
+
+.style-dial {
+  position: absolute; 
+  z-index: 2;
+  top: 5%; 
+  width: 90%; 
+  height: 90%; 
+  left: 5%;
+  stroke: white;
+  animation: rotate 2s 0.5s ease both infinite;
+}
+
+.style-dial-inner {
+  fill: orange;
+  stroke: orange;
+  animation: rotate-colour 2s 0.5s ease both infinite;
+}
+
+@keyframes rotate-colour {
+  33% {
+    stroke: red;
+    fill:red;
+  }
+  66% {
+    stroke: green;
+    fill: green;
+  }
+  100% {
+    stroke: orange;
+    fill: orange;
+  }
+}
+
+@keyframes rotate {
+  33% {
+    transform: rotate(135deg);
+    /*stroke: red;*/
+  }
+  66% {
+    transform: rotate(-135deg);
+    /*stroke: green;*/
+  }
+  100% {
+    transform: rotate(0deg);
+    /*stroke: orange;*/
+  }
+}
+
 
 @keyframes shadow-pop-br {
   0% {
@@ -86,6 +149,19 @@ footer {
   100% {
     filter: drop-shadow(12px 12px 0px #FF9000);
     transform: translateX(-5px) translateY(-5px);
+  }
+}
+
+@keyframes expand {
+  0% {
+    opacity: 0;
+    width: 15vw;
+    height: auto;
+  }
+  100% {
+    opacity: 1;
+    width: 20vw;
+    height: auto;
   }
 }
 
