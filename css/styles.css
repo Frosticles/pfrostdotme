@@ -437,14 +437,21 @@ footer {
 		margin-left: 0px;
 	}
 
-	.neural-net-image {
+	.no-webp .neural-net-image {
 		margin-left: 20px;
 	}
 
-	.beng-image {
+	.webp .neural-net-image {
+		margin-left: 20px;
+	}
+
+	.no-webp .beng-image {
 		margin-right: 20px;
 	}
 
+	.webp .beng-image {
+		margin-right: 20px;
+	}
 }
 
 @keyframes blink {
