@@ -13,16 +13,6 @@
        url('roboto-mono-v5-latin-300.svg#RobotoMono') format('svg'); /* Legacy iOS */
 }
 
-@font-face {
-  unicode-range: U+20,U+28,U+29,U+2C-2E,U+41-49,U+4C-50,U+52-54,U+59,U+61-70,U+72-79;
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local('Roboto Mono'), local('RobotoMono-Regular'),
-       url('roboto-mono-v5-latin-regular-home.woff2') format('woff2'), /* Super Modern Browsers */
-}
-
 /* roboto-mono-regular - latin */
 @font-face {
   font-family: 'Roboto Mono';
