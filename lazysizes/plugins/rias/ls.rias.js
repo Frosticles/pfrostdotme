@@ -18,6 +18,7 @@
 	'use strict';
 
 	var config, riasCfg;
+	var lazySizesCfg = lazySizes.cfg;
 	var replaceTypes = {string: 1, number: 1};
 	var regNumber = /^\-*\+*\d+\.*\d*$/;
 	var regPicture = /^picture$/i;
@@ -41,15 +42,12 @@
 			absUrl: false,
 			modifyOptions: noop,
 			widthmap: {},
-			ratio: false
+			ratio: false,
+			traditionalRatio: false,
+			aspectratio: false,
 		};
 
-		config = (lazySizes && lazySizes.cfg) || window.lazySizesConfig;
-
-		if(!config){
-			config = {};
-			window.lazySizesConfig = config;
-		}
+		config = lazySizes && lazySizes.cfg;
 
 		if(!config.supportsType){
 			config.supportsType = function(type/*, elem*/){
@@ -159,9 +157,15 @@
 
 		options.widths.forEach(function(width){
 			var widthAlias = options.widthmap[width] || width;
+			var ratio = options.aspectratio || options.ratio;
+			var traditionalRatio = !options.aspectratio && riasCfg.traditionalRatio;
 			var candidate = {
 				u: url.replace(regWidth, widthAlias)
-						.replace(regHeight, options.ratio ? Math.round(width * options.ratio) : ''),
+						.replace(regHeight, ratio ?
+							traditionalRatio ?
+								Math.round(width * ratio) :
+								Math.round(width / ratio)
+							: ''),
 				w: width
 			};
 
@@ -357,7 +361,7 @@
 			var candidate;
 			var elem = e.target;
 
-			if(!buggySizes && (window.respimage || window.picturefill || lazySizesConfig.pf)){
+			if(!buggySizes && (window.respimage || window.picturefill || lazySizesCfg.pf)){
 				document.removeEventListener('lazybeforesizes', polyfill);
 				return;
 			}

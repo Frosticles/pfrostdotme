@@ -2,6 +2,22 @@
 
 Changelog for Hamburgers.
 
+## [1.1.3] - 9/25/2018
+### Fixed
+- `!important` for types that rely on `background-color: transparent`.
+
+## [1.1.2] - 9/25/2018
+### Fixed
+- Change default value of `$hamburger-active-hover-opacity` to `$hamburger-hover-opacity`.
+- Change default value of `$hamburger-active-hover-filter` to `$hamburger-hover-filter`.
+
+## [1.1.0] - 9/24/2018
+### Added
+- Changing color of the hamburger in the active state thanks to @andreamaiolo [#20](https://github.com/jonsuh/hamburgers/pull/20)
+
+### Fixed
+- Removed `$hamburger-hover-transition-duration` and `$hamburger-hover-transition-timing-function`—types rely on custom timing, which render these useless.
+
 ## [0.9.3] - 1/15/2018
 ### Fixed
 - Missing `@if` statements in `arrowturn` and `arrowturn-r` variants [#51](https://github.com/jonsuh/hamburgers/pull/51).

@@ -1,4 +1,5 @@
 (function(window, factory) {
+	if(!window) {return;}
 	var globalInstall = function(){
 		factory(window.lazySizes);
 		window.removeEventListener('lazyunveilread', globalInstall, true);
@@ -7,17 +8,18 @@
 	factory = factory.bind(null, window, window.document);
 
 	if(typeof module == 'object' && module.exports){
-		factory(require('lazysizes'), require('../fix-ios-sizes/fix-ios-sizes'));
+		factory(require('lazysizes'));
 	} else if(window.lazySizes) {
 		globalInstall();
 	} else {
 		window.addEventListener('lazyunveilread', globalInstall, true);
 	}
-}(window, function(window, document, lazySizes) {
+}(typeof window != 'undefined' ?
+	window : 0, function(window, document, lazySizes) {
 	/*jshint eqnull:true */
 	'use strict';
 	var polyfill;
-	var config = (lazySizes && lazySizes.cfg) || window.lazySizesConfig;
+	var lazySizesCfg = lazySizes.cfg;
 	var img = document.createElement('img');
 	var supportSrcset = ('sizes' in img) && ('srcset' in img);
 	var regHDesc = /\s+\d+h/g;
@@ -25,11 +27,11 @@
 		var regDescriptors = /\s+(\d+)(w|h)\s+(\d+)(w|h)/;
 		var forEach = Array.prototype.forEach;
 
-		return function(edgeMatch){
+		return function(){
 			var img = document.createElement('img');
 			var removeHDescriptors = function(source){
 				var ratio, match;
-				var srcset = source.getAttribute(lazySizesConfig.srcsetAttr);
+				var srcset = source.getAttribute(lazySizesCfg.srcsetAttr);
 				if(srcset){
 					if((match = srcset.match(regDescriptors))){
 						if(match[2] == 'w'){
@@ -41,11 +43,12 @@
 						if(ratio){
 							source.setAttribute('data-aspectratio', ratio);
 						}
+						source.setAttribute(lazySizesCfg.srcsetAttr, srcset.replace(regHDesc, ''));
 					}
-					source.setAttribute(lazySizesConfig.srcsetAttr, srcset.replace(regHDesc, ''));
 				}
 			};
 			var handler = function(e){
+				if(e.detail.instance != lazySizes){return;}
 				var picture = e.target.parentNode;
 
 				if(picture && picture.nodeName == 'PICTURE'){
@@ -60,48 +63,36 @@
 				}
 			};
 
-			if(edgeMatch[1]){
-				document.addEventListener('lazybeforeunveil', handler);
+			document.addEventListener('lazybeforeunveil', handler);
 
-				if(true || edgeMatch[1] > 14){
-					img.onload = test;
-					img.onerror = test;
+			img.onload = test;
+			img.onerror = test;
 
-					img.srcset = 'data:,a 1w 1h';
+			img.srcset = 'data:,a 1w 1h';
 
-					if(img.complete){
-						test();
-					}
-				}
+			if(img.complete){
+				test();
 			}
 		};
 	})();
 
-
-	if(!config){
-		config = {};
-		window.lazySizesConfig = config;
-	}
-
-	if(!config.supportsType){
-		config.supportsType = function(type/*, elem*/){
+	if(!lazySizesCfg.supportsType){
+		lazySizesCfg.supportsType = function(type/*, elem*/){
 			return !type;
 		};
 	}
 
-	if(window.picturefill || config.pf){return;}
-
-	if(window.HTMLPictureElement && supportSrcset){
-
-		if(document.msElementsFromPoint){
-			fixEdgeHDescriptor(navigator.userAgent.match(/Edge\/(\d+)/));
+	if (window.HTMLPictureElement && supportSrcset) {
+		if(!lazySizes.hasHDescriptorFix && document.msElementsFromPoint){
+			lazySizes.hasHDescriptorFix = true;
+			fixEdgeHDescriptor();
 		}
-
-		config.pf = function(){};
 		return;
 	}
 
-	config.pf = function(options){
+	if(window.picturefill || lazySizesCfg.pf){return;}
+
+	lazySizesCfg.pf = function(options){
 		var i, len;
 		if(window.picturefill){return;}
 		for(i = 0, len = options.elements.length; i < len; i++){
@@ -200,11 +191,11 @@
 
 		var createSrcset = function(elem, isImage){
 			var parsedSet;
-			var srcSet = elem.getAttribute('srcset') || elem.getAttribute(config.srcsetAttr);
+			var srcSet = elem.getAttribute('srcset') || elem.getAttribute(lazySizesCfg.srcsetAttr);
 
 			if(!srcSet && isImage){
 				srcSet = !elem._lazypolyfill ?
-					(elem.getAttribute(config.srcAttr) || elem.getAttribute('src')) :
+					(elem.getAttribute(lazySizesCfg.srcAttr) || elem.getAttribute('src')) :
 					elem._lazypolyfill._set
 				;
 			}
@@ -258,7 +249,7 @@
 
 			if(srces.isPicture){
 				for(i = 0, sources = elem.parentNode.getElementsByTagName('source'), len = sources.length; i < len; i++){
-					if( config.supportsType(sources[i].getAttribute('type'), elem) && matchesMedia( sources[i].getAttribute('media')) ){
+					if( lazySizesCfg.supportsType(sources[i].getAttribute('type'), elem) && matchesMedia( sources[i].getAttribute('media')) ){
 						source = sources[i];
 						createSrcset(source);
 						srces = source._lazypolyfill;
@@ -292,7 +283,7 @@
 			if(candidate && candidate.u && elem._lazypolyfill.cur != candidate.u){
 				elem._lazypolyfill.cur = candidate.u;
 				candidate.cached = true;
-				elem.setAttribute(config.srcAttr, candidate.u);
+				elem.setAttribute(lazySizesCfg.srcAttr, candidate.u);
 				elem.setAttribute('src', candidate.u);
 			}
 		};
@@ -302,14 +293,14 @@
 		return p;
 	})();
 
-	if(config.loadedClass && config.loadingClass){
+	if(lazySizesCfg.loadedClass && lazySizesCfg.loadingClass){
 		(function(){
 			var sels = [];
 			['img[sizes$="px"][srcset].', 'picture > img:not([srcset]).'].forEach(function(sel){
-				sels.push(sel + config.loadedClass);
-				sels.push(sel + config.loadingClass);
+				sels.push(sel + lazySizesCfg.loadedClass);
+				sels.push(sel + lazySizesCfg.loadingClass);
 			});
-			config.pf({
+			lazySizesCfg.pf({
 				elements: document.querySelectorAll(sels.join(', '))
 			});
 		})();

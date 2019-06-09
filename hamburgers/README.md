@@ -152,8 +152,8 @@ Hamburgers is a collection of tasty CSS-animated hamburger icons. Also included 
 To override default settings, declare them before importing Hamburgers:
 
 ```scss
-$hamburgers-padding-x: 20px;
-$hamburgers-padding-y: 15px;
+$hamburger-padding-x: 20px;
+$hamburger-padding-y: 15px;
 $hamburger-types     : (collapse);
 
 @import "hamburgers";
@@ -169,22 +169,23 @@ You can also create a separate file (e.g. `hamburgers-settings.scss`) with those
 Here is the full list of default settings (found in `_sass/hamburgers/hamburgers.scss`);
 
 ```scss
-$hamburger-padding-x                       : 15px;
-$hamburger-padding-y                       : 15px;
-$hamburger-layer-width                     : 40px;
-$hamburger-layer-height                    : 4px;
-$hamburger-layer-spacing                   : 6px;
-$hamburger-layer-color                     : #000;
-$hamburger-layer-border-radius             : 4px;
-$hamburger-hover-opacity                   : 0.7;
-$hamburger-hover-transition-duration       : 0.15s;
-$hamburger-hover-transition-timing-function: linear;
+$hamburger-padding-x           : 15px;
+$hamburger-padding-y           : 15px;
+$hamburger-layer-width         : 40px;
+$hamburger-layer-height        : 4px;
+$hamburger-layer-spacing       : 6px;
+$hamburger-layer-color         : #000;
+$hamburger-layer-border-radius : 4px;
+$hamburger-hover-opacity       : 0.7;
+$hamburger-active-layer-color  : $hamburger-layer-color;
+$hamburger-active-hover-opacity: $hamburger-hover-opacity;
 
 // To use CSS filters as the hover effect instead of opacity,
 // set $hamburger-hover-use-filter as true and
 // change the value of $hamburger-hover-filter accordingly.
-$hamburger-hover-use-filter: false;
-$hamburger-hover-filter    : opacity(50%);
+$hamburger-hover-use-filter   : false;
+$hamburger-hover-filter       : opacity(50%);
+$hamburger-active-hover-filter: $hamburger-hover-filter;
 
 // Remove or comment out the hamburger types you don’t want
 // or need, so they get excluded from the compiled CSS.

@@ -16,14 +16,16 @@
 }(window, function(window, document, lazySizes) {
 	'use strict';
 	if(!document.addEventListener){return;}
-	var config, checkElements, expand;
+	var config, checkElements;
 
+	var lazySizesCfg = lazySizes.cfg;
 	var unloadElements = [];
 	var requestAnimationFrame = window.requestAnimationFrame || setTimeout;
 	var unloader = {
 		checkElements: function(){
 			var i, len, box;
 
+			var expand = (lazySizes._defEx + 99) * 1.1;
 			var vTop = expand * -1;
 			var vLeft = vTop;
 			var vBottom = innerHeight + expand;
@@ -134,16 +136,15 @@
 		if(config.autoUnload){
 			docElem.addEventListener('load',  function(e){
 				if(e.target.naturalWidth * e.target.naturalHeight > config.unloadPixelThreshold && e.target.className &&
-					e.target.className.indexOf && e.target.className.indexOf(lazySizesConfig.loadingClass) != -1 &&
-					e.target.className.indexOf(lazySizesConfig.preloadClass) == -1){
-					lazySizes.aC(e.target, lazySizesConfig.unloadClass);
+					e.target.className.indexOf && e.target.className.indexOf(lazySizesCfg.loadingClass) != -1 &&
+					e.target.className.indexOf(lazySizesCfg.preloadClass) == -1){
+					lazySizes.aC(e.target, lazySizesCfg.unloadClass);
 				}
 			}, true);
 		}
 
 		lazySizes.unloader = unloader;
 
-		expand = ((config.expand * config.expFactor) + 99) * 1.1;
 		checkElements = document.getElementsByClassName([config.unloadClass, config.loadedClass].join(' '));
 
 		setInterval(throttleRun, 9999);

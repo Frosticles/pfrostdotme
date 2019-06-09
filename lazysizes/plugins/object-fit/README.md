@@ -5,7 +5,7 @@ This extension polyfills `object-fit`: `cover` and `contain` properties as also 
 ## Usage
 
 ### Include JS files:
-Include lazysizes and lazysizes object fit and optionally lazysizes parent-fit and lazysizes respimg plugin. Lazysizes object-fit and respimg plugin are only needed in browser that don't support object fit or responsive images. Lazysizes parent-fit is recommended if you use object fit responsive images in combination with `data-sizes="auto"`.
+Include lazysizes and lazysizes object fit and optionally lazysizes [parent-fit](../parent-fit) and lazysizes respimg plugin. Lazysizes object-fit and respimg plugin are only needed in browser that don't support object fit or responsive images. Lazysizes parent-fit is recommended if you use object fit responsive images in combination with `data-sizes="auto"`.
 
 ```html
 <!-- polyfill for object-fit (only needed in browsers that don't support object-fit) -->
@@ -17,6 +17,19 @@ Include lazysizes and lazysizes object fit and optionally lazysizes parent-fit a
 <script src="../plugins/parent-fit/ls.parent-fit.min.js"></script>
 <!-- respimg polyfill (only needed in browser that don't support respimg) -->
 <script src="../plugins/respimg/ls.respimg.min.js"></script>
+```
+
+```js
+// never try to import *.min.js files 
+import lazySizes from 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+
+// polyfills
+import 'lazysizes/plugins/respimg/ls.respimg';
+
+if (!('object-fit' in document.createElement('a').style)) {
+	require('lazysizes/plugins/object-fit/ls.object-fit');
+}
 ```
 
 ### Add markup
