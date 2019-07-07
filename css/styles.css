@@ -188,7 +188,8 @@ footer {
 
 .style-jumbotron {
 	text-align: center;
-	padding-top: 10vh;
+	top: 10vh;
+	position: relative;
 	font-family: "Roboto Mono", "Lucida Console", Monaco, monospace;
 	font-weight: 400;
 	font-size: 38pt;
