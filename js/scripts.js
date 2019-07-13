@@ -5,8 +5,8 @@ custom: {
 	}
 });
 
-var lines = {
-	"What... is the capital of Assyria?",
+var lines = [
+	"What... is the capital of Assyria",
 	"\'Tis but a scratch!",
 	"some farcical aquatic ceremony.",
 	"Right. One... two... five!",
@@ -43,7 +43,7 @@ var lines = {
 	"Houston, we have a problem.",
 	"You can't handle the truth!",
 	"I'll be back.",
-	"Why... so... serious?"
+	"Why... so... serious?",
 	"I am your father.",
 	"You don't talk about Fight Club.",
 	"You're gonna need a bigger boat.",
@@ -54,8 +54,7 @@ var lines = {
 	"#define + -",
 	"precise bus fault",
 	"for (char i = 0; i < 256; i++) {}"
-}
-
+];
 
 $(document).ready(function() {
 
