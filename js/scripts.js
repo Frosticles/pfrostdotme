@@ -6,8 +6,8 @@ custom: {
 });
 
 var lines = [
-	"What... is the capital of Assyria",
-	"\'Tis but a scratch!",
+	"What... is the capital of Assyria?",
+	"'Tis but a scratch!",
 	"some farcical aquatic ceremony.",
 	"Right. One... two... five!",
 	"It's just a flesh wound.",
