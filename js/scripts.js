@@ -88,6 +88,8 @@ $(document).ready(function() {
 	var typeSpeed = 80;
 	var spinSpeed = 80;
 
+	jumboTxt += " "
+
 	if (document.getElementById("jumbotron")) {
 		setTimeout(spinner0, 500);
 	}
