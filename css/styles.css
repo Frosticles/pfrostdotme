@@ -190,6 +190,12 @@ footer {
 	text-align: center;
 	top: 10vh;
 	position: relative;
+}
+
+.style-jumbotron a {
+	text-align: center;
+	top: 10vh;
+	position: relative;
 	font-family: "Roboto Mono", "Lucida Console", Monaco, monospace;
 	font-weight: 400;
 	font-size: 38pt;
@@ -210,7 +216,7 @@ footer {
 }
 
 @media (max-width: 600px) {
-	.style-jumbotron {
+	.style-jumbotron a {
 		font-size: 6vw;
 	}
 
@@ -241,6 +247,7 @@ footer {
 	max-width: inherit;
 	min-width: inherit;
 	display: inline-block;
+	cursor: url("/images/meh.png"), auto;
 }
 
 .style-headshot {
