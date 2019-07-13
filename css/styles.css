@@ -191,6 +191,7 @@ footer {
 	top: 10vh;
 	position: relative;
 	outline: none;
+    cursor: default;
 }
 
 .style-jumbotron a {
