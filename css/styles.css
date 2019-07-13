@@ -190,17 +190,18 @@ footer {
 	text-align: center;
 	top: 10vh;
 	position: relative;
+	outline: none;
 }
 
 .style-jumbotron a {
 	text-align: center;
 	top: 10vh;
-	position: relative;
 	font-family: "Roboto Mono", "Lucida Console", Monaco, monospace;
 	font-weight: 400;
 	font-size: 38pt;
 	color: #00A2FD;
 	outline: none;
+	position: initial;
 	cursor: url("/images/think.png"), auto;
 }
 
