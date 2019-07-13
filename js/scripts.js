@@ -84,7 +84,7 @@ $(document).ready(function() {
 	*/
 
 	var jumboCount = 0;
-	var jumboTxt = lines[Math.floor(Math.random * lines.length)];
+	var jumboTxt = lines[Math.floor(Math.random() * lines.length)];
 	var typeSpeed = 80;
 	var spinSpeed = 80;
 
