@@ -53,7 +53,7 @@ var lines = [
 	"undefined reference",
 	"#define + -",
 	"precise bus fault",
-	"for (char i = 0; i < 256; i++) {}"
+	"for (uint8_t i = 0; i < 256; i++) {}"
 ];
 
 $(document).ready(function() {
