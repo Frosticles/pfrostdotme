@@ -348,7 +348,8 @@ $(document).ready(function() {
 	var now = 0
 	var currentFrameIndex = 0
 	var right = true
-	var tick = function() {
+
+	setInterval(function() { 
 		now += 50;
 
 		window.location.replace('#'+frames[currentFrameIndex])
@@ -360,7 +361,5 @@ $(document).ready(function() {
 		}
 
 		currentFrameIndex += right ? 1 : -1
-
-		setTimeout(tick, 50);
-	}
+	}, 50);
 });
