@@ -29,7 +29,7 @@ var lines = [
 	"Wax on, wax off.",
 	"hello world",
 	"0xDEADBEEF",
-	"Good morning, Vietnam!",
+	"Good morning Vietnam!",
 	"My precious.",
 	"It's alive!",
 	"Go ahead, make my day.",
