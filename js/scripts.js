@@ -53,7 +53,9 @@ var lines = [
 	"undefined reference",
 	"#define + -",
 	"precise bus fault",
-	"for (uint8_t i = 0; i < 256; i++) {}"
+	"for (uint8_t i = 0; i < 256; i++) {}",
+	"you can't fight in here, this is the war room!",
+	"0x8BADF00D"
 ];
 
 var frames = [
