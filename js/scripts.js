@@ -18,7 +18,7 @@ var lines = [
 	"You've got no arms left!",
 	"What have the Romans ever done for us?",
 	"Yippee-ki-yay.",
-	"Life was like a box of chocolates.",
+	"Life is like a box of chocolates.",
 	"Run, Forrest! Run!",
 	"Pining for the fjords",
 	"This... is an ex parrot",
