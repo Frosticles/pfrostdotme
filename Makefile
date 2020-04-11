@@ -49,6 +49,7 @@ JPEG_MIN := $(JPEG_GZ:%.gz=%.min)
 GIF_DIR := ./
 GIF := $(info Finding GIF files...) $(shell find $(GIF_DIR) -name '*.gif' | perl -p -e 's/ /\\ /g')
 GIF_GZ := $(GIF:%.gif=%.gif.gz)
+GIF_BR := $(GIF:%.gif=%.gif.br)
 GIF_MIN := $(GIF:%.gif=%.gif.min)
 
 
@@ -73,20 +74,23 @@ MISC_BR := $(info Finding miscellaneous files...) $(shell find $(MISC_DIR) \( $(
 MISC_GZ := $(MISC_BR:%.br=%.gz)
 
 .INTERMEDIATE: $(HTML_MIN) $(CSS_MIN) $(JS_MIN) $(PNG_MIN) $(JPEG_MIN) $(GIF_MIN) $(SVG_MIN)
-.PHONY: all clean clean-webcontent clean-images webcontent html js css images png jpeg gif svg 
-#.SILENT:
+.PHONY: all clean clean-webcontent clean-images misc webcontent html js css images png jpeg gif svg 
 
 webcontent: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ)
 html: $(HTML_GZ) $(HTML_BR)
 js: $(JS_BR) $(JS_GZ)
 css: $(CSS_BR) $(CSS_GZ)
 
-all: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ) $(MISC_BR) $(MISC_GZ) $(PNG_GZ) $(JPEG_GZ) $(GIF_GZ) $(SVG_GZ)
-images: $(PNG_GZ) $(JPEG_GZ) $(GIF_GZ) $(SVG_GZ) $(SVG_BR)
+images: $(PNG_GZ) $(JPEG_GZ) $(GIF_GZ) $(GIF_BR) $(SVG_GZ) $(SVG_BR) 
 png: $(PNG_GZ) 
 jpeg: $(JPEG_GZ)
-gif: $(GIF_GZ)
+gif: $(GIF_GZ) $(GIF_BR)
 svg: $(SVG_GZ) $(SVG_BR)
+
+misc: $(MISC_BR) $(MISC_GZ)
+
+all: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ) $(MISC_BR) $(MISC_GZ) $(PNG_GZ) $(JPEG_GZ) $(GIF_GZ) $(GIF_BR) $(SVG_GZ) $(SVG_BR)
+
 
 
 
@@ -292,6 +296,15 @@ endif
 # GIF
 #
 .SECONDEXPANSION:
+%.gif.br: $$(subst $$(space),\$$(space),%).gif $$(subst $$(space),\$$(space),%).gif.min
+	$(info GIF Brotli: $@)
+ifeq (, $(shell which brotli))
+	$(info Installing brotli...)
+	@sudo apt-get install brotli 1>/dev/null
+endif
+	@brotli --force --best -o "$@" "$<.min"
+
+.SECONDEXPANSION:
 %.gif.gz: $$(subst $$(space),\$$(space),%).gif $$(subst $$(space),\$$(space),%).gif.min
 	$(info GIF Zopfli: $@)
 ifeq (, $(shell which zopfli))
@@ -385,8 +398,8 @@ clean-webcontent:
 
 clean:
 	$(info Cleaning All...)
-	@rm -f $(HTML_GZ) $(HTML_BR) $(HTML_MIN) $(CSS_GZ) $(CSS_BR) $(CSS_MIN) $(JS_GZ) $(JS_BR) $(JS_MIN) $(MISC_BR) $(MISC_GZ) $(PNG_GZ) $(JPEG_GZ) $(GIF_GZ) $(SVG_GZ) $(SVG_BR) $(PNG_MIN) $(JPEG_MIN) $(GIF_MIN) $(SVG_MIN) 
+	@rm -f $(HTML_GZ) $(HTML_BR) $(HTML_MIN) $(CSS_GZ) $(CSS_BR) $(CSS_MIN) $(JS_GZ) $(JS_BR) $(JS_MIN) $(MISC_BR) $(MISC_GZ) $(PNG_GZ) $(JPEG_GZ) $(GIF_GZ) $(GIF_BR) $(SVG_GZ) $(SVG_BR) $(PNG_MIN) $(JPEG_MIN) $(GIF_MIN) $(SVG_MIN) 
 
 clean-images:
 	$(info Cleaning Images...)
-	@rm -f $(PNG_MIN) $(JPEG_MIN) $(GIF_MIN) $(SVG_MIN) $(PNG_GZ) $(JPEG_GZ) $(GIF_GZ) $(SVG_GZ) $(SVG_BR)
+	@rm -f $(PNG_MIN) $(JPEG_MIN) $(GIF_MIN) $(SVG_MIN) $(PNG_GZ) $(JPEG_GZ) $(GIF_GZ) $(GIF_BR) $(SVG_GZ) $(SVG_BR)
