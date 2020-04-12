@@ -177,7 +177,7 @@ endif
 	@sudo npm install clean-css-cli -g 1>/dev/null
 endif
 
-	@cleancss -O2 all:on -o "$<.min" "$<" 
+	@cleancss -O2 -o "$<.min" "$<" 
 
 
 
