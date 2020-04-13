@@ -370,13 +370,17 @@ $(document).ready(function() {
 	*/
 
 	if (document.getElementById("neural-net-image")) {
-		var randDeg = (Math.random() * 720) - 360;
-		var randScale = 100 + (Math.random() * 50);
+		var randTransform = (Math.random() * 500);
+		var randScale = 20 + (Math.random() * 20);
 		$("#neural-net-image").css('background-size', randScale + '%');
+		$("#neural-net-image").css('background-position-x', randTransform + '%');
+		$("#neural-net-image").css('background-position-y', randTransform + '%');
 	}
 	if (document.getElementById("beng-image")) {
-		var randDeg = (Math.random() * 720) - 360;
-		var randScale = 100 + (Math.random() * 50);
+		var randTransform = (Math.random() * 500);
+		var randScale = 20 + (Math.random() * 20);
 		$("#beng-image").css('background-size', randScale + '%');
+		$("#beng-image").css('background-position-x', randTransform + '%');
+		$("#beng-image").css('background-position-y', randTransform + '%');
 	}
 });
