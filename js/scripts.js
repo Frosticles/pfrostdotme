@@ -364,4 +364,19 @@ $(document).ready(function() {
 
 		currentFrameIndex += right ? 1 : -1
 	}, 50);
+
+	/*
+		Code to randomly transform the rule30 images in buttons
+	*/
+
+	if (document.getElementById("neural-net-image")) {
+		var randDeg = (Math.random() * 720) - 360;
+		var randScale = Math.random() + 1;
+		$("#neural-net-image").css('transform', 'rotate(' + randDeg + 'deg) scale(' + randScale + ')');
+	}
+	if (document.getElementById("beng-image")) {
+		var randDeg = (Math.random() * 720) - 360;
+		var randScale = Math.random() + 1;
+		$("#beng-image").css('transform', 'rotate(' + randDeg + 'deg) scale(' + randScale + ')');
+	}
 });
