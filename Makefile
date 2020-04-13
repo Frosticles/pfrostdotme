@@ -122,7 +122,8 @@ all: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ) $(MISC_BR) $(MI
 .SECONDEXPANSION:
 %.html.gz: $$(subst $$(space),\$$(space),%).html $$(subst $$(space),\$$(space),%).html.min
 	$(info HTML Zopfli: $@)
-	@zopfli -c "$<.min" >> "$@"
+	@zopfli --i15 "$<.min"
+	@mv -f "$<.min.gz" "$@"
 
 .SECONDEXPANSION:
 %.html.min: $$(subst $$(space),\$$(space),%).html
@@ -142,7 +143,8 @@ all: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ) $(MISC_BR) $(MI
 .SECONDEXPANSION:
 %.css.gz: $$(subst $$(space),\$$(space),%).css $$(subst $$(space),\$$(space),%).css.min
 	$(info CSS Zopfli: $@)
-	@zopfli -c "$<.min" >> "$@"
+	@zopfli --i15 "$<.min"
+	@mv -f "$<.min.gz" "$@"
 
 .SECONDEXPANSION:
 %.css.min: $$(subst $$(space),\$$(space),%).css
@@ -162,7 +164,8 @@ all: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ) $(MISC_BR) $(MI
 .SECONDEXPANSION:
 %.js.gz: $$(subst $$(space),\$$(space),%).js $$(subst $$(space),\$$(space),%).js.min
 	$(info JS Zopfli: $@)
-	@zopfli -c "$<.min" >> "$@"
+	@zopfli --i15 "$<.min"
+	@mv -f "$<.min.gz" "$@"
 
 .SECONDEXPANSION:
 %.js.min: $$(subst $$(space),\$$(space),%).js
@@ -183,7 +186,8 @@ all: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ) $(MISC_BR) $(MI
 .SECONDEXPANSION:
 %.png.gz: $$(subst $$(space),\$$(space),%).png $$(subst $$(space),\$$(space),%).png.min
 	$(info PNG Zopfli: $@)
-	@zopfli -c "$<.min" >> "$@"
+	@zopfli --i15 "$<.min"
+	@mv -f "$<.min.gz" "$@"
 
 .SECONDEXPANSION:
 %.png.min: $$(subst $$(space),\$$(space),%).png
@@ -208,12 +212,14 @@ all: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ) $(MISC_BR) $(MI
 .SECONDEXPANSION:
 %.jpeg.gz: $$(subst $$(space),\$$(space),%).jpeg $$(subst $$(space),\$$(space),%).jpeg.min
 	$(info JPEG Zopfli: $@)
-	@zopfli -c "$<.min" >> "$@"
+	@zopfli --i15 "$<.min"
+	@mv -f "$<.min.gz" "$@"
 
 .SECONDEXPANSION:
 %.jpg.gz: $$(subst $$(space),\$$(space),%).jpg $$(subst $$(space),\$$(space),%).jpg.min
 	$(info JPEG Zopfli: $@)
-	@zopfli -c "$<.min" >> "$@"
+	@zopfli --i15 "$<.min"
+	@mv -f "$<.min.gz" "$@"
 
 .SECONDEXPANSION:
 %.jpeg.min: $$(subst $$(space),\$$(space),%).jpeg
@@ -241,7 +247,8 @@ all: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ) $(MISC_BR) $(MI
 .SECONDEXPANSION:
 %.gif.gz: $$(subst $$(space),\$$(space),%).gif $$(subst $$(space),\$$(space),%).gif.min
 	$(info GIF Zopfli: $@)
-	@zopfli -c "$<.min" >> "$@"
+	@zopfli --i15 "$<.min"
+	@mv -f "$<.min.gz" "$@"
 
 .SECONDEXPANSION:
 %.gif.min: $$(subst $$(space),\$$(space),%).gif
@@ -262,7 +269,8 @@ all: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ) $(MISC_BR) $(MI
 .SECONDEXPANSION:
 %.svg.gz: $$(subst $$(space),\$$(space),%).svg $$(subst $$(space),\$$(space),%).svg.min
 	$(info SVG Zopfli: $@)
-	@zopfli -c "$<.min" >> "$@"
+	@zopfli --i15 "$<.min"
+	@mv -f "$<.min.gz" "$@"
 
 .SECONDEXPANSION:
 %.svg.min: $$(subst $$(space),\$$(space),%).svg
@@ -283,7 +291,8 @@ all: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ) $(MISC_BR) $(MI
 .SECONDEXPANSION:
 %.webp.gz: $$(subst $$(space),\$$(space),%).webp $$(subst $$(space),\$$(space),%).webp.min
 	$(info WEBP Zopfli: $@)
-	@zopfli -c "$<.min" >> "$@"
+	@zopfli --i15 "$<.min"
+	@mv -f "$<.min.gz" "$@"
 
 .SECONDEXPANSION:
 %.webp.min: $$(subst $$(space),\$$(space),%).webp
@@ -312,7 +321,7 @@ all: $(HTML_GZ) $(HTML_BR) $(CSS_BR) $(CSS_GZ) $(JS_BR) $(JS_GZ) $(MISC_BR) $(MI
 .SECONDEXPANSION:
 %.gz: $$(subst $$(space),\$$(space),%)
 	$(info MISC Zopfli: $@)
-	@zopfli -c "$<" >> "$@"
+	@zopfli --i15 "$<" >> "$@"
 
 
 
