@@ -315,7 +315,7 @@ footer {
 	-ms-interpolation-mode: nearest-neighbor;
   	image-rendering: pixelated;
 	margin-left: 0px;
-	transition: transform 0.25s ease-in-out;
+	transition: background-size 0.25s ease-in-out;
 }
 
 .beng-image {
@@ -323,7 +323,7 @@ footer {
 	-ms-interpolation-mode: nearest-neighbor;
   	image-rendering: pixelated;
 	margin-right: 0px;
-	transition: transform 0.25s ease-in-out;
+	transition: background-size 0.25s ease-in-out;
 }
 
 

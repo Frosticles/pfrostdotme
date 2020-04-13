@@ -372,11 +372,11 @@ $(document).ready(function() {
 	if (document.getElementById("neural-net-image")) {
 		var randDeg = (Math.random() * 720) - 360;
 		var randScale = Math.random() + 1;
-		$("#neural-net-image").css('transform', 'rotate(' + randDeg + 'deg) scale(' + randScale + ')');
+		$("#neural-net-image").css('background-size', randScale + '%');
 	}
 	if (document.getElementById("beng-image")) {
 		var randDeg = (Math.random() * 720) - 360;
 		var randScale = Math.random() + 1;
-		$("#beng-image").css('transform', 'rotate(' + randDeg + 'deg) scale(' + randScale + ')');
+		$("#neural-net-image").css('background-size', randScale + '%');
 	}
 });
