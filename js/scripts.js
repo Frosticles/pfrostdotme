@@ -306,7 +306,7 @@ $(document).ready(function() {
 	*/
 
 	if (document.getElementById("neural-net-image")) {
-		var randTransform = (Math.random() * 50);
+		var randTransform = (Math.random() * 100);
 		var randScale = 20 + (Math.random() * 20);
 		$("#neural-net-image").css('background-position-x', randTransform + '%');
 		$("#neural-net-image").css('background-position-y', randTransform + '%');
