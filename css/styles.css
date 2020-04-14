@@ -203,7 +203,7 @@ footer {
 	color: #00A2FD;
 	outline: none;
 	position: initial;
-	cursor: url("/images/think.png"), auto;
+	cursor: url("../images/think.png"), auto;
 }
 
 .style-jumbotron:after {
@@ -229,7 +229,7 @@ footer {
 }
 
 .style-img-blur {
-	background-image: url('/images/Filtery Pic.jpg');
+	background-image: url('../images/Filtery Pic.jpg');
 	background-size: contain;
 	width: 300px;
 	height: 300px;
@@ -249,7 +249,7 @@ footer {
 	max-width: inherit;
 	min-width: inherit;
 	display: inline-block;
-	cursor: url("/images/meh.png"), auto;
+	cursor: url("../images/meh.png"), auto;
 }
 
 .style-headshot {
@@ -308,12 +308,12 @@ footer {
 }
 
 .neural-net-image {
-	background-image: linear-gradient(235deg, rgba(34,187,124,0.95), rgba(4,94,163,0.95)), url('/images/rule30_alt3.png');
+	background-image: linear-gradient(235deg, rgba(34,187,124,0.95), rgba(4,94,163,0.95)), url('../images/rule30_alt3.png');
 	margin-left: 0px;
 }
 
 .beng-image {
-	background-image: linear-gradient(235deg, rgba(34,187,124,0.95), rgba(4,94,163,0.95)), url('/images/rule30_alt3.png');
+	background-image: linear-gradient(235deg, rgba(34,187,124,0.95), rgba(4,94,163,0.95)), url('../images/rule30_alt3.png');
 	margin-right: 0px;
 }
 
