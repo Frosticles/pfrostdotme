@@ -1,0 +1,3 @@
+[submodule "sitecompiler"]
+	path = sitecompiler
+	url = https://github.com/badcf00d/sitecompiler
