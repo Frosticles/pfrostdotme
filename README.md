@@ -47,41 +47,9 @@ sudo nano /etc/nginx/nginx.conf
 Add:
 
 ```bash
-    gzip on;
     gzip_static on;
-    gzip_vary on;
-    gzip_proxied any;
-
-    gzip_types
-    application/atom+xml
-    application/javascript
-    application/json
-    application/ld+json
-    application/manifest+json
-    application/rss+xml
-    application/vnd.geo+json
-    application/vnd.ms-fontobject
-    application/x-font-ttf
-    application/x-web-app-manifest+json
-    application/xhtml+xml
-    application/xml
-    application/octet-stream
-    font/opentype
-    image/bmp
-    image/svg+xml
-    image/x-icon
-    text/cache-manifest
-    text/css
-    text/plain
-    text/vcard
-    text/vnd.rim.location.xloc
-    text/vtt
-    text/x-component
-    text/x-cross-domain-policy;
-
     brotli_static on;
 ```
-I chose to just use `brotli_static on;` because brotli takes much longer to compress than gzip, so it often doesn't make sense to use brotli for on-the-fly compression, whereas there's not really any harm in leaving gzip to compress things on-the-fly if for some reason a compressed version doesn't exist already.
 
 Just to check if you've just done something stupid
 ```bash
