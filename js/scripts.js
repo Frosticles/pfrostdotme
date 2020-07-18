@@ -102,6 +102,10 @@ $(document).ready(function() {
 	jumboTxt += " "
 
 	if (document.getElementById("jumbotron")) {
+		if (document.getElementById("jumbotron").title.length > 0)
+		{
+			jumboTxt = document.getElementById("jumbotron").title
+		}
 		setTimeout(spinner0, 500);
 	}
 		

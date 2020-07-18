@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'none'; object-src 'none'; img-src 'self' data:; font-src 'self' data:; script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/webfont/ https://cdnjs.cloudflare.com/ajax/libs/jquery/ https://cdnjs.cloudflare.com/ajax/libs/highlight.js/ file: 'sha256-fkDHLpmEbTd35SWI0KZKzpiYEJwgY2gOmjO787Ikmiw='; style-src 'self' https://cdnjs.cloudflare.com/ajax/libs/highlight.js/ 'unsafe-inline'; manifest-src 'self'">
+	<title>. </title>
+		
+	<link rel="preload" href="../css/styles.css" as="style">
+	<link rel="preload" href="../hamburgers/dist/hamburgers.css" as="style">
+		
+	<meta property="og:title" content="Peter Frost"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:description" content="It's a trap"/>
+	<meta property="og:image" content="https://pfrost.me/images/rule30.png"/>
+		
+	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+	<link rel="manifest" href="../site.webmanifest">
+	<link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+	
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../hamburgers/dist/hamburgers.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/monokai-sublime.min.css">
+
+		
+	<header class="style-header" style="height: 30vh;">
+		
+		<button class="hamburger hamburger--spin" type="button" id="menu-hamburger"> 
+			<span class="hamburger-box"> 
+				<span class="hamburger-inner"> 
+				</span> 
+			</span>
+		</button>
+			
+		<nav id="mySidenav" class="sidenav"> <a href="../contact.html">Contact</a> </nav>
+
+		<aside>
+			<div class="style-jumbotron">
+				<a id="jumbotron" title="Is 2 true?"></a>
+			</div>
+		</aside>
+	</header>	
+
+	<main class="style-main-simple">
+		<div>
+			<a>
+				I caused a bug the other day by assuming the answer to this question was yes, 2 must be true, it certainly isn't false now is it? Turns out the nuance of concept and implementation doesn't quite match up in this case.
+			</a>
+			<br>
+			<a>
+				The offending code was along the lines of this:
+			</a>
+			<pre><code class="c">if ((variable & 0b0100) == true)
+			{
+
+			}
+			</code></pre>
+			<a>
+				Where
+			</a>
+		</div>
+	</main>
+
+	<link rel="preload" href="../Fira-Lightened/fira.css" as="style">
+	<link rel="preload" href="../Roboto-Mono/roboto.css" as="style">
+
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" crossorigin="anonymous"></script>
+	<script src="../js/scripts.js" async></script>
+	<script src="../js/modernizr-custom.js" async></script>
+	<script async> hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
