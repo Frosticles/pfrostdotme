@@ -94,14 +94,18 @@ if ((foo & 0b0010) == true)
 				<pre><code class="language-js">#define bool _Bool</code></pre>
 			</p>
 			<p>
-				<code>_Bool</code> is the boolean type introduced in C99, and it can only store either 1 or 0. Any non-zero value you assign to it will be changed to 1. So you could write <code>_Bool foo = 1000000;</code> but <code>foo</code> would still just be 1.
+				<code>_Bool</code> is the actual boolean type introduced in C99. The odd name is because there had been 27 years of C where people made their own boolean types by doing something like <code>typedef int bool;</code>. So if we tried reserving the word <code>bool</code> for the new type, a massive chunk of existing code would no longer compile.
 			</p>
 			<p>
-				However, because this boolean type was only introduced in the C99 standard, there had been 27 years of C where people just made their own boolean types by doing something like <code>typedef int bool;</code>. So if we tried reserving the word <code>bool</code> for our new boolean data type, a massive chunk of existing code would no longer compile because people were using our reserved word (how dare they). Hence, the slightly odd looking <code>_Bool</code>.
+				This new boolean type can only store either 1 or 0, so anything larger will just be changed to 1. You could write <code>_Bool foo = 42;</code> but <code>foo</code> would still be 1. So knowing that, we could cast our expression to a <code>bool</code>, our 2 would be changed to a 1, and problem solved:
+				<pre><code class="language-js">uint8_t foo = someStuffThatReturnsaNumber();
+
+if ((bool)(foo & 0b0010) == true)
+{
+	/* Do stuff */
+}</code></pre>
 			</p>
-			<p>
-				So that you didn't <em>actually</em> have to write <code>_Bool</code> when you're making C code these days, they introduced the <code>stdbool.h</code> file with the macro to convert <code>_Bool</code> to <code>bool</code> that everyone was already used to.
-			</p>
+
 		</div>
 	</main>
 
