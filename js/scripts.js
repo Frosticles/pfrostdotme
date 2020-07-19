@@ -1,9 +1,22 @@
-WebFont.load({
-custom: {
-	families: ['Roboto Mono', 'Fira Sans'],
-	urls: ['Roboto-Mono/roboto.css', 'Fira-Lightened/fira.css', '../Roboto-Mono/roboto.css', '../Fira-Lightened/fira.css']
-	}
-});
+if (window.location.pathname.includes("/blog/"))
+{
+	WebFont.load({ 
+		custom: {
+			families: ['Roboto Mono', 'Fira Sans'],
+			urls: ['../Roboto-Mono/roboto.css', '../Fira-Lightened/fira.css']
+		}
+	});
+}
+else
+{
+	WebFont.load({ 
+		custom: {
+			families: ['Roboto Mono', 'Fira Sans'],
+			urls: ['Roboto-Mono/roboto.css', 'Fira-Lightened/fira.css']
+		}
+	});
+}
+
 
 var lines = [
 	"What... is the capital of Assyria?",
