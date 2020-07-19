@@ -1,7 +1,7 @@
 WebFont.load({
 custom: {
 	families: ['Roboto Mono', 'Fira Sans'],
-	urls: ['Roboto-Mono/roboto.css', 'Fira-Lightened/fira.css']
+	urls: ['Roboto-Mono/roboto.css', 'Fira-Lightened/fira.css', '../Roboto-Mono/roboto.css', '../Fira-Lightened/fira.css']
 	}
 });
 
@@ -53,9 +53,11 @@ var lines = [
 	"undefined reference",
 	"#define + -",
 	"precise bus fault",
+	"imprecise bus fault",
 	"for (uint8_t i = 0; i < 256; i++) {}",
 	"you can't fight in here, this is the war room!",
-	"0x8BADF00D"
+	"0x8BADF00D",
+	"Sometimes, I dream about cheese"
 ];
 
 var frames = [

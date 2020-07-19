@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-	<meta http-equiv="Content-Security-Policy" content="default-src 'none'; object-src 'none'; img-src 'self' data:; font-src 'self' data:; script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/webfont/ https://cdnjs.cloudflare.com/ajax/libs/jquery/ https://cdnjs.cloudflare.com/ajax/libs/highlight.js/ file: 'sha256-fkDHLpmEbTd35SWI0KZKzpiYEJwgY2gOmjO787Ikmiw='; style-src 'self' https://cdnjs.cloudflare.com/ajax/libs/highlight.js/ 'unsafe-inline'; manifest-src 'self'">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'none'; object-src 'none'; img-src 'self' data:; font-src 'self' data:; script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/webfont/ https://cdnjs.cloudflare.com/ajax/libs/jquery/ https://cdnjs.cloudflare.com/ajax/libs/prism/ file:; style-src 'self' https://cdnjs.cloudflare.com/ajax/libs/prism/ 'unsafe-inline'; manifest-src 'self'">
 	<title>. </title>
 		
 	<link rel="preload" href="../css/styles.css" as="style">
@@ -27,7 +27,7 @@
 	
 	<link rel="stylesheet" href="../css/styles.css">
 	<link rel="stylesheet" href="../hamburgers/dist/hamburgers.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/monokai-sublime.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-okaidia.min.css">
 
 		
 	<header class="style-header" style="height: 30vh;">
@@ -39,7 +39,10 @@
 			</span>
 		</button>
 			
-		<nav id="mySidenav" class="sidenav"> <a href="../contact.html">Contact</a> </nav>
+		<nav id="mySidenav" class="sidenav"> 
+			<a href="../contact.html">Contact</a>
+			<a href="../home.html">Home</a> 
+		</nav>
 
 		<aside>
 			<div class="style-jumbotron">
@@ -49,22 +52,56 @@
 	</header>	
 
 	<main class="style-main-simple">
-		<div>
-			<a>
-				I caused a bug the other day by assuming the answer to this question was yes, 2 must be true, it certainly isn't false now is it? Turns out the nuance of concept and implementation doesn't quite match up in this case.
-			</a>
+		<div class="language-cpp">
+			<h3>
+				<em>
+					I caused a bug the other day by assuming the answer to this question was yes, surely 2 must be true, I mean it clearly isn't false is it?
+				</em>
+			</h3>
 			<br>
-			<a>
-				The offending code was along the lines of this:
-			</a>
-			<pre><code class="c">if ((variable & 0b0100) == true)
-			{
+			<p>
+				The offending C code was along the lines of this:
+			</p>
+			<pre><code class="language-js">uint8_t foo = someStuffThatReturnsaNumber();
 
-			}
-			</code></pre>
-			<a>
-				Where
-			</a>
+if ((foo & 0b0010) == true)
+{
+	/* Do stuff */
+}</code></pre>
+			<p>
+				I was <em>hoping</em> this would take <code>foo</code>, bitwise-and it with the binary number <code>0010</code> using the <a href="https://gcc.gnu.org/onlinedocs/gcc/Binary-constants.html" target="_blank">handy GCC extension</a> to write binary constants, and if the result of that was non-zero, do the stuff in the <code>if</code> statement. Blissfuly unaware of what I had actually written at this point, I was rather surprised that this didn't work. 
+			</p>
+			<p>
+				Distraught, I began debugging. Printing out the value of <code>foo</code>, it had the value I was expecting, <code>foo</code> and'ed with <code>0010</code> was indeed 2. So why then was it not entering this if statement? Time to look into what <code>true</code> actually is. 
+			</p>
+			<p> 
+				Typically any C program these days will get <code>true</code> from a header file called <code>stdbool.h</code> which contains (among other things) the following:
+				<pre><code class="language-js">#define true 1
+#define false 0</code></pre>
+			</p>
+			<p>
+				So, as you can imagine the compiler will come along and change all of the instances of <code>true</code> to <code>1</code>. Knowing what we know now about the values in question, let's reassess that if statement.
+			</p>
+			<pre><code class="language-js">if (2 == 1)
+{
+	/* Do stuff */
+}</code></pre>
+			<p>
+				Well, no shit it doesn't enter the if statement. 
+			</p>
+			<p>
+				So, what could we do to get the result we're after? That brings us to one of the other things in that <code>stdbool.h</code> file:
+				<pre><code class="language-js">#define bool _Bool</code></pre>
+			</p>
+			<p>
+				<code>_Bool</code> is the boolean type introduced in C99, and it can only store either 1 or 0. Any non-zero value you assign to it will be changed to 1. So you could write <code>_Bool foo = 1000000;</code> but <code>foo</code> would still just be 1.
+			</p>
+			<p>
+				However, because this boolean type was only introduced in the C99 standard, there had been 27 years of C where people just made their own boolean types by doing something like <code>typedef int bool;</code>. So if we tried reserving the word <code>bool</code> for our new boolean data type, a massive chunk of existing code would no longer compile because people were using our reserved word (how dare they). Hence, the slightly odd looking <code>_Bool</code>.
+			</p>
+			<p>
+				So that you didn't <em>actually</em> have to write <code>_Bool</code> when you're making C code these days, they introduced the <code>stdbool.h</code> file with the macro to convert <code>_Bool</code> to <code>bool</code> that everyone was already used to.
+			</p>
 		</div>
 	</main>
 
@@ -74,9 +111,10 @@
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js" crossorigin="anonymous"></script>
+
 	<script src="../js/scripts.js" async></script>
 	<script src="../js/modernizr-custom.js" async></script>
-	<script async> hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
