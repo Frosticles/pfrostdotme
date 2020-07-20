@@ -82,7 +82,7 @@ var frames = [
 	'(◾_◾)', 25
 ];
 
-$(document).ready(function() {
+let readyFunction = function(){
 
 	/*
 		Hamburger button menu trigger
@@ -263,18 +263,6 @@ $(document).ready(function() {
 	}
 
 	/*
-		Code to update hamburger menu
-	*/
-	
-	if (document.getElementById("jumbotron")) {
-		$("#jumbotron").on('DOMSubtreeModified', function() {
-			if (($("#jumbotron").html() === atob('YXBwbGU=')) && ($("#mySidenav > a").length === 1)) {
-				$("#mySidenav").append(atob('PGEgaHJlZj0iZGlyZWN0b3J5ZG9lc25vdGV4aXN0L0QtTElOS05BUy8iPk5BUzwvYT4KPGEgaHJlZj0idHJ1bXBkaWQ5MTEuaHRtbCI+VHJ1bXA8L2E+'));
-			}
-		});
-	}
-
-	/*
 		Code to animate address bar
 	*/
 
@@ -307,4 +295,14 @@ $(document).ready(function() {
 
 		frameCount += countUp ? 1 : -1
 	}, 100);
-});
+};
+
+if (document.readyState === "complete" ||
+	(document.readyState !== "loading" && !document.documentElement.doScroll)) 
+{
+	readyFunction();
+} 
+else 
+{
+	document.addEventListener("DOMContentLoaded", readyFunction);
+}
