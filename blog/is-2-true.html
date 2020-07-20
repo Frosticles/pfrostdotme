@@ -67,7 +67,7 @@ if ((foo & 0b0010) == true)
 	/* Do stuff */
 }</code></pre>
 			<p>
-				I was <em>hoping</em> this would take <code>foo</code>, bitwise-and it with the binary number <code>0010</code> using the <a href="https://gcc.gnu.org/onlinedocs/gcc/Binary-constants.html" target="_blank">handy GCC extension</a> to write binary constants, and if the result of that was non-zero, do the stuff in the <code>if</code> statement. Blissfuly unaware of what I had actually written at this point, I was rather surprised that this didn't work. 
+				I was <em>hoping</em> this would take <code>foo</code>, bitwise-and it with the binary number <code>0010</code> using the <a href="https://gcc.gnu.org/onlinedocs/gcc/Binary-constants.html" target="_blank">handy GCC extension</a> to write binary constants, and if the result of that was non-zero, do the stuff in the if statement. Blissfuly unaware of what I had actually written at this point, I was rather surprised that this didn't work. 
 			</p>
 			<p>
 				Distraught, I began debugging. Printing out the value of <code>foo</code>, it had the value I was expecting, <code>foo</code> and'ed with <code>0010</code> was indeed 2. So why then was it not entering this if statement? Time to look into what <code>true</code> actually is. 
@@ -102,16 +102,41 @@ if ((foo & 0b0010) == true)
 }</code></pre>
 			</p>
 			<p>
-				However, there is another way we could write this. The C99 specification says that our <code>if</code> statement will be entered if <em>"the expression compares unequal to 0"</em>. Which means that we could just use the 2 from our bitwise-and to enter the <code>if</code> statement:
+				But surely there must be a nice way of writing this? Well turns out the C99 specification says that our if statement will be entered if <em>"the expression compares unequal to 0"</em>. Which means that we could just use the 2 from our bitwise-and to enter the if statement and be done with it:
 				<pre><code class="language-js">if (foo & 0b0010)
 {
 	/* Do stuff */
 }</code></pre>
 			</p>
+			<p>
+				However, coding standards such as MISRA C are not fond of if statements like this as the expression is not <em>"essentially Boolean"</em> as the result of this expression is an integer, not a boolean. Which could be implied as a type cast, although as we've just seen an if statement doesn't <em>actually</em> use the boolean type, it only cares if the integer result is 0 or not.
+			</p>
+			<p>
+				This existential crisis of whether booleans count as integers is common to pretty much all languages. JavaScript is similar to C, but uses a dedicated boolean type for <code>true</code> and <code>false</code> which can implicitly casted to integers <code>1</code> and <code>0</code>, so you get the following behaviour:
+				<pre><code class="language-js">console.log(2 == true);
+// false
+console.log(1 === true);
+// false
+console.log(1 == true);
+// true
+if (2) console.log("true"); else console.log("false");
+// true
+</code></pre>
+			</p>
+			<p>
+				Python is even more similar to C where <code>true</code> and <code>false</code> are simply integer values <code>1</code> and <code>0</code>, so the behaviour is:
+				<pre><code class="language-python">print(2 == True)
+# False
+print(1 == True)
+# True
+print("True") if (2) else print("False")
+# True
+</code></pre>
+			</p>
 			<br>
-			<p>So, to wrap up:</p>
-			<h3>
-				2 is not <em>equal</em> to true, but an if statement expression that returns 2 is considered equivalent to true.
+			<p>So, to wrap up, is 2 true?</p>
+			<h3 style="color: #EEEEEE;">
+				2 is not <em>equal</em> to true, but an if statement expression that returns 2 can be considered equivalent to true.
 			</h3>
 		</div>
 	</main>

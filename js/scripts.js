@@ -2,8 +2,8 @@ if (window.location.pathname.includes("/blog/"))
 {
 	WebFont.load({ 
 		custom: {
-			families: ['Roboto Mono', 'Fira Sans'],
-			urls: ['../Roboto-Mono/roboto.css', '../Fira-Lightened/fira.css']
+			families:  ['Fira Sans'],
+			urls: ['../Fira-Lightened/fira.css']
 		}
 	});
 }

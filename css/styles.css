@@ -10,15 +10,15 @@ html, body {
 }
 
 main {
-	color: #DDDDDD;
+	color: #EEEEEE;
 	hyphens: none;
 	margin: 0;
 	padding: 0;
 }
 
 a {
-	text-decoration-color: #DDDDDD;
-	color: #DDDDDD;
+	text-decoration-color: #EEEEEE;
+	color: #EEEEEE;
 	font-weight: 300;
 	hyphens: none;
 	font-size: 14pt;
@@ -26,8 +26,8 @@ a {
 }
 
 p {
-	text-decoration-color: #DDDDDD;
-	color: #DDDDDD;
+	text-decoration-color: #EEEEEE;
+	color: #EEEEEE;
 	hyphens: none;
 	font-weight: 300;
 	font-size: 14pt;
