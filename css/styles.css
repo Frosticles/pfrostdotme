@@ -233,16 +233,6 @@ footer {
 	}
 }
 
-.style-img-blur {
-	background-image: url('../images/Filtery Pic.jpg');
-	background-size: contain;
-	width: 300px;
-	height: 300px;
-	display: block;
-    margin-left: auto;
-    margin-right: 1%;
-	box-shadow: 0 0 12px 12px #000E17 inset;
-}
 
 .style-image {
 	align-self:center; 
@@ -376,7 +366,7 @@ footer {
 	z-index: 3;
 }
 
-#slideshow > div, #slideshow2 > div, #slideshow3 > div, #slideshow4 > div { 
+#slideshow > div > picture, #slideshow2 > div > picture, #slideshow3 > div > picture, #slideshow4 > div > picture { 
     position: absolute;  
 	width: 100%;
 	height: 100%;
@@ -384,7 +374,7 @@ footer {
 	z-index: 1;
 }
 
-#slideshow > div > img, #slideshow2 > div > img, #slideshow3 > div > img, #slideshow4 > div > img {
+#slideshow > div > picture > img, #slideshow2 > div > picture > img, #slideshow3 > div > picture > img, #slideshow4 > div > picture > img {
 	width: 100%; 
 	height: inherit;
 	object-fit: cover;
