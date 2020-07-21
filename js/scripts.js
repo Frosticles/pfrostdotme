@@ -273,7 +273,13 @@ let readyFunction = function(){
 
 	setInterval(function() 
 	{ 
-		window.location.replace('#' + frames[frameIndex])
+		let frameUpdate = (decodeURI(window.location.hash) != ('#' + frames[frameIndex]))
+		
+		if (frameUpdate == true)
+		{
+			window.location.replace('#' + frames[frameIndex])
+		}
+
 		
 		if (frameIndex >= (frames.length - 2)) {
 			advanceRight = false;
