@@ -92,14 +92,15 @@ let readyFunction = function(){
 				
 	hamburger.addEventListener("click", function() {
 
-		if (hamburger.classList.contains("is-active")) {
+		if (hamburger.classList.contains("is-active")) 
+		{
 			document.getElementById("mySidenav").style.width = "0px";
-			$("#menu-hamburger").animate({marginLeft: '0px'}, 250, "swing");
-
-
-		} else {
+			document.getElementById("menu-hamburger").style.marginLeft = "0px";
+		}
+		else 
+		{
 			document.getElementById("mySidenav").style.width = "250px";
-			$("#menu-hamburger").animate({marginLeft: '250px'}, 250, "swing");
+			document.getElementById("menu-hamburger").style.marginLeft = "250px";
 		}	  
 
 		hamburger.classList.toggle("is-active");
