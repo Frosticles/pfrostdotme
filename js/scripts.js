@@ -220,6 +220,7 @@ let readyFunction = function(){
 			{
 				let nextFrame = (i == (frames.length - 1)) ? 0 : (i + 1);
 				frames[i].style.opacity = 0;
+				frames[nextFrame].style.display = "inline";
 				frames[nextFrame].style.opacity = 1;
 				return;
 			}
