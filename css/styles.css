@@ -366,6 +366,10 @@ footer {
 	z-index: 3;
 }
 
+#slideshow > div, #slideshow2 > div, #slideshow3 > div, #slideshow4 > div { 
+	transition: opacity 0.5s ease-in-out;
+}
+
 #slideshow > div > picture, #slideshow2 > div > picture, #slideshow3 > div > picture, #slideshow4 > div > picture { 
     position: absolute;  
 	width: 100%;

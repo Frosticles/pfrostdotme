@@ -212,55 +212,51 @@ let readyFunction = function(){
 		Slideshow functions for all the hero images
 	*/
 
+	function transitionFrame(frames)
+	{
+		for (let i = 0; i < frames.length; i++) 
+		{
+			if (frames[i].style.opacity != 0)
+			{
+				let nextFrame = (i == (frames.length - 1)) ? 0 : (i + 1);
+				frames[i].style.opacity = 0;
+				frames[nextFrame].style.opacity = 1;
+				return;
+			}
+		}
+		console.log("Hmm, didn't find a frame in there with a non-zero opacity: " + frames);
+	}
+
 	if (document.getElementById("slideshow")) {
 
-		$("#slideshow > div:gt(0)").hide();
+		setInterval(function() { 
+			if (document.hasFocus()) 
+			{
+				transitionFrame(document.getElementById("slideshow").querySelectorAll("div"));
+			}
+		},  (4000 + (Math.random()*2000)));
 
 		setInterval(function() { 
-			if (document.hasFocus()) {
-			  $('#slideshow > div:first')
-				.fadeOut(1000)
-				.next()
-				.fadeIn(1000)
-				.end()
-				.appendTo('#slideshow');
+			if (document.hasFocus()) 
+			{
+				transitionFrame(document.getElementById("slideshow2").querySelectorAll("div"));
 			}
 		},  (4000 + (Math.random()*2000)));
-		
-		$("#slideshow2 > div:gt(0)").hide();
 
 		setInterval(function() { 
-			if (document.hasFocus()) {
-			  $('#slideshow2 > div:first')
-				.fadeOut(1000)
-				.next()
-				.fadeIn(1000)
-				.end()
-				.appendTo('#slideshow2');
+			if (document.hasFocus()) 
+			{
+				transitionFrame(document.getElementById("slideshow3").querySelectorAll("div"));
+			}
+		},  (4000 + (Math.random()*2000)));
+
+		setInterval(function() { 
+			if (document.hasFocus()) 
+			{
+				transitionFrame(document.getElementById("slideshow4").querySelectorAll("div"));
 			}
 		},  (4000 + (Math.random()*2000)));
 		
-		setInterval(function() { 
-			if (document.hasFocus()) {
-			  $('#slideshow3 > div:first')
-				.fadeOut(1000)
-				.next()
-				.fadeIn(1000)
-				.end()
-				.appendTo('#slideshow3');
-			}
-		},  (4000 + (Math.random()*2000)));
-		
-		setInterval(function() { 
-			if (document.hasFocus()) {
-			  $('#slideshow4 > div:first')
-				.fadeOut(1000)
-				.next()
-				.fadeIn(1000)
-				.end()
-				.appendTo('#slideshow4');
-			}
-		},  (4000 + (Math.random()*2000)));
 	}
 
 	/*
