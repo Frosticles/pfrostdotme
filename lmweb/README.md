@@ -13,7 +13,7 @@ For example, adding the following if you wanted to use the font 'Lucida
 Modern Mono'. The families are defined in those files.
 
 ```html
-<link rel="stylesheet" href="style/latinmodern-mono.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="style/latinmodern.css" type="text/css" charset="utf-8" />
 ```
 
 After doing that, you can safely use something like the following to
