@@ -367,7 +367,7 @@ footer {
 }
 
 #slideshow > div, #slideshow2 > div, #slideshow3 > div, #slideshow4 > div { 
-	transition: opacity 0.75s ease-in-out;
+	transition: opacity 1s ease-in-out;
 }
 
 #slideshow > div > picture, #slideshow2 > div > picture, #slideshow3 > div > picture, #slideshow4 > div > picture { 

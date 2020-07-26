@@ -220,8 +220,12 @@ let readyFunction = function(){
 			{
 				let nextFrame = (i == (frames.length - 1)) ? 0 : (i + 1);
 				frames[i].style.opacity = 0;
-				frames[nextFrame].style.opacity = 1;
-				frames[nextFrame].style.visibility = 'visible';
+				frames[nextFrame].style.display = 'inline';
+				
+				// The timeout is to fix a really annoying bug where if the display
+				// style changes at the same time as the opacity, the css animation
+				// won't occur, and the image will just pop in.
+				setTimeout(() => { frames[nextFrame].style.opacity = 1; }, 100);
 				return;
 			}
 		}
