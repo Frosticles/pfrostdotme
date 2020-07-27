@@ -4,8 +4,8 @@
     font-style: normal;
     font-weight: 100;
     font-display: swap;
-    src: url('roboto-mono-v5-latin-100.woff2') format('woff2'),
-         url('roboto-mono-v5-latin-100.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/roboto/roboto-mono-v5-latin-100.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/roboto/roboto-mono-v5-latin-100.woff') format('woff');
 }
 
 /* roboto-mono-300 - latin */
@@ -14,8 +14,8 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('roboto-mono-v5-latin-300.woff2') format('woff2'),
-       url('roboto-mono-v5-latin-300.woff') format('woff');
+  src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/roboto/roboto-mono-v5-latin-300.woff2') format('woff2'),
+       url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/roboto/roboto-mono-v5-latin-300.woff') format('woff');
 }
 
 /* roboto-mono-regular - latin */
@@ -24,8 +24,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('roboto-mono-v5-latin-regular.woff2') format('woff2'),
-       url('roboto-mono-v5-latin-regular.woff') format('woff');
+  src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/roboto/roboto-mono-v5-latin-regular.woff2') format('woff2'),
+       url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/roboto/roboto-mono-v5-latin-regular.woff') format('woff');
 }
 
 /* roboto-mono-500 - latin */
@@ -34,8 +34,8 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('roboto-mono-v5-latin-500.woff2') format('woff2'),
-       url('roboto-mono-v5-latin-500.woff') format('woff');
+  src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/roboto/roboto-mono-v5-latin-500.woff2') format('woff2'),
+       url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/roboto/roboto-mono-v5-latin-500.woff') format('woff');
 }
 
 /* roboto-mono-700 - latin */
@@ -44,6 +44,6 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('roboto-mono-v5-latin-700.woff2') format('woff2'),
-       url('roboto-mono-v5-latin-700.woff') format('woff');
+  src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/roboto/roboto-mono-v5-latin-700.woff2') format('woff2'),
+       url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/roboto/roboto-mono-v5-latin-700.woff') format('woff');
 }

@@ -1,6 +1,6 @@
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Hair-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Hair-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 100;
     font-style: normal;
@@ -9,8 +9,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Hair.woff2') format('woff2'),
-         url('woff/FiraSans-Hair.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Hair.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-Hair.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 100;
     font-style: normal;
@@ -19,7 +19,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-HairItalic-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-HairItalic-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 100;
     font-style: italic;
@@ -28,8 +28,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-HairItalic.woff2') format('woff2'),
-         url('woff/FiraSans-HairItalic.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-HairItalic.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-HairItalic.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 100;
     font-style: italic;
@@ -38,7 +38,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-UltraLight-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-UltraLight-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 200;
     font-style: normal;
@@ -47,8 +47,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-UltraLight.woff2') format('woff2'),
-         url('woff/FiraSans-UltraLight.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-UltraLight.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-UltraLight.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 200;
     font-style: normal;
@@ -57,7 +57,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-UltraLightItalic-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-UltraLightItalic-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 200;
     font-style: italic;
@@ -66,8 +66,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-UltraLightItalic.woff2') format('woff2'),
-         url('woff/FiraSans-UltraLightItalic.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-UltraLightItalic.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-UltraLightItalic.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 200;
     font-style: italic;
@@ -76,7 +76,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Light-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Light-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 300;
     font-style: normal;
@@ -85,8 +85,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Light.woff2') format('woff2'),
-         url('woff/FiraSans-Light.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Light.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-Light.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 300;
     font-style: normal;
@@ -95,7 +95,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-LightItalic-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-LightItalic-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 300;
     font-style: italic;
@@ -104,8 +104,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-LightItalic.woff2') format('woff2'),
-         url('woff/FiraSans-LightItalic.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-LightItalic.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-LightItalic.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 300;
     font-style: italic;
@@ -114,7 +114,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Regular-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Regular-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 400;
     font-style: normal;
@@ -123,8 +123,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Regular.woff2') format('woff2'),
-         url('woff/FiraSans-Regular.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Regular.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-Regular.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 400;
     font-style: normal;
@@ -133,7 +133,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Italic-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Italic-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 400;
     font-style: italic;
@@ -142,8 +142,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Italic.woff2') format('woff2'),
-         url('woff/FiraSans-Italic.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Italic.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-Italic.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 400;
     font-style: italic;
@@ -152,7 +152,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Medium-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Medium-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 500;
     font-style: normal;
@@ -161,8 +161,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Medium.woff2') format('woff2'),
-         url('woff/FiraSans-Medium.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Medium.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-Medium.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 500;
     font-style: normal;
@@ -171,7 +171,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-MediumItalic-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-MediumItalic-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 500;
     font-style: italic;
@@ -181,8 +181,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-MediumItalic.woff2') format('woff2'),
-         url('woff/FiraSans-MediumItalic.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-MediumItalic.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-MediumItalic.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 500;
     font-style: italic;
@@ -191,7 +191,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-SemiBold-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-SemiBold-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 600;
     font-style: normal;
@@ -200,8 +200,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-SemiBold.woff2') format('woff2'),
-         url('woff/FiraSans-SemiBold.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-SemiBold.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-SemiBold.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 600;
     font-style: normal;
@@ -210,7 +210,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-SemiBoldItalic-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-SemiBoldItalic-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 600;
     font-style: italic;
@@ -219,8 +219,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-SemiBoldItalic.woff2') format('woff2'),
-         url('woff/FiraSans-SemiBoldItalic.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-SemiBoldItalic.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-SemiBoldItalic.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 600;
     font-style: italic;
@@ -229,7 +229,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Bold-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Bold-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 700;
     font-style: normal;
@@ -238,8 +238,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Bold.woff2') format('woff2'),
-         url('woff/FiraSans-Bold.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Bold.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-Bold.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 700;
     font-style: normal;
@@ -248,7 +248,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-BoldItalic-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-BoldItalic-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 700;
     font-style: italic;
@@ -257,8 +257,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-BoldItalic.woff2') format('woff2'),
-         url('woff/FiraSans-BoldItalic.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-BoldItalic.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-BoldItalic.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 700;
     font-style: italic;
@@ -267,7 +267,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-ExtraBold-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-ExtraBold-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 800;
     font-style: normal;
@@ -276,8 +276,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-ExtraBold.woff2') format('woff2'),
-         url('woff/FiraSans-ExtraBold.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-ExtraBold.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-ExtraBold.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 800;
     font-style: normal;
@@ -286,7 +286,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-ExtraBoldItalic-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-ExtraBoldItalic-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 800;
     font-style: italic;
@@ -295,8 +295,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-ExtraBoldItalic.woff2') format('woff2'),
-         url('woff/FiraSans-ExtraBoldItalic.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-ExtraBoldItalic.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-ExtraBoldItalic.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 800;
     font-style: italic;
@@ -305,7 +305,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Heavy-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Heavy-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 900;
     font-style: normal;
@@ -314,8 +314,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Heavy.woff2') format('woff2'),
-         url('woff/FiraSans-Heavy.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Heavy.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-Heavy.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 900;
     font-style: normal;
@@ -324,7 +324,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-HeavyItalic-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-HeavyItalic-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 900;
     font-style: italic;
@@ -333,8 +333,8 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-HeavyItalic.woff2') format('woff2'),
-         url('woff/FiraSans-HeavyItalic.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-HeavyItalic.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraSans-HeavyItalic.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 900;
     font-style: italic;
@@ -343,7 +343,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Regular-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Regular-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 400;
     font-style: normal;
@@ -352,8 +352,8 @@
 
 @font-face{
     font-family: 'Fira Mono';
-    src: url('woff2/FiraMono-Regular.woff2') format('woff2'),
-         url('woff/FiraMono-Regular.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraMono-Regular.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraMono-Regular.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 400;
     font-style: normal;
@@ -362,7 +362,7 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: url('woff2/FiraSans-Bold-ascii.woff2') format('woff2');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraSans-Bold-ascii.woff2') format('woff2');
     unicode-range: U+20-7E;
     font-weight: 600;
     font-style: normal;
@@ -371,8 +371,8 @@
 
 @font-face{
     font-family: 'Fira Mono';
-    src: url('woff2/FiraMono-Bold.woff2') format('woff2'),
-         url('woff/FiraMono-Bold.woff') format('woff');
+    src: url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff2/FiraMono-Bold.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/badcf00d/pfrostdotme/master/fonts/fira/woff/FiraMono-Bold.woff') format('woff');
     unicode-range: U+0-19, U+7F-FFFF;
     font-weight: 600;
     font-style: normal;
