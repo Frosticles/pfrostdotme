@@ -2,8 +2,8 @@ if (window.location.pathname.includes("/blog/"))
 {
 	WebFont.load({ 
 		custom: {
-			families:  ['Fira Sans'],
-			urls: ['../fonts/fira/fira.css']
+			families:  ['Roboto Mono', 'Fira Sans'],
+			urls: ['../fonts/roboto/roboto.css', '../fonts/fira/fira.css']
 		}
 	});
 }
@@ -94,6 +94,7 @@ let readyFunction = function(){
 	hamburger.addEventListener("click", function() {
 		sideMenu.classList.toggle("is-active");  
 		hamburger.classList.toggle("is-active");
+		
 		if (hamburger.classList.contains("is-active")) 
 		{
 			document.getElementById("menu-hamburger").style.transform = "translate3d(250px, 0, 0)";
