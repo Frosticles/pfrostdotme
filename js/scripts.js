@@ -89,21 +89,20 @@ let readyFunction = function(){
 	*/
 
 	var hamburger = document.querySelector(".hamburger");
+	var sideMenu = document.querySelector(".sidenav");
 				
 	hamburger.addEventListener("click", function() {
-
+		sideMenu.classList.toggle("is-active");  
+		hamburger.classList.toggle("is-active");
 		if (hamburger.classList.contains("is-active")) 
 		{
-			document.getElementById("mySidenav").style.width = "0px";
-			document.getElementById("menu-hamburger").style.marginLeft = "0px";
+			document.getElementById("menu-hamburger").style.transform = "translate3d(250px, 0, 0)";
+
 		}
 		else 
 		{
-			document.getElementById("mySidenav").style.width = "250px";
-			document.getElementById("menu-hamburger").style.marginLeft = "250px";
-		}	  
-
-		hamburger.classList.toggle("is-active");
+			document.getElementById("menu-hamburger").style.transform = "translate3d(0px, 0, 0)";
+		}
 	});
 
 	/*
