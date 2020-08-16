@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'none'; object-src 'none'; img-src 'self' data: https://raw.githubusercontent.com/badcf00d/pfrostdotme/; font-src 'self' data: https://raw.githubusercontent.com/badcf00d/pfrostdotme/; script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/webfont/ https://cdnjs.cloudflare.com/ajax/libs/prism/ file:; style-src 'self' https://cdnjs.cloudflare.com/ajax/libs/prism/ 'unsafe-inline'; manifest-src 'self'">
+	<title>. </title>
+		
+	<meta property="og:title" content="Peter Frost"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:description" content="It's a trap"/>
+	<meta property="og:image" content="https://pfrost.me/images/rule30.png"/>
+		
+	<link rel="apple-touch-icon" sizes="152x152" href="../icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../icons/favicon-16x16.png">
+	<link rel="manifest" href="../icons/site.webmanifest">
+	<link rel="mask-icon" href="../icons/safari-pinned-tab.svg" color="#5bbad5">
+	<link rel="shortcut icon" href="../icons/favicon.ico">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="msapplication-config" content="../icons/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/hamburgers/dist/hamburgers.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-okaidia.min.css">
+
+	<header class="style-header" style="height: 30vh;">
+		<button class="hamburger hamburger--arrow" type="button" id="menu-hamburger"> 
+			<span class="hamburger-box"> 
+				<span class="hamburger-inner"> </span> 
+			</span>
+		</button>
+			
+		<nav id="mySidenav" class="sidenav"> 
+			<a href="../home.html">Home</a> 
+			<a href="blog/is-2-true.html">Is 2 true?</a> 
+		</nav>
+
+		<aside>
+			<div class="style-jumbotron">
+				<a id="jumbotron" title="Boids Flocking">|</a>
+			</div>
+		</aside>
+	</header>	
+
+	<main class="style-main-simple">
+		<div class="language-cpp">
+			<h3>
+				Test
+			</h3>
+		</div>
+	</main>
+
+	<div id="boidsDiv" style="height: 50vh; width: 80vw; margin: auto;">
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+		<canvas width="50" height="50" id="boidsCanvas" class="boids" style="transform: translate3d(20px, 0px, 0px) rotate(0deg);" ></canvas> 
+	</div>
+
+
+	<link rel="preload" href="../fonts/fira/fira.css" as="style">
+	<link rel="preload" href="../fonts/roboto/roboto.css" as="style">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js" crossorigin="anonymous"></script>
+
+	<script src="../js/scripts.js" async></script>
+	<script src="../js/boids.js" async></script>
+</body>
+</html>

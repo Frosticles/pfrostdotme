@@ -101,7 +101,6 @@ class common {
 
 		if (document.getElementById("slideshow")) 
 		{
-
 			setInterval(function() 
 			{ 
 				if (document.hasFocus()) 
