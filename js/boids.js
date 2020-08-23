@@ -1,22 +1,27 @@
+/*
+    Ben Eater's boids implementation provided the initial inspiration for this, link below:  
+    https://github.com/beneater/boids
+*/
+
+
 let boidsDiv;
 let canvasArray;
 let prevTimestamp = 0;
 let boidArray = []; 
-const visualRange = 200;
+let visualRange = document.documentElement.clientWidth * 0.15;
+let borderMargin = document.documentElement.clientWidth * 0.1;
 const centeringFactor = 0.005;
-const borderMargin = 200;
-const turnFactor = 1;
+const turnBias = 1;
+const initVelocity = 0.5;
 
 class boid
 {
     currentX = 0;
     currentY = 0;
     currentZ = 0;
-    currentAngle = 0;
     deltaX = 0;
     deltaY = 0;
     deltaZ = 0;
-    deltaAngle = 0;
 }
 
 
@@ -24,7 +29,6 @@ function drawBoids()
 {
     boidsDiv = document.querySelector("#boidsDiv");
     canvasArray = boidsDiv.querySelectorAll("canvas");
-    boidsDiv.boundingRect = boidsDiv.getBoundingClientRect();
 
     for (let i = 0; i < canvasArray.length; i++) 
     {
@@ -33,6 +37,8 @@ function drawBoids()
         const ctx = canvasArray[i].getContext('2d'); 
         const width = canvasArray[i].width;
         const height = canvasArray[i].height;
+        canvasArray[i].boundingRect = canvasArray[i].getBoundingClientRect();
+
 
         ctx.fillStyle = 'white'; 
 
@@ -43,6 +49,9 @@ function drawBoids()
         ctx.lineTo(width * 0.25, height / 2);
         ctx.closePath();
         ctx.fill();
+
+        boidArray[i].deltaX = (Math.random() * initVelocity) - (2 * initVelocity);
+        boidArray[i].deltaY = (Math.random() * initVelocity) - (2 * initVelocity);
 
         canvasArray[i].style.transform = `translate3d(${Math.random() * boidsDiv.getBoundingClientRect().width}px,
                                                       ${Math.random() * boidsDiv.getBoundingClientRect().height}px, 
@@ -94,27 +103,27 @@ function flyTowardsCenter(currentBoid)
 
 
 
-function keepWithinBounds(currentBoid)
+function keepWithinBounds(currentBoid, canvas)
 {
-    let width = boidsDiv.boundingRect.width;
-    let height = boidsDiv.boundingRect.height;
+    const width = boidsDiv.boundingRect.width - canvas.boundingRect.width;
+    const height = boidsDiv.boundingRect.height - canvas.boundingRect.height;
     
     if (currentBoid.currentX < borderMargin) 
     {
-        currentBoid.deltaX += turnFactor;
+        currentBoid.deltaX += turnBias + (Math.abs(currentBoid.deltaX) / (Math.max(currentBoid.currentX, 1)));
     }
     else if (currentBoid.currentX > (width - borderMargin)) 
     {
-        currentBoid.deltaX -= turnFactor;
+        currentBoid.deltaX -= turnBias + (Math.abs(currentBoid.deltaX) / (Math.max(width - currentBoid.currentX, 1)));
     }
 
     if (currentBoid.currentY < borderMargin) 
     {
-        currentBoid.deltaY += turnFactor;
+        currentBoid.deltaY += turnBias + (Math.abs(currentBoid.deltaY) / (Math.max(currentBoid.currentY, 1)));
     }
     else if (currentBoid.currentY > (height - borderMargin)) 
     {
-        currentBoid.deltaY -= turnFactor;
+        currentBoid.deltaY -= turnBias + (Math.abs(currentBoid.deltaY) / (Math.max(height - currentBoid.currentY, 1)));
     }
 }
 
@@ -130,20 +139,26 @@ function stepBoids(timestamp)
     }
     const frameTime = (timestamp - prevTimestamp) / 1000;
     prevTimestamp = timestamp;
+    visualRange = document.documentElement.clientWidth * 0.15;
+    borderMargin = document.documentElement.clientWidth * 0.1;
+    boidsDiv.boundingRect = boidsDiv.getBoundingClientRect();
+
 
     for (let i = 0; i < canvasArray.length; i++) 
     {
         const currentTransform = canvasArray[i].style.transform.replace(/rot.*|3d\(|[^\d,.]/g, '').split(',');
-        //const currentRotation = canvasArray[i].style.transform.replace(/.*e\(|[^\d,.]/g, '');
         boidArray[i].currentX = parseFloat(currentTransform[0]);
         boidArray[i].currentY = parseFloat(currentTransform[1]);
         boidArray[i].currentZ = parseFloat(currentTransform[2]);
 
         flyTowardsCenter(boidArray[i]);
-        keepWithinBounds(boidArray[i]);
+        keepWithinBounds(boidArray[i], canvasArray[i]);
 
-        canvasArray[i].style.transform = `translate3d(${boidArray[i].currentX + boidArray[i].deltaX}px,
-                                                      ${boidArray[i].currentY + boidArray[i].deltaY}px, 
+        const finalX = boidArray[i].currentX + boidArray[i].deltaX;
+        const finalY = boidArray[i].currentY + boidArray[i].deltaY;
+
+        canvasArray[i].style.transform = `translate3d(${finalX}px,
+                                                      ${finalY}px, 
                                                       0px)
                                           rotate(${Math.atan2(boidArray[i].deltaY, boidArray[i].deltaX)}rad)`;
     }

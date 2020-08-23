@@ -510,6 +510,11 @@ footer {
 }
 
 .boids {
+	height: 2vh;
+	width: 2vh;
+	min-width: 10px;
+	min-height: 10px;
 	position: absolute;
+	overflow: hidden;
 	will-change: transform;
 }
