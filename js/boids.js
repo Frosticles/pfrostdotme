@@ -13,6 +13,7 @@ let borderMargin = document.documentElement.clientWidth * 0.1;
 const centeringFactor = 0.005;
 const turnBias = 1;
 const initVelocity = 0.5;
+const numBoids = 10;
 
 class boid
 {
@@ -28,9 +29,15 @@ class boid
 function drawBoids() 
 {
     boidsDiv = document.querySelector("#boidsDiv");
+
+    for (let i = 0; i < numBoids; i++) 
+    {
+        boidsDiv.innerHTML += "\n<canvas class=\"boids\"></canvas>"
+    }
+
     canvasArray = boidsDiv.querySelectorAll("canvas");
 
-    for (let i = 0; i < canvasArray.length; i++) 
+    for (let i = 0; i < numBoids; i++) 
     {
         boidArray.push(new boid());
 
@@ -50,13 +57,15 @@ function drawBoids()
         ctx.closePath();
         ctx.fill();
 
+        boidArray[i].currentX = Math.random() * boidsDiv.getBoundingClientRect().width;
+        boidArray[i].currentY = Math.random() * boidsDiv.getBoundingClientRect().height;
         boidArray[i].deltaX = (Math.random() * initVelocity) - (2 * initVelocity);
         boidArray[i].deltaY = (Math.random() * initVelocity) - (2 * initVelocity);
 
-        canvasArray[i].style.transform = `translate3d(${Math.random() * boidsDiv.getBoundingClientRect().width}px,
-                                                      ${Math.random() * boidsDiv.getBoundingClientRect().height}px, 
+        /*canvasArray[i].style.transform = `translate3d(${}px,
+                                                      ${}px, 
                                                       0px)
-                                          rotate(${Math.random() * 360}deg)`;
+                                          rotate(${Math.random() * 360}deg)`;*/
     }
 
     window.requestAnimationFrame(stepBoids);
@@ -82,11 +91,14 @@ function flyTowardsCenter(currentBoid)
   
     for (otherBoid of boidArray) 
     {
-        if (getDistance(currentBoid, otherBoid) < visualRange) 
+        if (otherBoid !== currentBoid) 
         {
-            centerX += otherBoid.currentX;
-            centerY += otherBoid.currentY;
-            numNeighbors += 1;
+            if (getDistance(currentBoid, otherBoid) < visualRange) 
+            {
+                centerX += otherBoid.currentX;
+                centerY += otherBoid.currentY;
+                numNeighbors += 1;
+            }
         }
     }
   
@@ -99,6 +111,80 @@ function flyTowardsCenter(currentBoid)
         currentBoid.deltaY += (centerY - currentBoid.currentY) * centeringFactor;
     }
 }
+
+
+
+function avoidOthers(currentBoid) 
+{
+    const minDistance = 20;
+    const avoidFactor = 0.05;
+    let moveX = 0;
+    let moveY = 0;
+
+    for (otherBoid of boidArray) 
+    {
+        if (otherBoid !== currentBoid) 
+        {
+            if (getDistance(currentBoid, otherBoid) < minDistance) 
+            {
+                moveX += currentBoid.currentX - otherBoid.currentX;
+                moveY += currentBoid.currentY - otherBoid.currentY;
+            }
+        }
+    }
+  
+    currentBoid.deltaX += moveX * avoidFactor;
+    currentBoid.deltaY += moveY * avoidFactor;
+}
+
+
+
+
+function matchVelocity(currentBoid) 
+{
+    const matchingFactor = 0.05; // Adjust by this % of average velocity
+  
+    let avgdeltaX = 0;
+    let avgdeltaY = 0;
+    let numNeighbors = 0;
+  
+    for (otherBoid of boidArray) 
+    {
+        if (otherBoid !== currentBoid) 
+        {
+            if (getDistance(currentBoid, otherBoid) < visualRange) 
+            {
+                avgdeltaX += otherBoid.deltaX;
+                avgdeltaY += otherBoid.deltaY;
+                numNeighbors += 1;
+            }
+        }
+    }
+    
+    if (numNeighbors > 0) 
+    {
+        avgdeltaX = avgdeltaX / numNeighbors;
+        avgdeltaY = avgdeltaY / numNeighbors;
+    
+        boid.deltaX += (avgdeltaX - boid.deltaX) * matchingFactor;
+        boid.deltaY += (avgdeltaY - boid.deltaY) * matchingFactor;
+    }
+}
+
+
+
+
+function limitSpeed(currentBoid) 
+{
+    const speedLimit = 15;
+    const speed = Math.sqrt((currentBoid.dx ** 2) + (currentBoid.dy ** 2));
+
+    if (speed > speedLimit) 
+    {
+        currentBoid.dx = (currentBoid.dx / speed) * speedLimit;
+        currentBoid.dy = (currentBoid.dy / speed) * speedLimit;
+    }
+  }
 
 
 
@@ -144,21 +230,19 @@ function stepBoids(timestamp)
     boidsDiv.boundingRect = boidsDiv.getBoundingClientRect();
 
 
-    for (let i = 0; i < canvasArray.length; i++) 
+    for (let i = 0; i < numBoids; i++) 
     {
-        const currentTransform = canvasArray[i].style.transform.replace(/rot.*|3d\(|[^\d,.]/g, '').split(',');
-        boidArray[i].currentX = parseFloat(currentTransform[0]);
-        boidArray[i].currentY = parseFloat(currentTransform[1]);
-        boidArray[i].currentZ = parseFloat(currentTransform[2]);
-
         flyTowardsCenter(boidArray[i]);
+        avoidOthers(boidArray[i]);
+        matchVelocity(boidArray[i]);
+        limitSpeed(boidArray[i]);
         keepWithinBounds(boidArray[i], canvasArray[i]);
 
-        const finalX = boidArray[i].currentX + boidArray[i].deltaX;
-        const finalY = boidArray[i].currentY + boidArray[i].deltaY;
+        boidArray[i].currentX += boidArray[i].deltaX;
+        boidArray[i].currentY += boidArray[i].deltaY;
 
-        canvasArray[i].style.transform = `translate3d(${finalX}px,
-                                                      ${finalY}px, 
+        canvasArray[i].style.transform = `translate3d(${boidArray[i].currentX}px,
+                                                      ${boidArray[i].currentY}px, 
                                                       0px)
                                           rotate(${Math.atan2(boidArray[i].deltaY, boidArray[i].deltaX)}rad)`;
     }
