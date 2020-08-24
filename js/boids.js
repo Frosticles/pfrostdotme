@@ -178,12 +178,12 @@ function matchVelocity(currentBoid)
 
 function limitSpeed(currentBoid) 
 {
-    const speed = Math.sqrt((currentBoid.dx ** 2) + (currentBoid.dy ** 2));
+    const speed = Math.sqrt((currentBoid.deltaX ** 2) + (currentBoid.deltaY ** 2));
 
     if (speed > speedLimit) 
     {
-        currentBoid.dx = (currentBoid.dx / speed) * speedLimit;
-        currentBoid.dy = (currentBoid.dy / speed) * speedLimit;
+        currentBoid.deltaX = (currentBoid.deltaX / speed) * speedLimit;
+        currentBoid.deltaY = (currentBoid.deltaY / speed) * speedLimit;
     }
   }
 
@@ -228,7 +228,7 @@ function stepBoids(timestamp)
     prevTimestamp = timestamp;
     visualRange = Math.max(document.documentElement.clientWidth * 0.15, 150);
     borderMargin = Math.max(document.documentElement.clientWidth * 0.1, 50);
-    speedLimit = Math.max(document.documentElement.clientWidth * 0.01, 20);
+    speedLimit = Math.min(document.documentElement.clientWidth * 0.025, 20);
     boidsDiv.boundingRect = boidsDiv.getBoundingClientRect();
 
 
@@ -237,8 +237,8 @@ function stepBoids(timestamp)
         flyTowardsCenter(boidArray[i]);
         avoidOthers(boidArray[i]);
         matchVelocity(boidArray[i]);
-        limitSpeed(boidArray[i]);
         keepWithinBounds(boidArray[i], canvasArray[i]);
+        limitSpeed(boidArray[i]);
 
         boidArray[i].currentX += boidArray[i].deltaX;
         boidArray[i].currentY += boidArray[i].deltaY;
