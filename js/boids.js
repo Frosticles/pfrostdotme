@@ -228,7 +228,7 @@ function stepBoids(timestamp)
     prevTimestamp = timestamp;
     visualRange = Math.max(document.documentElement.clientWidth * 0.15, 150);
     borderMargin = Math.max(document.documentElement.clientWidth * 0.1, 50);
-    speedLimit = Math.min(document.documentElement.clientWidth * 0.025, 20);
+    speedLimit = Math.min(document.documentElement.clientWidth * 0.025, 15);
     boidsDiv.boundingRect = boidsDiv.getBoundingClientRect();
 
 
