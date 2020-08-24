@@ -8,12 +8,18 @@ let boidsDiv;
 let canvasArray;
 let prevTimestamp = 0;
 let boidArray = []; 
-let visualRange = document.documentElement.clientWidth * 0.15;
-let borderMargin = document.documentElement.clientWidth * 0.1;
+let visualRange;
+let borderMargin;
+let speedLimit;
 const centeringFactor = 0.005;
 const turnBias = 1;
 const initVelocity = 0.5;
 const numBoids = 10;
+const minDistance = 20;
+const avoidFactor = 0.05;
+const vMatchingFactor = 0.05;
+
+
 
 class boid
 {
@@ -116,8 +122,6 @@ function flyTowardsCenter(currentBoid)
 
 function avoidOthers(currentBoid) 
 {
-    const minDistance = 20;
-    const avoidFactor = 0.05;
     let moveX = 0;
     let moveY = 0;
 
@@ -141,9 +145,7 @@ function avoidOthers(currentBoid)
 
 
 function matchVelocity(currentBoid) 
-{
-    const matchingFactor = 0.05; // Adjust by this % of average velocity
-  
+{  
     let avgdeltaX = 0;
     let avgdeltaY = 0;
     let numNeighbors = 0;
@@ -166,8 +168,8 @@ function matchVelocity(currentBoid)
         avgdeltaX = avgdeltaX / numNeighbors;
         avgdeltaY = avgdeltaY / numNeighbors;
     
-        boid.deltaX += (avgdeltaX - boid.deltaX) * matchingFactor;
-        boid.deltaY += (avgdeltaY - boid.deltaY) * matchingFactor;
+        boid.deltaX += (avgdeltaX - boid.deltaX) * vMatchingFactor;
+        boid.deltaY += (avgdeltaY - boid.deltaY) * vMatchingFactor;
     }
 }
 
@@ -176,7 +178,6 @@ function matchVelocity(currentBoid)
 
 function limitSpeed(currentBoid) 
 {
-    const speedLimit = 15;
     const speed = Math.sqrt((currentBoid.dx ** 2) + (currentBoid.dy ** 2));
 
     if (speed > speedLimit) 
@@ -225,8 +226,9 @@ function stepBoids(timestamp)
     }
     const frameTime = (timestamp - prevTimestamp) / 1000;
     prevTimestamp = timestamp;
-    visualRange = document.documentElement.clientWidth * 0.15;
-    borderMargin = document.documentElement.clientWidth * 0.1;
+    visualRange = Math.max(document.documentElement.clientWidth * 0.15, 150);
+    borderMargin = Math.max(document.documentElement.clientWidth * 0.1, 50);
+    speedLimit = Math.max(document.documentElement.clientWidth * 0.01, 20);
     boidsDiv.boundingRect = boidsDiv.getBoundingClientRect();
 
 
