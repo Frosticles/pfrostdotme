@@ -11,11 +11,11 @@ let boidArray = [];
 let visualRange;
 let borderMargin;
 let speedLimit;
+let minDistance;
 const centeringFactor = 0.005;
 const turnBias = 0.2;
 const initVelocity = 0.5;
 const numBoids = 100;
-const minDistance = 40;
 const avoidFactor = 0.05;
 const vMatchingFactor = 0.05;
 
@@ -240,6 +240,7 @@ function stepBoids(timestamp)
     visualRange = boidSize * 10;
     borderMargin = boidSize * 5;
     speedLimit = boidSize * 0.7;
+    minDistance = boidSize * 2;
 
     for (let i = 0; i < numBoids; i++) 
     {
