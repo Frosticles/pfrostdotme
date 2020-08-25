@@ -12,10 +12,10 @@ let visualRange;
 let borderMargin;
 let speedLimit;
 const centeringFactor = 0.005;
-const turnBias = 1;
+const turnBias = 0.2;
 const initVelocity = 0.5;
-const numBoids = 10;
-const minDistance = 20;
+const numBoids = 100;
+const minDistance = 40;
 const avoidFactor = 0.05;
 const vMatchingFactor = 0.05;
 
@@ -50,8 +50,6 @@ function drawBoids()
         const ctx = canvasArray[i].getContext('2d'); 
         const width = canvasArray[i].width;
         const height = canvasArray[i].height;
-        canvasArray[i].boundingRect = canvasArray[i].getBoundingClientRect();
-
 
         ctx.fillStyle = 'white'; 
 
@@ -63,15 +61,10 @@ function drawBoids()
         ctx.closePath();
         ctx.fill();
 
-        boidArray[i].currentX = Math.random() * boidsDiv.getBoundingClientRect().width;
-        boidArray[i].currentY = Math.random() * boidsDiv.getBoundingClientRect().height;
+        boidArray[i].currentX = Math.random() * (boidsDiv.getBoundingClientRect().width * 0.9);
+        boidArray[i].currentY = Math.random() * (boidsDiv.getBoundingClientRect().height * 0.9);
         boidArray[i].deltaX = (Math.random() * initVelocity) - (2 * initVelocity);
         boidArray[i].deltaY = (Math.random() * initVelocity) - (2 * initVelocity);
-
-        /*canvasArray[i].style.transform = `translate3d(${}px,
-                                                      ${}px, 
-                                                      0px)
-                                          rotate(${Math.random() * 360}deg)`;*/
     }
 
     window.requestAnimationFrame(stepBoids);
@@ -190,28 +183,42 @@ function limitSpeed(currentBoid)
 
 
 
-function keepWithinBounds(currentBoid, canvas)
+function keepWithinBounds(currentBoid, boidSize)
 {
-    const width = boidsDiv.boundingRect.width - canvas.boundingRect.width;
-    const height = boidsDiv.boundingRect.height - canvas.boundingRect.height;
+    const width = boidsDiv.boundingRect.width - boidSize;
+    const height = boidsDiv.boundingRect.height - boidSize;
     
     if (currentBoid.currentX < borderMargin) 
     {
-        currentBoid.deltaX += turnBias + (Math.abs(currentBoid.deltaX) / (Math.max(currentBoid.currentX, 1)));
+        const changeFactor = turnBias + ((1 - (currentBoid.currentX / borderMargin)) ** 2);
+        currentBoid.deltaX += Math.abs(currentBoid.deltaX * changeFactor);
     }
     else if (currentBoid.currentX > (width - borderMargin)) 
     {
-        currentBoid.deltaX -= turnBias + (Math.abs(currentBoid.deltaX) / (Math.max(width - currentBoid.currentX, 1)));
+        const changeFactor = turnBias + ((1 - ((width - currentBoid.currentX) / borderMargin)) ** 2);
+        currentBoid.deltaX -= Math.abs(currentBoid.deltaX * changeFactor);
     }
 
     if (currentBoid.currentY < borderMargin) 
     {
-        currentBoid.deltaY += turnBias + (Math.abs(currentBoid.deltaY) / (Math.max(currentBoid.currentY, 1)));
+        const changeFactor = turnBias + ((1 - (currentBoid.currentY / borderMargin)) ** 2);
+        currentBoid.deltaY += Math.abs(currentBoid.deltaY * changeFactor);
     }
     else if (currentBoid.currentY > (height - borderMargin)) 
     {
-        currentBoid.deltaY -= turnBias + (Math.abs(currentBoid.deltaY) / (Math.max(height - currentBoid.currentY, 1)));
+        const changeFactor = turnBias + ((1 - ((height - currentBoid.currentY) / borderMargin)) ** 2);
+        currentBoid.deltaY -= Math.abs(currentBoid.deltaY * changeFactor);
     }
+
+    /*if ((currentBoid.currentX < 0) || (currentBoid.currentX > width))
+    {
+        console.log("Exceeded width");
+    }
+
+    if ((currentBoid.currentY < 0) || (currentBoid.currentY > height))
+    {
+        console.log("Exceeded height");
+    }*/
 }
 
 
@@ -226,18 +233,20 @@ function stepBoids(timestamp)
     }
     const frameTime = (timestamp - prevTimestamp) / 1000;
     prevTimestamp = timestamp;
-    visualRange = Math.max(document.documentElement.clientWidth * 0.15, 150);
-    borderMargin = Math.max(document.documentElement.clientWidth * 0.1, 50);
-    speedLimit = Math.min(document.documentElement.clientWidth * 0.025, 15);
+
     boidsDiv.boundingRect = boidsDiv.getBoundingClientRect();
 
+    const boidSize = Math.min((boidsDiv.boundingRect.width * 0.02), 20);
+    visualRange = boidSize * 10;
+    borderMargin = boidSize * 5;
+    speedLimit = boidSize * 0.7;
 
     for (let i = 0; i < numBoids; i++) 
     {
         flyTowardsCenter(boidArray[i]);
         avoidOthers(boidArray[i]);
         matchVelocity(boidArray[i]);
-        keepWithinBounds(boidArray[i], canvasArray[i]);
+        keepWithinBounds(boidArray[i], boidSize);
         limitSpeed(boidArray[i]);
 
         boidArray[i].currentX += boidArray[i].deltaX;
