@@ -13,11 +13,11 @@ let borderMargin;
 let speedLimit;
 let minDistance;
 const centeringFactor = 0.005;
-const turnBias = 0.2;
+const turnBias = 0.01;
 const initVelocity = 0.5;
 const numBoids = 100;
-const avoidFactor = 0.05;
-const vMatchingFactor = 0.05;
+const avoidFactor = 0.03;
+const vMatchingFactor = 0.02;
 
 
 
@@ -29,6 +29,33 @@ class boid
     deltaX = 0;
     deltaY = 0;
     deltaZ = 0;
+    index = 0;
+    colour = '';
+}
+
+
+
+function drawIndividualBoid(index, colour)
+{
+    if (boidArray[index].colour === colour)
+    {
+        return;
+    }
+    boidArray[index].colour = colour;
+
+    const ctx = canvasArray[index].getContext('2d'); 
+    const width = canvasArray[index].width;
+    const height = canvasArray[index].height;
+
+    ctx.fillStyle = colour; 
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(width, height / 2);
+    ctx.lineTo(0, height);
+    ctx.lineTo(width * 0.25, height / 2);
+    ctx.closePath();
+    ctx.fill();
 }
 
 
@@ -47,24 +74,14 @@ function drawBoids()
     {
         boidArray.push(new boid());
 
-        const ctx = canvasArray[i].getContext('2d'); 
-        const width = canvasArray[i].width;
-        const height = canvasArray[i].height;
-
-        ctx.fillStyle = 'white'; 
-
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(width, height / 2);
-        ctx.lineTo(0, height);
-        ctx.lineTo(width * 0.25, height / 2);
-        ctx.closePath();
-        ctx.fill();
-
         boidArray[i].currentX = Math.random() * (boidsDiv.getBoundingClientRect().width * 0.9);
         boidArray[i].currentY = Math.random() * (boidsDiv.getBoundingClientRect().height * 0.9);
         boidArray[i].deltaX = (Math.random() * initVelocity) - (2 * initVelocity);
         boidArray[i].deltaY = (Math.random() * initVelocity) - (2 * initVelocity);
+        boidArray[i].index = i;
+        boidArray[i].colour = 'white';
+
+        drawIndividualBoid(i, boidArray[i].colour);
     }
 
     window.requestAnimationFrame(stepBoids);
@@ -82,87 +99,64 @@ function getDistance(boid1, boid2)
 
 
 
-function flyTowardsCenter(currentBoid) 
+function applyFlockingForces(currentBoid) 
 {
-    let centerX = 0;
-    let centerY = 0;
     let numNeighbors = 0;
-  
-    for (otherBoid of boidArray) 
-    {
-        if (otherBoid !== currentBoid) 
-        {
-            if (getDistance(currentBoid, otherBoid) < visualRange) 
-            {
-                centerX += otherBoid.currentX;
-                centerY += otherBoid.currentY;
-                numNeighbors += 1;
-            }
-        }
-    }
-  
-    if (numNeighbors > 0) 
-    {
-        centerX = centerX / numNeighbors;
-        centerY = centerY / numNeighbors;
-    
-        currentBoid.deltaX += (centerX - currentBoid.currentX) * centeringFactor;
-        currentBoid.deltaY += (centerY - currentBoid.currentY) * centeringFactor;
-    }
-}
 
-
-
-function avoidOthers(currentBoid) 
-{
-    let moveX = 0;
-    let moveY = 0;
-
-    for (otherBoid of boidArray) 
-    {
-        if (otherBoid !== currentBoid) 
-        {
-            if (getDistance(currentBoid, otherBoid) < minDistance) 
-            {
-                moveX += currentBoid.currentX - otherBoid.currentX;
-                moveY += currentBoid.currentY - otherBoid.currentY;
-            }
-        }
-    }
-  
-    currentBoid.deltaX += moveX * avoidFactor;
-    currentBoid.deltaY += moveY * avoidFactor;
-}
-
-
-
-
-function matchVelocity(currentBoid) 
-{  
+    let localCenterX = 0;
+    let localCenterY = 0;
+    let avoidNudgeX = 0;
+    let avoidNudgeY = 0;
     let avgdeltaX = 0;
     let avgdeltaY = 0;
-    let numNeighbors = 0;
   
-    for (otherBoid of boidArray) 
+    for (let i = 0; i < numBoids; i++)
     {
-        if (otherBoid !== currentBoid) 
+        if (i !== currentBoid.index) 
         {
-            if (getDistance(currentBoid, otherBoid) < visualRange) 
+            const distance = getDistance(currentBoid, boidArray[i])
+            
+            if (distance < visualRange) 
             {
-                avgdeltaX += otherBoid.deltaX;
-                avgdeltaY += otherBoid.deltaY;
+                localCenterX += boidArray[i].currentX;
+                localCenterY += boidArray[i].currentY;
+                avgdeltaX += boidArray[i].deltaX;
+                avgdeltaY += boidArray[i].deltaY;
                 numNeighbors += 1;
+            }
+
+            if (distance < minDistance)
+            {
+                avoidNudgeX += currentBoid.currentX - boidArray[i].currentX;
+                avoidNudgeY += currentBoid.currentY - boidArray[i].currentY;
             }
         }
     }
-    
+
+    currentBoid.deltaX += avoidNudgeX * avoidFactor;
+    currentBoid.deltaY += avoidNudgeY * avoidFactor;
+  
     if (numNeighbors > 0) 
     {
-        avgdeltaX = avgdeltaX / numNeighbors;
-        avgdeltaY = avgdeltaY / numNeighbors;
+        localCenterX /= numNeighbors;
+        localCenterY /= numNeighbors;
+        avgdeltaX /= numNeighbors;
+        avgdeltaY /= numNeighbors;
     
-        boid.deltaX += (avgdeltaX - boid.deltaX) * vMatchingFactor;
-        boid.deltaY += (avgdeltaY - boid.deltaY) * vMatchingFactor;
+        currentBoid.deltaX += (localCenterX - currentBoid.currentX) * centeringFactor;
+        currentBoid.deltaY += (localCenterY - currentBoid.currentY) * centeringFactor;
+        currentBoid.deltaX += (avgdeltaX - currentBoid.deltaX) * vMatchingFactor;
+        currentBoid.deltaY += (avgdeltaY - currentBoid.deltaY) * vMatchingFactor;
+        drawIndividualBoid(currentBoid.index, 'green');
+    }
+    else
+    {
+        // This will cause boids with no neighbour to head towards the centre but with
+        // a bit of random walk introduced by the other boid.
+        otherBoid = boidArray[numBoids - currentBoid.index - 1];
+        currentBoid.deltaX += (((boidsDiv.boundingRect.width / 2) - currentBoid.currentX) - otherBoid.deltaX) * centeringFactor;
+        currentBoid.deltaY += (((boidsDiv.boundingRect.height / 2) - currentBoid.currentY) - otherBoid.deltaY) * centeringFactor;
+        drawIndividualBoid(currentBoid.index, 'red');
     }
 }
 
@@ -187,30 +181,40 @@ function keepWithinBounds(currentBoid, boidSize)
 {
     const width = boidsDiv.boundingRect.width - boidSize;
     const height = boidsDiv.boundingRect.height - boidSize;
+    const tooFarLeft = (currentBoid.currentX < borderMargin);
+    const tooFarRight = (currentBoid.currentX > (width - borderMargin));
+    const tooFarUp = (currentBoid.currentY < borderMargin);
+    const tooFarDown = (currentBoid.currentY > (height - borderMargin));
     
-    if (currentBoid.currentX < borderMargin) 
+    if ((tooFarLeft) || (tooFarRight))
     {
-        const changeFactor = turnBias + ((1 - (currentBoid.currentX / borderMargin)) ** 2);
-        currentBoid.deltaX += Math.abs(currentBoid.deltaX * changeFactor);
-    }
-    else if (currentBoid.currentX > (width - borderMargin)) 
-    {
-        const changeFactor = turnBias + ((1 - ((width - currentBoid.currentX) / borderMargin)) ** 2);
-        currentBoid.deltaX -= Math.abs(currentBoid.deltaX * changeFactor);
+        const edgePos = (tooFarLeft) ? borderMargin : (width - borderMargin);
+        const changeFactor = ((edgePos - currentBoid.currentX) / borderMargin) ** 2;
+        const vChange = Math.abs(currentBoid.deltaX * changeFactor) + turnBias;
+
+        currentBoid.deltaX += (tooFarLeft) ? vChange : -vChange;
+
+        if ((!tooFarUp) && (!tooFarDown))
+        {
+            currentBoid.deltaY += (currentBoid.deltaY > 0) ? vChange : -vChange;
+        }
     }
 
-    if (currentBoid.currentY < borderMargin) 
+    if ((tooFarUp) || (tooFarDown))
     {
-        const changeFactor = turnBias + ((1 - (currentBoid.currentY / borderMargin)) ** 2);
-        currentBoid.deltaY += Math.abs(currentBoid.deltaY * changeFactor);
-    }
-    else if (currentBoid.currentY > (height - borderMargin)) 
-    {
-        const changeFactor = turnBias + ((1 - ((height - currentBoid.currentY) / borderMargin)) ** 2);
-        currentBoid.deltaY -= Math.abs(currentBoid.deltaY * changeFactor);
+        const edgePos = (tooFarUp) ? borderMargin : (height - borderMargin);
+        const changeFactor = ((edgePos - currentBoid.currentY) / borderMargin) ** 2;
+        const vChange = Math.abs(currentBoid.deltaY * changeFactor) + turnBias;
+
+        currentBoid.deltaY += (tooFarUp) ? vChange : -vChange;
+
+        if ((!tooFarLeft) && (!tooFarRight))
+        {
+            currentBoid.deltaX += (currentBoid.deltaX > 0) ? vChange : -vChange;
+        }
     }
 
-    /*if ((currentBoid.currentX < 0) || (currentBoid.currentX > width))
+    if ((currentBoid.currentX < 0) || (currentBoid.currentX > width))
     {
         console.log("Exceeded width");
     }
@@ -218,7 +222,7 @@ function keepWithinBounds(currentBoid, boidSize)
     if ((currentBoid.currentY < 0) || (currentBoid.currentY > height))
     {
         console.log("Exceeded height");
-    }*/
+    }
 }
 
 
@@ -238,15 +242,13 @@ function stepBoids(timestamp)
 
     const boidSize = Math.min((boidsDiv.boundingRect.width * 0.02), 20);
     visualRange = boidSize * 10;
-    borderMargin = boidSize * 5;
-    speedLimit = boidSize * 0.7;
+    borderMargin = boidSize * 6;
+    speedLimit = boidSize * 0.6;
     minDistance = boidSize * 2;
 
     for (let i = 0; i < numBoids; i++) 
     {
-        flyTowardsCenter(boidArray[i]);
-        avoidOthers(boidArray[i]);
-        matchVelocity(boidArray[i]);
+        applyFlockingForces(boidArray[i]);
         keepWithinBounds(boidArray[i], boidSize);
         limitSpeed(boidArray[i]);
 
