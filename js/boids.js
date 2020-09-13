@@ -112,7 +112,7 @@ function applyFlockingForces(currentBoid, boidSize, frameTime)
     let avgdeltaX = 0;
     let avgdeltaY = 0;
 
-    if (boidGetBounds(currentBoid, boidSize).inBounds == false)
+    if (boidIsInBounds(currentBoid, boidSize) == false)
     {
         return;
     }
@@ -165,7 +165,6 @@ function applyFlockingForces(currentBoid, boidSize, frameTime)
         currentBoid.deltaY += (avgdeltaY - currentBoid.deltaY) * vMatchingFactor * frameTime;
         currentBoid.deltaX += avoidNudgeX * avoidFactor * frameTime;
         currentBoid.deltaY += avoidNudgeY * avoidFactor * frameTime;
-        //currentBoid.speedLimit -= (numBoids / 4) - numNeighbors;
 
 
         if (avoidNudgeX != 0)
@@ -221,7 +220,7 @@ function limitVelocity(currentBoid, frameTime)
 
 
 
-function boidGetBounds(currentBoid, boidSize)
+function boidIsInBounds(currentBoid, boidSize)
 {
     const width = boidsDiv.boundingRect.width - boidSize;
     const height = boidsDiv.boundingRect.height - boidSize;
@@ -229,20 +228,15 @@ function boidGetBounds(currentBoid, boidSize)
     const tooFarRight = (currentBoid.currentX > (width - borderMargin));
     const tooFarUp = (currentBoid.currentY < borderMargin);
     const tooFarDown = (currentBoid.currentY > (height - borderMargin));
-    let inBounds = true;
 
     if (tooFarLeft || tooFarRight || tooFarUp || tooFarDown)
     {
-        inBounds = false;
+        return false;
     }
-    
-    return {
-        inBounds: inBounds,
-        tooFarLeft: tooFarLeft,
-        tooFarRight: tooFarRight,
-        tooFarUp: tooFarUp,
-        tooFarDown: tooFarDown,
-    };
+    else
+    {
+        return true;
+    }
 }
 
 
@@ -251,32 +245,35 @@ function keepWithinBounds(currentBoid, boidSize, frameTime)
 {
     const width = boidsDiv.boundingRect.width - boidSize;
     const height = boidsDiv.boundingRect.height - boidSize;
-    const bounds = boidGetBounds(currentBoid, boidSize);
+    const tooFarLeft = (currentBoid.currentX < borderMargin);
+    const tooFarRight = (currentBoid.currentX > (width - borderMargin));
+    const tooFarUp = (currentBoid.currentY < borderMargin);
+    const tooFarDown = (currentBoid.currentY > (height - borderMargin));
 
     
-    if ((bounds.tooFarLeft) || (bounds.tooFarRight))
+    if ((tooFarLeft) || (tooFarRight))
     {
-        const edgePos = (bounds.tooFarLeft) ? borderMargin : (width - borderMargin);
+        const edgePos = (tooFarLeft) ? borderMargin : (width - borderMargin);
         const changeFactor = ((edgePos - currentBoid.currentX) / borderMargin) ** 2;
         const vChange = Math.abs(currentBoid.deltaX * changeFactor) + turnBias;
 
-        currentBoid.deltaX += (bounds.tooFarLeft) ? vChange : -vChange;
+        currentBoid.deltaX += (tooFarLeft) ? vChange : -vChange;
 
-        if ((!bounds.tooFarUp) && (!bounds.tooFarDown))
+        if ((!tooFarUp) && (!tooFarDown))
         {
             currentBoid.deltaY += (currentBoid.deltaY > 0) ? vChange : -vChange;
         }
     }
 
-    if ((bounds.tooFarUp) || (bounds.tooFarDown))
+    if ((tooFarUp) || (tooFarDown))
     {
-        const edgePos = (bounds.tooFarUp) ? borderMargin : (height - borderMargin);
+        const edgePos = (tooFarUp) ? borderMargin : (height - borderMargin);
         const changeFactor = ((edgePos - currentBoid.currentY) / borderMargin) ** 2;
         const vChange = Math.abs(currentBoid.deltaY * changeFactor) + turnBias;
 
-        currentBoid.deltaY += (bounds.tooFarUp) ? vChange : -vChange;
+        currentBoid.deltaY += (tooFarUp) ? vChange : -vChange;
 
-        if ((!bounds.tooFarLeft) && (!bounds.tooFarRight))
+        if ((!tooFarLeft) && (!tooFarRight))
         {
             currentBoid.deltaX += (currentBoid.deltaX > 0) ? vChange : -vChange;
         }
@@ -327,10 +324,10 @@ function stepBoids(timestamp)
         boidArray[i].currentY += boidArray[i].deltaY;
         boidArray[i].currentAngle = Math.atan2(boidArray[i].deltaY, boidArray[i].deltaX);
 
-        canvasArray[i].style.transform = `translate3d(${boidArray[i].currentX}px,
+        canvasArray[i].setAttribute("style", `transform: translate3d(${boidArray[i].currentX}px,
                                                       ${boidArray[i].currentY}px, 
                                                       0px)
-                                          rotate(${boidArray[i].currentAngle}rad)`;
+                                          rotate(${boidArray[i].currentAngle}rad)`);
     }
 
     window.requestAnimationFrame(stepBoids);
