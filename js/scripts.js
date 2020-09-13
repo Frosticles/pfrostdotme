@@ -45,6 +45,11 @@ class common {
 			'(◾_◾)', 25
 		];
 
+		if (window.location.pathname.includes("boids"))
+		{
+			return;
+		}
+
 		setInterval(function() 
 		{ 
 			let frameUpdate = (decodeURI(window.location.hash) != ('#' + animationFrames[frameIndex]))

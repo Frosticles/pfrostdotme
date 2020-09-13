@@ -12,6 +12,7 @@ let visualRange;
 let borderMargin;
 let speedLimit;
 let minDistance;
+let screenWidth = 0;
 const initVelocity = 1;
 const numBoids = 500;
 const centeringFactor = 0.4;
@@ -305,7 +306,11 @@ function stepBoids(timestamp)
     const frameTime = (timestamp - prevTimestamp) / 1000;
     prevTimestamp = timestamp;
 
-    boidsDiv.boundingRect = boidsDiv.getBoundingClientRect();
+    if (screenWidth != screen.width)
+    {
+        boidsDiv.boundingRect = boidsDiv.getBoundingClientRect();
+        screenWidth = screen.width;
+    }
 
     const boidSize = Math.min((boidsDiv.boundingRect.width * 0.02), 20);
     visualRange = boidSize * visualRangeFactor;
@@ -324,10 +329,10 @@ function stepBoids(timestamp)
         boidArray[i].currentY += boidArray[i].deltaY;
         boidArray[i].currentAngle = Math.atan2(boidArray[i].deltaY, boidArray[i].deltaX);
 
-        canvasArray[i].setAttribute("style", `transform: translate3d(${boidArray[i].currentX}px,
-                                                      ${boidArray[i].currentY}px, 
-                                                      0px)
-                                          rotate(${boidArray[i].currentAngle}rad)`);
+        canvasArray[i].style.cssText = `transform: translate3d(${boidArray[i].currentX}px,
+                                                               ${boidArray[i].currentY}px, 
+                                                               0px)
+                                        rotate(${boidArray[i].currentAngle}rad)`;
     }
 
     window.requestAnimationFrame(stepBoids);
