@@ -261,8 +261,30 @@ function keepWithinBounds(currentBoid, boidSize, frameTime)
     const tooFarRight = (currentBoid.currentX > (width - borderMargin));
     const tooFarUp = (currentBoid.currentY < borderMargin);
     const tooFarDown = (currentBoid.currentY > (height - borderMargin));
+    let outsideBounds = false;
+
+
+    if (((currentBoid.currentX + currentBoid.deltaX) < 0) || ((currentBoid.currentX + currentBoid.deltaX) > width))
+    {
+        console.log("Exceeded width");
+        currentBoid.currentX = width / 2;
+        outsideBounds = true;
+    }
+
+    if (((currentBoid.currentY + currentBoid.deltaY) < 0) || ((currentBoid.currentY + currentBoid.deltaY) > height))
+    {
+        console.log("Exceeded height");
+        currentBoid.currentY = height / 2;
+        outsideBounds = true;
+    }
+
+    if (outsideBounds)
+    {
+        return;
+    }
 
     
+
     if ((tooFarLeft) || (tooFarRight))
     {
         const edgePos = (tooFarLeft) ? borderMargin : (width - borderMargin);
@@ -290,18 +312,6 @@ function keepWithinBounds(currentBoid, boidSize, frameTime)
             currentBoid.deltaX += (currentBoid.deltaX > 0) ? vChange : -vChange;
         }
     }
-
-    if ((currentBoid.currentX < 0) || (currentBoid.currentX > width))
-    {
-        console.log("Exceeded width");
-        currentBoid.currentX = width / 2;
-    }
-
-    if ((currentBoid.currentY < 0) || (currentBoid.currentY > height))
-    {
-        console.log("Exceeded height");
-        currentBoid.currentY = height / 2;
-    }
 }
 
 
@@ -317,10 +327,10 @@ function stepBoids(timestamp)
     const frameTime = (timestamp - prevTimestamp) / 1000;
     prevTimestamp = timestamp;
 
-    if (screenWidth != screen.width)
+    if (screenWidth != window.innerWidth)
     {
         boidsDiv.boundingRect = boidsDiv.getBoundingClientRect();
-        screenWidth = screen.width;
+        screenWidth = window.innerWidth;
     }
 
     const boidSize = Math.min((boidsDiv.boundingRect.width * 0.02), 20);
