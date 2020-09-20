@@ -123,11 +123,22 @@ function applyFlockingForces(currentBoid, boidSize, frameTime)
         if (i !== currentBoid.index) 
         {            
             const a = (boidArray[i].currentX - currentBoid.currentX);
+            const absA = Math.abs(a);
+            if (absA > visualRange)
+            {
+                continue;
+            }
+
             const b = (currentBoid.currentY - boidArray[i].currentY);
+            const absB = Math.abs(b);
+            if (absB > visualRange)
+            {
+                continue;
+            }
 
             // This is clearly a rubbish way to calculate distance
             // but it works well enough, and it's fast.
-            const distance = Math.abs(a) + Math.abs(b);
+            const distance = absA + absB;
             
             if (distance < visualRange) 
             {
