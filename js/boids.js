@@ -17,6 +17,7 @@ const speedRandomness = 0.2;
 const marginFactor = 4;
 const visualRangeFactor = 10;
 const minDistanceFactor = 1.5;
+let frameTime;
 
 
 
@@ -306,24 +307,11 @@ class BoidContainer
     }
 
 
-    stepBoids(timestamp)
+    stepBoids()
     {
-        if (this.prevTimestamp == 0)
-        {
-            this.prevTimestamp = timestamp;
-        }
-        const frameTime = (timestamp - this.prevTimestamp) / 1000;
-        this.prevTimestamp = timestamp;
-
-        if (this.screenWidth != window.innerWidth)
-        {
-            this.boidsDiv.boundingRect = this.boidsDiv.getBoundingClientRect();
-            this.screenWidth = window.innerWidth;
-        }
-
-        const boidSize = Math.min((boidsDiv.boundingRect.width * 0.02), 20);
-        const containerWidth = boidsDiv.boundingRect.width - boidSize;
-        const containerHeight = boidsDiv.boundingRect.height - boidSize;        
+        const boidSize = Math.min((this.boidsDiv.boundingRect.width * 0.02), 20);
+        const containerWidth = this.boidsDiv.boundingRect.width - boidSize;
+        const containerHeight = this.boidsDiv.boundingRect.height - boidSize;        
         const visualRange = boidSize * visualRangeFactor;
         const borderMargin = boidSize * marginFactor;
         const minDistance = boidSize * minDistanceFactor;
@@ -349,11 +337,38 @@ class BoidContainer
 }
 
 
-let boids = [];
+let boidContainers = [];
+let prevTimestamp = 0;
+
+function isContainerOnScreen(boundingRect)
+{
+    return (
+        boundingRect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+        boundingRect.bottom >= 0 &&
+        boundingRect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+        boundingRect.right >= 0
+    );
+}
 
 function boidControlLoop(timestamp)
 {
-    boids[0].stepBoids(timestamp);
+    if (prevTimestamp == 0)
+    {
+        prevTimestamp = timestamp;
+    }
+    frameTime = (timestamp - prevTimestamp) / 1000;
+    prevTimestamp = timestamp;
+    
+    boidContainers.forEach((i) => 
+    {
+        i.boidsDiv.boundingRect = i.boidsDiv.getBoundingClientRect();
+
+        if (isContainerOnScreen(i.boidsDiv.boundingRect))
+        {
+            i.stepBoids();
+        }
+    });
+    
     window.requestAnimationFrame(boidControlLoop);
 }
 
@@ -361,7 +376,12 @@ function boidControlLoop(timestamp)
 
 function boidsInit()
 {
-    boids[0] = new BoidContainer(document.querySelector("#boidsDiv"), 100);
+    let boidDivs = document.querySelectorAll("#boidsDiv");
+
+    boidDivs.forEach((htmlSegment) =>
+    {
+        boidContainers.push(new BoidContainer(htmlSegment, parseInt(htmlSegment.className)));
+    });
 
     window.requestAnimationFrame(boidControlLoop);
 }
