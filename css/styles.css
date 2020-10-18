@@ -518,3 +518,20 @@ footer {
 	overflow: hidden;
 	will-change: transform;
 }
+
+/* Custom scrollbar */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #1d3138 #546f7a;
+}
+*::-webkit-scrollbar {
+	width: 15px;
+}
+*::-webkit-scrollbar-track {
+	background: #1d3138;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: #546f7a;
+	border-radius: 20px;
+	border: 3px solid #1d3138;
+}
