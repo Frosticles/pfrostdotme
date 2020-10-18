@@ -21,23 +21,21 @@ let frameTime;
 
 
 
-class Boid {
-    constructor(currentX, currentY, currentZ, currentAngle, deltaX,
-                deltaY, deltaZ, index, colour, speedLimit, seed, canvas) 
+class Boid 
+{
+    constructor(currentX, currentY, currentAngle, deltaX, deltaY, index, colour, speedLimit, canvas) 
     {
         this.currentX = currentX;
         this.currentY = currentY;
-        this.currentZ = currentZ;
         this.currentAngle = currentAngle;
         this.deltaX = deltaX;
         this.deltaY = deltaY;
-        this.deltaZ = deltaZ;
         this.index = index;
         this.colour = colour;
         this.speedLimit = speedLimit;
-        this.seed = seed;
         this.canvas = canvas;
     }
+
 
     draw(colour) 
     {
@@ -62,15 +60,16 @@ class Boid {
         ctx.fill();
     }
 
-    applyFlockingForces(boidArray, numBoids, containerWidth, containerHeight,  visualRange, borderMargin, minDistance, frameTime) 
+
+    applyFlockingForces(boidArray, numBoids, containerWidth, containerHeight, visualRange, borderMargin, minDistance, frameTime) 
     {
         let numNeighbors = 0;
         let localCenterX = 0;
         let localCenterY = 0;
         let avoidNudgeX = 0;
         let avoidNudgeY = 0;
-        let avgdeltaX = 0;
-        let avgdeltaY = 0;
+        let avgDeltaX = 0;
+        let avgDeltaY = 0;
 
         if (this.isInBounds(containerWidth, containerHeight, borderMargin) == false)
         {
@@ -108,8 +107,8 @@ class Boid {
 
                     localCenterX += boidArray[i].currentX;
                     localCenterY += boidArray[i].currentY;
-                    avgdeltaX += boidArray[i].deltaX;
-                    avgdeltaY += boidArray[i].deltaY;
+                    avgDeltaX += boidArray[i].deltaX;
+                    avgDeltaY += boidArray[i].deltaY;
                     numNeighbors += 1;
 
                     if (distance < minDistance)
@@ -125,16 +124,15 @@ class Boid {
         {
             localCenterX /= numNeighbors;
             localCenterY /= numNeighbors;
-            avgdeltaX /= numNeighbors;
-            avgdeltaY /= numNeighbors;
+            avgDeltaX /= numNeighbors;
+            avgDeltaY /= numNeighbors;
         
             this.deltaX += (localCenterX - this.currentX) * centeringFactor * frameTime;
             this.deltaY += (localCenterY - this.currentY) * centeringFactor * frameTime;
-            this.deltaX += (avgdeltaX - this.deltaX) * vMatchingFactor * frameTime;
-            this.deltaY += (avgdeltaY - this.deltaY) * vMatchingFactor * frameTime;
+            this.deltaX += (avgDeltaX - this.deltaX) * vMatchingFactor * frameTime;
+            this.deltaY += (avgDeltaY - this.deltaY) * vMatchingFactor * frameTime;
             this.deltaX += avoidNudgeX * avoidFactor * frameTime;
             this.deltaY += avoidNudgeY * avoidFactor * frameTime;
-
 
             if (avoidNudgeX != 0)
             {
@@ -148,7 +146,7 @@ class Boid {
         else
         {
             // This will cause boids with no neighbour to have a bit of random walk.
-            const otherBoid = boidArray[numBoids - this.index - 1];
+            const otherBoid = boidArray[(numBoids - this.index) - 1];
             this.deltaX += otherBoid.deltaX * centeringFactor * frameTime;
             this.deltaY += otherBoid.deltaY * centeringFactor * frameTime;
             this.draw('red');
@@ -184,7 +182,6 @@ class Boid {
     }
 
 
-
     isInBounds(containerWidth, containerHeight, borderMargin)
     {
         const tooFarLeft = (this.currentX < borderMargin);
@@ -203,7 +200,6 @@ class Boid {
     }
 
 
-
     keepWithinBounds(containerWidth, containerHeight, borderMargin)
     {
         const tooFarLeft = (this.currentX < borderMargin);
@@ -212,17 +208,14 @@ class Boid {
         const tooFarDown = (this.currentY > (containerHeight - borderMargin));
         let outsideBounds = false;
 
-
         if (((this.currentX + this.deltaX) < 0) || ((this.currentX + this.deltaX) > containerWidth))
         {
-            console.log("Exceeded width");
             this.currentX = containerWidth / 2;
             outsideBounds = true;
         }
 
         if (((this.currentY + this.deltaY) < 0) || ((this.currentY + this.deltaY) > containerHeight))
         {
-            console.log("Exceeded height");
             this.currentY = containerHeight / 2;
             outsideBounds = true;
         }
@@ -232,7 +225,6 @@ class Boid {
             return;
         }
 
-        
 
         if ((tooFarLeft) || (tooFarRight))
         {
@@ -290,19 +282,17 @@ class BoidContainer
                 Math.random() * (this.boidsDiv.getBoundingClientRect().width * 0.9),
                 Math.random() * (this.boidsDiv.getBoundingClientRect().height * 0.9),
                 0,
-                0,
                 (Math.random() * initVelocity) - (2 * initVelocity),
                 (Math.random() * initVelocity) - (2 * initVelocity),
-                0,
                 i,
                 '',
                 0,
-                Math.random(),
                 this.canvasArray[i]
             );
 
+            newBoid.seed = Math.random();
             this.boidArray.push(newBoid);
-            newBoid.draw('white');
+            newBoid.draw('red');
         }
     }
 
