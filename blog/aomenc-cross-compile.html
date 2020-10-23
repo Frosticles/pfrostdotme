@@ -48,9 +48,8 @@
 	<main class="style-main-simple">
 		<div class="language-markup">
 			<h3>
-				Compiling a Windows executable binary of the AV1 encoder aomenc using Ubuntu
+				Prerequisites
 			</h3>
-			<br>
 			<p>
 				Download the tools to compile aom, mingw-w64 is what gives us a 64-bit gcc toolchain that will compile Windows executables on Unix platforms:
 			</p>
@@ -63,6 +62,10 @@ sudo apt install git build-essential make mingw-w64 nasm cmake
 			<pre><code>git clone https://aomedia.googlesource.com/aom
 cd aom/build
 </code></pre>
+			<br>
+			<h3>
+				Compile
+			</h3>
 			<p>
 				Use CMake to generate a Makefile that will use the mingw toolchain we installed above, we want a release build (rather than a debug build), and we want to statically link any libraries rather than dynamically link them in at runtime to avoid errors like "libgcc_s_seh-1.dll not found" when we run it in Windows:
 			</p>		
@@ -73,13 +76,16 @@ cd aom/build
 			</p>
 			<pre><code>make -j$(grep -c ^processor /proc/cpuinfo)</code></pre>
 			<p>
-				You should now have your AV1 encoder executables in the build directory:
+				Done! You should now have your AV1 encoder executables in the build directory:
 			</p>
 			<pre><code>ls -al *.exe
 -rwxrwxrwx 1 frost frost 11480603 Oct 18 17:13 aomdec.exe
 -rwxrwxrwx 1 frost frost 11553153 Oct 18 17:13 aomenc.exe
 </code></pre>
 			<br>
+			<h3>
+				Automating
+			</h3>
 			<p>
 				For future reference, it might be convenient to setup a bash script to automatically make new releases. Just remember to save this with Unix LF line endings rather than Windows CRLF line endings, or use dos2unix to change the line endings. Save this in main aom repository directory, not the build folder.
 			</p>
