@@ -61,7 +61,9 @@ class Boid
     }
 
 
-    applyFlockingForces(boidArray, numBoids, containerWidth, containerHeight, visualRange, borderMargin, minDistance, frameTime) 
+    applyFlockingForces(boidArray, numBoids, mousePresent, mouseX, mouseY, 
+                        containerWidth, containerHeight, visualRange, borderMargin,
+                        minDistance, frameTime) 
     {
         let numNeighbors = 0;
         let localCenterX = 0;
@@ -70,24 +72,56 @@ class Boid
         let avoidNudgeY = 0;
         let avgDeltaX = 0;
         let avgDeltaY = 0;
+        let otherCurrentX = 0;
+        let otherCurrentY = 0;
+        let otherDeltaX = 0;
+        let otherDeltaY = 0;
+        let mouseVisible = false;
 
-        if (this.isInBounds(containerWidth, containerHeight, borderMargin) == false)
+        if (this.isInBounds(containerWidth, containerHeight, borderMargin) === false)
         {
             return;
+        }
+
+        if (mousePresent == true)
+        {
+            const absA = Math.abs(mouseX - this.currentX);
+            const absB = Math.abs(this.currentY - mouseY);
+            const newVisualRange = (visualRange * 2);
+            
+            if ((absA + absB) < newVisualRange)
+            {
+                mouseVisible = true;
+                visualRange = newVisualRange;
+            }
         }
     
         for (let i = 0; i < numBoids; i++)
         {
-            if (i !== this.index) 
+            if (mouseVisible == true)
+            {
+                otherCurrentX = mouseX;
+                otherCurrentY = mouseY;
+                i = numBoids;
+            }
+            else
+            {
+                otherCurrentX = boidArray[i].currentX;
+                otherCurrentY = boidArray[i].currentY;
+                otherDeltaX = boidArray[i].deltaX;
+                otherDeltaY = boidArray[i].deltaY;
+            }
+            
+            if ((i !== this.index) || (mouseVisible == true))
             {            
-                const a = (boidArray[i].currentX - this.currentX);
+                const a = (otherCurrentX - this.currentX);
                 const absA = Math.abs(a);
                 if (absA > visualRange)
                 {
                     continue;
                 }
 
-                const b = (this.currentY - boidArray[i].currentY);
+                const b = (this.currentY - otherCurrentY);
                 const absB = Math.abs(b);
                 if (absB > visualRange)
                 {
@@ -100,21 +134,21 @@ class Boid
                 
                 if (distance < visualRange) 
                 {
-                    if (Math.abs(this.currentAngle + Math.atan2(b, a)) > 1.5)
+                    if ((mouseVisible == false) && Math.abs(this.currentAngle + Math.atan2(b, a)) > 1.5)
                     {
                         continue;
                     }
 
-                    localCenterX += boidArray[i].currentX;
-                    localCenterY += boidArray[i].currentY;
-                    avgDeltaX += boidArray[i].deltaX;
-                    avgDeltaY += boidArray[i].deltaY;
+                    localCenterX += otherCurrentX;
+                    localCenterY += otherCurrentY;
+                    avgDeltaX += otherDeltaX;
+                    avgDeltaY += otherDeltaY;
                     numNeighbors += 1;
 
                     if (distance < minDistance)
                     {
-                        avoidNudgeX += (this.currentX - boidArray[i].currentX) * (minDistance - distance);
-                        avoidNudgeY += (this.currentY - boidArray[i].currentY) * (minDistance - distance);
+                        avoidNudgeX += (this.currentX - otherCurrentX) * (minDistance - distance);
+                        avoidNudgeY += (this.currentY - otherCurrentY) * (minDistance - distance);
                     }
                 }
             }
@@ -158,7 +192,8 @@ class Boid
     {
         const speed = Math.sqrt((this.deltaX ** 2) + (this.deltaY ** 2));
         const angle = Math.atan2(this.deltaY, this.deltaX);
-        const angleDiff = angle - this.currentAngle;
+        const phi = Math.abs(angle - this.currentAngle);
+        const angleDiff = (phi > Math.PI) ? ((2 * Math.PI) - phi) : phi;
 
         if (Math.abs(angleDiff) > maxAngleChange)
         {
@@ -262,12 +297,22 @@ class Boid
 
 class BoidContainer
 {    
-    constructor(boidsDiv, numBoids) 
+    constructor(boidsDiv, options) 
     {
         this.boidsDiv = boidsDiv;
-        this.numBoids = numBoids;
+        this.numBoids = parseInt(options[0]);
         this.boidArray = [];
         this.prevTimestamp = 0;
+        this.mousePresent = false;
+        this.mouseX = 0;
+        this.mouseY = 0;
+
+        if (options.includes("follow-mouse"))
+        {
+            this.boidsDiv.addEventListener("mousemove", this.mouseMove.bind(this), false);
+            this.boidsDiv.addEventListener("mouseenter", this.mouseEnter.bind(this), false);
+            this.boidsDiv.addEventListener("mouseleave", this.mouseLeave.bind(this), false);
+        }
 
         for (let i = 0; i < this.numBoids; i++) 
         {
@@ -310,7 +355,9 @@ class BoidContainer
         {
             this.boidArray[i].speedLimit = (boidSize * speedLimitFactor) + (this.boidArray[i].seed * speedRandomness);
 
-            this.boidArray[i].applyFlockingForces(this.boidArray, this.numBoids, containerWidth, containerHeight, visualRange, borderMargin, minDistance, frameTime);
+            this.boidArray[i].applyFlockingForces(this.boidArray, this.numBoids, this.mousePresent, this.mouseX, this.mouseY,
+                                                    containerWidth, containerHeight, visualRange, borderMargin, 
+                                                    minDistance, frameTime);
             this.boidArray[i].limitVelocity();
             this.boidArray[i].keepWithinBounds(containerWidth, containerHeight, borderMargin);
 
@@ -323,6 +370,22 @@ class BoidContainer
                                                                         0px)
                                                             rotate(${this.boidArray[i].currentAngle}rad)`;
         }
+    }
+
+    mouseMove(event)
+    {
+        this.mouseX = event.offsetX;
+        this.mouseY = event.offsetY;
+    }
+
+    mouseEnter(event)
+    {
+        this.mousePresent = true;
+    }
+
+    mouseLeave(event)
+    {
+        this.mousePresent = false;
     }
 }
 
@@ -370,7 +433,9 @@ function boidsInit()
 
     boidDivs.forEach((htmlSegment) =>
     {
-        boidContainers.push(new BoidContainer(htmlSegment, parseInt(htmlSegment.className)));
+        let options = htmlSegment.className.split(",");
+        let boidInstance = new BoidContainer(htmlSegment, options);
+        boidContainers.push(boidInstance);
     });
 
     window.requestAnimationFrame(boidControlLoop);
