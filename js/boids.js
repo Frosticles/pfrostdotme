@@ -14,7 +14,7 @@ const minSpeedFactor = 0.7;
 const initVelocity = 1;
 const speedLimitFactor = 0.4;
 const speedRandomness = 0.2;
-const marginFactor = 4;
+const marginFactor = 0.15;
 const visualRangeFactor = 10;
 const minDistanceFactor = 1.5;
 let frameTime;
@@ -61,7 +61,7 @@ class Boid
     }
 
 
-    applyFlockingForces(boidArray, numBoids, mousePresent, mouseX, mouseY, 
+    applyFlockingForces(boidArray, numBoids, mousePresent, mouseX, mouseY, debugColours,
                         containerWidth, containerHeight, visualRange, borderMargin,
                         minDistance, frameTime) 
     {
@@ -83,7 +83,7 @@ class Boid
             return;
         }
 
-        if (mousePresent == true)
+        if (mousePresent)
         {
             const absA = Math.abs(mouseX - this.currentX);
             const absB = Math.abs(this.currentY - mouseY);
@@ -98,7 +98,7 @@ class Boid
     
         for (let i = 0; i < numBoids; i++)
         {
-            if (mouseVisible == true)
+            if (mouseVisible)
             {
                 otherCurrentX = mouseX;
                 otherCurrentY = mouseY;
@@ -112,7 +112,7 @@ class Boid
                 otherDeltaY = boidArray[i].deltaY;
             }
             
-            if ((i !== this.index) || (mouseVisible == true))
+            if ((i !== this.index) || (mouseVisible))
             {            
                 const a = (otherCurrentX - this.currentX);
                 const absA = Math.abs(a);
@@ -134,7 +134,7 @@ class Boid
                 
                 if (distance < visualRange) 
                 {
-                    if ((mouseVisible == false) && Math.abs(this.currentAngle + Math.atan2(b, a)) > 1.5)
+                    if ((mouseVisible === false) && Math.abs(this.currentAngle + Math.atan2(b, a)) > 1.5)
                     {
                         continue;
                     }
@@ -154,7 +154,7 @@ class Boid
             }
         }
     
-        if (numNeighbors > 0) 
+        if (numNeighbors) 
         {
             localCenterX /= numNeighbors;
             localCenterY /= numNeighbors;
@@ -168,13 +168,16 @@ class Boid
             this.deltaX += avoidNudgeX * avoidFactor * frameTime;
             this.deltaY += avoidNudgeY * avoidFactor * frameTime;
 
-            if (avoidNudgeX != 0)
+            if (debugColours)
             {
-                this.draw('purple');
-            }
-            else
-            {
-                this.draw('green');
+                if (avoidNudgeX)
+                {
+                    this.draw('purple');
+                }
+                else
+                {
+                    this.draw('green');
+                }
             }
         }
         else
@@ -183,7 +186,11 @@ class Boid
             const otherBoid = boidArray[(numBoids - this.index) - 1];
             this.deltaX += otherBoid.deltaX * centeringFactor * frameTime;
             this.deltaY += otherBoid.deltaY * centeringFactor * frameTime;
-            this.draw('red');
+            
+            if (debugColours)
+            {
+                this.draw('red');
+            }
         }
     }
 
@@ -314,6 +321,9 @@ class BoidContainer
             this.boidsDiv.addEventListener("mouseleave", this.mouseLeave.bind(this), false);
         }
 
+        this.debugColours = options.includes("debug-colour");
+        this.showBoundaries = options.includes("show-boundaries");
+
         for (let i = 0; i < this.numBoids; i++) 
         {
             this.boidsDiv.innerHTML += "\n<canvas class=\"boids\"></canvas>"
@@ -337,7 +347,15 @@ class BoidContainer
 
             newBoid.seed = Math.random();
             this.boidArray.push(newBoid);
-            newBoid.draw('red');
+
+            if (this.debugColours)
+            {
+                newBoid.draw('red');
+            }
+            else
+            {
+                newBoid.draw('white');
+            }
         }
     }
 
@@ -346,18 +364,25 @@ class BoidContainer
     {
         const boidSize = Math.min((this.boidsDiv.boundingRect.width * 0.02), 20);
         const containerWidth = this.boidsDiv.boundingRect.width - boidSize;
-        const containerHeight = this.boidsDiv.boundingRect.height - boidSize;        
+        const containerHeight = this.boidsDiv.boundingRect.height - boidSize;    
+        const borderMargin = Math.max((boidSize * 2), Math.min((containerWidth * marginFactor), (containerHeight * marginFactor)));    
         const visualRange = boidSize * visualRangeFactor;
-        const borderMargin = boidSize * marginFactor;
         const minDistance = boidSize * minDistanceFactor;
+
+        if (this.showBoundaries)
+        {
+            this.boidsDiv.style.outline = `${borderMargin}px solid rgba(255,10,10,0.5)`;
+            this.boidsDiv.style.outlineOffset = `-${borderMargin}px`;
+        }
 
         for (let i = 0; i < this.numBoids; i++) 
         {
             this.boidArray[i].speedLimit = (boidSize * speedLimitFactor) + (this.boidArray[i].seed * speedRandomness);
 
-            this.boidArray[i].applyFlockingForces(this.boidArray, this.numBoids, this.mousePresent, this.mouseX, this.mouseY,
-                                                    containerWidth, containerHeight, visualRange, borderMargin, 
-                                                    minDistance, frameTime);
+            this.boidArray[i].applyFlockingForces(this.boidArray, this.numBoids, this.mousePresent, 
+                                                    this.mouseX, this.mouseY, this.debugColours,
+                                                    containerWidth, containerHeight, visualRange, 
+                                                    borderMargin, minDistance, frameTime);
             this.boidArray[i].limitVelocity();
             this.boidArray[i].keepWithinBounds(containerWidth, containerHeight, borderMargin);
 

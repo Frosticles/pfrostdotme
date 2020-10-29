@@ -43,22 +43,28 @@
 
 		<aside>
 			<div class="style-jumbotron">
-				<a id="jumbotron" title="Boids Flocking">|</a>
+				<a id="jumbotron" title="HTML/CSS Bird Flocking Simulation using Boids Algorithm">|</a>
 			</div>
 		</aside>
 	</header>	
 
+	<div id="boidsDiv" class="80,follow-mouse,no-colour,hide-boundaries" style="height: 40vh; margin: auto; overflow: hidden;"></div>
+
 	<main class="style-main-simple">
 		<div class="language-cpp">
-			<h3>
-				Test
-			</h3>
+			<p>
+				These simulations are being rendered using individual HTML elements with CSS translations, and they're very easy to include in a web page, just include the script and create a boundary for the boids to work in. They'll even follow your mouse if you move it around near them!
+			</p>
+			<p>
+				Lets take a look at what's going on behind the scenes to create this flocking behaviour, stating with just one boid.
+			</p>
+			<div id="boidsDiv" class="1,ignore-mouse,no-colour,show-boundaries" style="height: 10vh; margin: auto; overflow: hidden; padding: 0;"></div>
+			<p>
+				Each boid starts in a random place, with a random speed and direction within whatever region you choose to define. Given that for the moment there aren't any other boids in the region, the lone boid will just carry on until it gets close to the edge of the region it's in. At this point it's velocity will be nudged in the opposite direction in proportion to how close it is to the boundary, stopping it from just flying off the screen at the first opportunity.
+			</p>
 		</div>
 	</main>
 
-	<div id="boidsDiv" class="100,follow-mouse" style="height: 80vh; width: 100%; margin: auto; overflow: hidden;"></div>
-	<div id="boidsDiv" class="100,follow-mouse" style="height: 80vh; width: 100%; margin: auto; overflow: hidden;"></div>
-	<div id="boidsDiv" class="100,ignore-mouse" style="height: 80vh; width: 100%; margin: auto; overflow: hidden;"></div>
 
 	<link rel="preload" href="../fonts/fira/fira.css" as="style">
 	<link rel="preload" href="../fonts/roboto/roboto.css" as="style">
