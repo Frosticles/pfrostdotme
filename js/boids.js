@@ -5,10 +5,10 @@
 
 
 
-const centeringFactor = 0.4;
+const centeringFactor = 0.5;
 const turnBias = 0.25;
-const avoidFactor = 0.2;
-const vMatchingFactor = 0.05;
+const avoidFactor = 0.1;
+const vMatchingFactor = 1;
 const maxAngleChange = 0.3;
 const minSpeedFactor = 0.7;
 const initVelocity = 1;
@@ -16,7 +16,8 @@ const speedLimitFactor = 0.4;
 const speedRandomness = 0.2;
 const marginFactor = 0.15;
 const visualRangeFactor = 10;
-const minDistanceFactor = 1.5;
+const minDistanceFactor = 2;
+const fieldOfView = (Math.PI * 0.7);
 let frameTime;
 
 
@@ -78,11 +79,6 @@ class Boid
         let otherDeltaY = 0;
         let mouseVisible = false;
 
-        if (this.isInBounds(containerWidth, containerHeight, borderMargin) === false)
-        {
-            return;
-        }
-
         if (mousePresent)
         {
             const absA = Math.abs(mouseX - this.currentX);
@@ -134,7 +130,10 @@ class Boid
                 
                 if (distance < visualRange) 
                 {
-                    if ((mouseVisible === false) && Math.abs(this.currentAngle + Math.atan2(b, a)) > 1.5)
+                    const phi = Math.abs(Math.atan2(b, a) - this.currentAngle);
+                    const angleDiff = (phi > Math.PI) ? ((2 * Math.PI) - phi) : phi;
+
+                    if ((mouseVisible === false) && (angleDiff > fieldOfView))
                     {
                         continue;
                     }
@@ -182,11 +181,6 @@ class Boid
         }
         else
         {
-            // This will cause boids with no neighbour to have a bit of random walk.
-            const otherBoid = boidArray[(numBoids - this.index) - 1];
-            this.deltaX += otherBoid.deltaX * centeringFactor * frameTime;
-            this.deltaY += otherBoid.deltaY * centeringFactor * frameTime;
-            
             if (debugColours)
             {
                 this.draw('red');
@@ -198,18 +192,6 @@ class Boid
     limitVelocity() 
     {
         const speed = Math.sqrt((this.deltaX ** 2) + (this.deltaY ** 2));
-        const angle = Math.atan2(this.deltaY, this.deltaX);
-        const phi = Math.abs(angle - this.currentAngle);
-        const angleDiff = (phi > Math.PI) ? ((2 * Math.PI) - phi) : phi;
-
-        if (Math.abs(angleDiff) > maxAngleChange)
-        {
-            let angleChange = (angleDiff > 0) ? maxAngleChange : -maxAngleChange
-            let newAngle = this.currentAngle + angleChange;
-
-            this.deltaX = Math.cos(newAngle) * speed;
-            this.deltaY = Math.sin(newAngle) * speed;
-        }
 
         if (speed > this.speedLimit) 
         {
@@ -220,24 +202,6 @@ class Boid
         {
             this.deltaX = (this.deltaX / speed) * (this.speedLimit * minSpeedFactor);
             this.deltaY = (this.deltaY / speed) * (this.speedLimit * minSpeedFactor);
-        }
-    }
-
-
-    isInBounds(containerWidth, containerHeight, borderMargin)
-    {
-        const tooFarLeft = (this.currentX < borderMargin);
-        const tooFarRight = (this.currentX > (containerWidth - borderMargin));
-        const tooFarUp = (this.currentY < borderMargin);
-        const tooFarDown = (this.currentY > (containerHeight - borderMargin));
-
-        if (tooFarLeft || tooFarRight || tooFarUp || tooFarDown)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
         }
     }
 
@@ -264,6 +228,8 @@ class Boid
 
         if (outsideBounds)
         {
+            // If this is true, it means we've just reset this boid to the centre of the screen
+            // so no point carrying on with the remaining boundary checks.
             return;
         }
 
@@ -365,7 +331,7 @@ class BoidContainer
         const boidSize = Math.min((this.boidsDiv.boundingRect.width * 0.02), 20);
         const containerWidth = this.boidsDiv.boundingRect.width - boidSize;
         const containerHeight = this.boidsDiv.boundingRect.height - boidSize;    
-        const borderMargin = Math.max((boidSize * 2), Math.min((containerWidth * marginFactor), (containerHeight * marginFactor)));    
+        const borderMargin = Math.max((boidSize * 2.5), Math.min((containerWidth * marginFactor), (containerHeight * marginFactor)));    
         const visualRange = boidSize * visualRangeFactor;
         const minDistance = boidSize * minDistanceFactor;
 
@@ -388,12 +354,12 @@ class BoidContainer
 
             this.boidArray[i].currentX += this.boidArray[i].deltaX;
             this.boidArray[i].currentY += this.boidArray[i].deltaY;
-            this.boidArray[i].currentAngle = Math.atan2(this.boidArray[i].deltaY, this.boidArray[i].deltaX);
+            this.boidArray[i].currentAngle = Math.atan2(-this.boidArray[i].deltaY, this.boidArray[i].deltaX);
 
             this.canvasArray[i].style.cssText = `transform: translate3d(${this.boidArray[i].currentX}px,
                                                                         ${this.boidArray[i].currentY}px, 
                                                                         0px)
-                                                            rotate(${this.boidArray[i].currentAngle}rad)`;
+                                                            rotate(${Math.atan2(this.boidArray[i].deltaY, this.boidArray[i].deltaX)}rad)`;
         }
     }
 
